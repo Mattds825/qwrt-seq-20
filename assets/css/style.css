@@ -5,7 +5,7 @@
   --controls-container-height: 10vh;
   --controls-container-width: 50vh;
 
-  --effects-container-height: 30vh;
+  --effects-container-height: 20vh;
   --effects-container-width: 50vh;
 
   --header-height: 9vh;
@@ -119,7 +119,7 @@ header{
 
 #effects-container .grid-container {
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 25% 75%;
+  grid-template-rows: 10% 90%;
   grid-template-areas: 
   "title title title"
   ". . ."
@@ -141,15 +141,20 @@ header{
   align-items: center;
   background-color: var(--pad-color);
   color: white;
+  font-weight: bold;
   height: 100%;
   width: auto;
   aspect-ratio: 1/1;
   border-radius: 50%;
   cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
 }
 
 .pad:hover {
   background-color: var(--pad-color-hover);
+  transform: translateY(2px);
+  box-shadow: 0 0 rgba(0, 0, 0, 0);
 }
 
 
@@ -158,20 +163,51 @@ header{
     flex-direction: column;
     align-items: center;
     height: 100%;
+    width: 100%;
     padding: 0 10px;
+    position: relative;
+    bottom: 0;
 }
 
 .slider-container input[type="range"] {
+    /* --wsf-range-vertical-height: 100% !important; */
+    /* -webkit-appearance: none; */
+    appearance: slider-vertical;
     -webkit-appearance: slider-vertical;
-    writing-mode: bt-lr; /* vertical slider */
-    width: 8px;
-    height: 75%;
-    background: linear-gradient(to top, #ddd, #ccc);
-    outline: none;
+    /* writing-mode: bt-lr; */
+    width: 1px;
+    height: 100%;
+    background: red;
+    /* outline: red solid 3px; */
+    /* position: relative; */
+    /* transform: rotate(270deg) translateX(-50%);  */
+    transform-origin: center;
+
 }
+
+
+/* 
+.slider-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 1);
+    position: relative;
+} */
 
 .slider-value {
     font-size: 18px;
     text-align: center;
-    height: 25%;
+    position: relative;
+    margin-top: auto;
+    margin-bottom: 0;
+}
+
+.slider-name{
+    position: relative;
+    font-weight: bold;
+    /* margin-top: auto; */
 }
