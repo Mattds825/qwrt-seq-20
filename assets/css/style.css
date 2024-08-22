@@ -11,6 +11,12 @@
   --header-height: 9vh;
   --header-width: 50vh;
 
+  --pad-color: rgb(102, 59, 51);;
+  --pad-color-hover: rgb(217, 107, 85);
+
+  --play-color: #216421;
+  --play-color-hover: #66ff66;
+
   /* Primary Colors */
   --primary-color: #ff5733; /* Vibrant Orange for drum pads */
   --secondary-color: #33c1ff; /* Bright Blue for interactive elements */
@@ -47,6 +53,7 @@ body {
   height: 100vh;
   margin: 0;
   background-color: #f0f0f0;
+  font-family: sans-serif;
 }
 
 header{
@@ -88,10 +95,21 @@ header{
 .grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   gap: 10px;
   height: 100%;
   width: 100%;
+}
+
+#pads-container .grid-container {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-areas: 
+  "title title title title"
+  ". . . ."
+  ". . . ."
+  ". . . ."
+  ". . . .";
 }
 
 #controls-container .grid-container {
@@ -121,14 +139,17 @@ header{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #4caf50;
+  background-color: var(--pad-color);
   color: white;
-  border-radius: 8px;
+  height: 100%;
+  width: auto;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
   cursor: pointer;
 }
 
 .pad:hover {
-  background-color: #45a049;
+  background-color: var(--pad-color-hover);
 }
 
 
