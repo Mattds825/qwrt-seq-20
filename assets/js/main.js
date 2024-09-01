@@ -1,4 +1,12 @@
+// Load sound files
+const kick = new Tone.Player("assets/sounds/kick.wav");
+const snare = new Tone.Player("assets/sounds/snare.wav");
+const hat = new Tone.Player("assets/sounds/hat.wav");
+const crash = new Tone.Player("assets/sounds/crash.wav");
+
 const currentPadText = document.getElementById("current-pad-text");
+const startBtn = document.getElementById("start-btn");
+const mainContentContainer = document.getElementById("main-content-container");
 
 const padKeyMap = {
     1: 1,
@@ -32,11 +40,19 @@ const padKeyMap = {
     10: "FX 2",
     11: "FX 3",
     12: "FX 4",
-    13: "Drums 1",
-    14: "Drums 2",
-    15: "Drums 3",
-    16: "Drums 4",
+    13: "Drums | Kick",
+    14: "Drums | Snare",
+    15: "Drums | Hat",
+    16: "Drums | Crash",
   };
+
+  // Start audio context
+startBtn.addEventListener("click", async () => {
+    await Tone.start();
+    console.log("Audio context started");
+    mainContentContainer.classList.remove("hidden");
+    startBtn.classList.add("hidden");
+  });
 
 function updateValue(slider) {
     if (slider.id === 'vol-slider') document.getElementById('slider-value-vol').textContent = slider.value;

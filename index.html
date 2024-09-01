@@ -7,13 +7,15 @@
     <title>QWRT-SEQ-20</title>
   </head>
   <body>
-    <main>
+       <!-- Start Button -->
+       <button id="start-btn">Start Audio Context</button>
+       <!-- /.Start Button --> 
+    <main class="hidden" id="main-content-container">
       <!-- Header -->
       <header>
         <h1>QWRT-SEQ-20</h1>
       </header>
       <!--./Header -->
-
       <!-- Section for the effects -->
       <section>
         <div class="container" id="effects-container">            
@@ -181,6 +183,7 @@
       <!--./Section for the track controls -->
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.37/Tone.js"></script>
     <script src="assets/js/main.js"></script>
   </body>
 </html>
