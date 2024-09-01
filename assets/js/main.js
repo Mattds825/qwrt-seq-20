@@ -1,8 +1,8 @@
 // Load sound files
-const kick = new Tone.Player("assets/sounds/kick.wav");
-const snare = new Tone.Player("assets/sounds/snare.wav");
-const hat = new Tone.Player("assets/sounds/hat.wav");
-const crash = new Tone.Player("assets/sounds/crash.wav");
+const kick = new Tone.Player("assets/sounds/kick.wav").toDestination();
+const snare = new Tone.Player("assets/sounds/snare.wav").toDestination();
+const hat = new Tone.Player("assets/sounds/hat.wav").toDestination();
+const crash = new Tone.Player("assets/sounds/crash.wav").toDestination();
 
 const currentPadText = document.getElementById("current-pad-text");
 const startBtn = document.getElementById("start-btn");
@@ -60,8 +60,29 @@ function updateValue(slider) {
     if(slider.id === 'dist-slider') document.getElementById('slider-value-dist').textContent = slider.value;
 }
 
+// set current pad text
 const setCurrentPadText = (pad) => {
     currentPadText.textContent = padNameMap[pad];
+}
+
+// play pad sound
+const playPadSound = (pad) => {
+    switch (pad) {
+        case 13:
+            kick.start();
+            break;
+        case 14:
+            snare.start();
+            break;
+        case 15:
+            hat.start();
+            break;
+        case 16:
+            crash.start();
+            break;
+        default:
+            break;
+    }
 }
 
 // keyboard event listener
@@ -74,6 +95,9 @@ document.addEventListener('keydown', (event) => {
 
         // set current pad text
         setCurrentPadText(padKey);
+
+        // play pad sound
+        playPadSound(padKey);
     }
 });
 
