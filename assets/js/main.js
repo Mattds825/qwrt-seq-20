@@ -16,7 +16,6 @@ let synth3key = "E4";
 let synth4key = "F4";
 
 // create bass synths
-
 const bass1 = new Tone.Synth().toDestination();
 const bass2 = new Tone.Synth().toDestination();
 const bass3 = new Tone.Synth().toDestination();
@@ -27,6 +26,45 @@ let bass2key = "D2";
 let bass3key = "E2";
 let bass4key = "F2";
 
+// Track steps configuration for tracks 1-16
+const steps = {
+  1: Array(16).fill(false),
+  2: Array(16).fill(false),
+  3: Array(16).fill(false),
+  4: Array(16).fill(false),
+  5: Array(16).fill(false),
+  6: Array(16).fill(false),
+  7: Array(16).fill(false),
+  8: Array(16).fill(false),
+  9: Array(16).fill(false),
+  10: Array(16).fill(false),
+  11: Array(16).fill(false),
+  12: Array(16).fill(false),
+  13: Array(16).fill(false),
+  14: Array(16).fill(false),
+  15: Array(16).fill(false),
+  16: Array(16).fill(false),
+};
+
+// Sequence
+const seq = new Tone.Sequence(
+  (time, col) => {
+    for (let i = 1; i <= 16; i++) {
+      console.log(steps[i][col]);
+      if (steps[i][col]) {
+        playPadSound(i);
+      }
+    }
+
+    // if (steps.kick[col]) kick.start(time);
+    // if (steps.snare[col]) snare.start(time);
+    // if (steps.hat[col]) hat.start(time);
+    // if (steps.cymbal[col]) cymbal.start(time);
+  },
+  [...Array(16).keys()],
+  "16n"
+);
+
 const currentPadText = document.getElementById("current-pad-text");
 const currentModeText = document.getElementById("current-mode-text");
 const startBtn = document.getElementById("start-btn");
@@ -34,11 +72,114 @@ const mainContentContainer = document.getElementById("main-content-container");
 const playBtn = document.getElementById("pad-play");
 const editBtn = document.getElementById("pad-edit");
 const undoBtn = document.getElementById("pad-undo");
-const activeStepIndicators = document.querySelectorAll(".step-active-indicator");
+const activeStepIndicators = document.querySelectorAll(
+  ".step-active-indicator"
+);
 
 let isEditing = false;
+let isPlaying = false;
+let currentSelectedPad = undefined;
 
 // TODO: make an array of pad objects to store all the pad's data
+
+const padsData = [
+  {
+    id: 1,
+    name: "Synth 1",
+    sound: synth1,
+    key: "C4",
+  },
+  {
+    id: 2,
+    name: "Synth 2",
+    sound: synth2,
+    key: "D4",
+  },
+  {
+    id: 3,
+    name: "Synth 3",
+    sound: synth3,
+    key: "E4",
+  },
+  {
+    id: 4,
+    name: "Synth 4",
+    sound: synth4,
+    key: "F4",
+  },
+  {
+    id: 5,
+    name: "Bass 1",
+    sound: bass1,
+    key: "C2",
+  },
+  {
+    id: 6,
+    name: "Bass 2",
+    sound: bass2,
+    key: "D2",
+  },
+  {
+    id: 7,
+    name: "Bass 3",
+    sound: bass3,
+    key: "E2",
+  },
+  {
+    id: 8,
+    name: "Bass 4",
+    sound: bass4,
+    key: "F2",
+  },
+  {
+    id: 9,
+    name: "FX 1",
+    sound: synth1,
+    key: "C4",
+  },
+  {
+    id: 10,
+    name: "FX 2",
+    sound: synth2,
+    key: "D4",
+  },
+  {
+    id: 11,
+    name: "FX 3",
+    sound: synth3,
+    key: "E4",
+  },
+  {
+    id: 12,
+    name: "FX 4",
+    sound: synth4,
+    key: "F4",
+  },
+  {
+    id: 13,
+    name: "Drums | Kick",
+    sound: kick,
+    key: "C2",
+  },
+  {
+    id: 14,
+    name: "Drums | Snare",
+    sound: snare,
+    key: "D2",
+  },
+  {
+    id: 15,
+    name: "Drums | Hat",
+    sound: hat,
+    key: "E2",
+  },
+  {
+    id: 16,
+    name: "Drums | Crash",
+    sound: crash,
+    key: "F2",
+  },
+];
 
 const padKeyMap = {
   1: 1,
@@ -58,6 +199,7 @@ const padKeyMap = {
   c: 15,
   v: 16,
   "/": "edit",
+  " ": "play",
 };
 
 const padNameMap = {
@@ -145,15 +287,38 @@ const playPadSound = (pad) => {
   }
 };
 
+const togglePlaySequence = () => {
+  isPlaying = !isPlaying;
+  if (isPlaying) {
+    Tone.Transport.start();
+    seq.start(0);
+  } else {
+    Tone.Transport.stop();
+    seq.stop();
+  }
+
+  const PlayButtonText = document.querySelector("#pad-play p");
+  PlayButtonText.textContent = isPlaying ? "Pause" : "Play";
+};
+
+// toggle step
+const toggleStep = (track, step) => {
+  steps[track][step] = !steps[track][step];
+  const stepIndicator = document.querySelector(
+    `#pad-${step} .step-active-indicator`
+  );
+  stepIndicator.classList.toggle("active");
+};
+
 // toggle edit mode text
 const toggleEditMode = () => {
   isEditing = !isEditing;
   currentModeText.textContent = isEditing ? "Edit" : "Play";
 
   // togle hidden class on active step indicators
-    activeStepIndicators.forEach((indicator) => {
-        indicator.classList.toggle("hidden");
-    });
+  activeStepIndicators.forEach((indicator) => {
+    indicator.classList.toggle("hidden");
+  });
 };
 
 // keyboard event listener
@@ -166,13 +331,23 @@ document.addEventListener("keydown", (event) => {
     // toggle edit mode if / key is pressed
     if (padKey === "edit") {
       toggleEditMode();
+    } else if (padKey === "play") {
+      togglePlaySequence();
     } else {
-      // set current pad text
-      setCurrentPadText(padKey);
+      // is a sound pad key
+      if (isEditing) {
+        toggleStep(currentSelectedPad, padKey);
+      } else {
+        // set current pad text
+        setCurrentPadText(padKey);
 
-      // play pad sound
-      playPadSound(padKey);
+        // play pad sound
+        playPadSound(padKey);
+      }
     }
+
+    // set current selected pad
+    if (!isEditing) currentSelectedPad = padKey;
   }
 });
 
@@ -184,4 +359,9 @@ document.addEventListener("keyup", (event) => {
     const pad = document.getElementById(`pad-${padKey}`);
     pad.classList.remove("active");
   }
+});
+
+// play button plays sequence
+playBtn.addEventListener("click", () => {
+  togglePlaySequence();
 });
