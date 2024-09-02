@@ -6,6 +6,7 @@
   --controls-container-width: 50vh;
 
   --effects-container-height: 20vh;
+  --effects-container-height-large: 40vh;
   --effects-container-width: 50vh;
 
   --header-height: 9vh;
@@ -56,12 +57,18 @@ body {
   font-family: sans-serif;
 }
 
+#main-content-container{
+  /* display: grid; */
+  grid-template-columns: 1fr;
+}
+
 header{
     display: flex;
     justify-content: center;
     align-items: center;
     height: var(--header-height);
     width: var(--header-width);
+    /* grid-area: main-header; */
 }
 
 .container{
@@ -76,6 +83,7 @@ header{
   width: var(--drum-pads-container-width);
   height: var(--drum-pads-container-height);
   padding: 1rem;
+  grid-area: pads;
 }
 
 #controls-container {
@@ -83,6 +91,7 @@ header{
   width: var(--controls-container-width);
   height: var(--controls-container-height);
   padding: 1rem;
+  grid-area: controls;
 }
 
 #effects-container {
@@ -90,6 +99,7 @@ header{
   width: var(--effects-container-width);
   height: var(--effects-container-height);
   padding: 1rem;
+  grid-area: effects;
 }
 
 .grid-container {
@@ -272,4 +282,26 @@ button:hover {
 
 .step-active-indicator.active{
   background: var(--secondary-color);
+}
+
+
+/* media query for desktop size */
+@media (min-width: 1280px) {
+  #main-content-container{
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: var(--effects-container-height-large);
+    height: 50%;  
+  }
+
+  header{
+    /* display: none; */
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: 100vw;
+  }
+
+  #effects-container {
+    height: var(--effects-container-height-large);
+  }
 }

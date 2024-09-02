@@ -228,6 +228,7 @@ startBtn.addEventListener("click", async () => {
   await Tone.start();
   console.log("Audio context started");
   mainContentContainer.classList.remove("hidden");
+  mainContentContainer.style.display = "grid";
   startBtn.classList.add("hidden");
 });
 
