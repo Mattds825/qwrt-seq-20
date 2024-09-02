@@ -12,8 +12,10 @@
   --header-height: 9vh;
   --header-width: 50vh;
 
-  --pad-color: rgb(102, 59, 51);;
-  --pad-color-hover: rgb(217, 107, 85);
+  /* --pad-color: rgb(102, 59, 51);
+  --pad-color-hover: rgb(217, 107, 85); */
+  --pad-color: rgb(0, 0, 0);
+  --pad-color-hover: rgb(77, 77, 77);
 
   --play-color: #456633;
   --play-color-hover: #66ff66;
@@ -72,9 +74,10 @@ header{
 }
 
 .container{
-    /* background-color: blue; */
+    background-color: #d7d7d7;
+
     border: 1px solid black;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     padding: 10px 0px;
 }
 
@@ -199,21 +202,21 @@ button:hover {
 }
 
 .pad p{
-    font-size: 2.5rem;
+    font-size: 2.5vmin;
     font-weight: bolder;
 }
 
 .pad small{
-    font-size: 1rem;
+    font-size: 1.2vmin;
     color: #cccccc;
 }
 
 .pad.control p{
-  font-size: 1.5rem;
+  font-size: 1.5vmin;
 }
 
 .pad.control small{
-  font-size: 0.7rem;
+  font-size: 1vmin;
 }
 
 .slider-container {
