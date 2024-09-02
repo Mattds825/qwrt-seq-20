@@ -49,10 +49,10 @@ const steps = {
 // Sequence
 const seq = new Tone.Sequence(
   (time, col) => {
-    for (let i = 1; i <= 16; i++) {
-      console.log(steps[i][col]);
+    for (let i = 1; i <= 16; i++) {      
       if (steps[i][col]) {
-        playPadSound(i);
+        // playPadSound(i);
+        padsData[i-1].sound.start(time);
       }
     }
 
@@ -64,6 +64,8 @@ const seq = new Tone.Sequence(
   [...Array(16).keys()],
   "16n"
 );
+
+Tone.Transport.bpm.value = 220;
 
 const currentPadText = document.getElementById("current-pad-text");
 const currentModeText = document.getElementById("current-mode-text");
