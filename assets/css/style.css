@@ -14,7 +14,7 @@
   --pad-color: rgb(102, 59, 51);;
   --pad-color-hover: rgb(217, 107, 85);
 
-  --play-color: #216421;
+  --play-color: #456633;
   --play-color-hover: #66ff66;
 
   /* Primary Colors */
@@ -103,7 +103,7 @@ header{
 
 #pads-container .grid-container {
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: 0.4fr 1fr 1fr 1fr 1fr;
   grid-template-areas: 
   "title title title title"
   ". . . ."
@@ -133,6 +133,7 @@ header{
 
 .grid-item.title{
     grid-area: title;
+    justify-content: space-around;
 }
 
 .hidden{
@@ -197,6 +198,14 @@ button:hover {
     color: #cccccc;
 }
 
+.pad.control p{
+  font-size: 1.5rem;
+}
+
+.pad.control small{
+  font-size: 0.7rem;
+}
+
 .slider-container {
     display: flex;
     flex-direction: column;
@@ -251,4 +260,16 @@ button:hover {
     position: relative;
     font-weight: bold;
     /* margin-top: auto; */
+}
+
+
+.step-active-indicator{
+  width: 1.4rem;
+  height: 0.5rem;
+  background: var(--muted-text-color);
+  border-radius: 0.5rem;
+}
+
+.step-active-indicator.active{
+  background: var(--secondary-color);
 }

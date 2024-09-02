@@ -28,8 +28,15 @@ let bass3key = "E2";
 let bass4key = "F2";
 
 const currentPadText = document.getElementById("current-pad-text");
+const currentModeText = document.getElementById("current-mode-text");
 const startBtn = document.getElementById("start-btn");
 const mainContentContainer = document.getElementById("main-content-container");
+const playBtn = document.getElementById("pad-play");
+const editBtn = document.getElementById("pad-edit");
+const undoBtn = document.getElementById("pad-undo");
+const activeStepIndicators = document.querySelectorAll(".step-active-indicator");
+
+let isEditing = false;
 
 // TODO: make an array of pad objects to store all the pad's data
 
@@ -50,6 +57,7 @@ const padKeyMap = {
   x: 14,
   c: 15,
   v: 16,
+  "/": "edit",
 };
 
 const padNameMap = {
@@ -137,6 +145,17 @@ const playPadSound = (pad) => {
   }
 };
 
+// toggle edit mode text
+const toggleEditMode = () => {
+  isEditing = !isEditing;
+  currentModeText.textContent = isEditing ? "Edit" : "Play";
+
+  // togle hidden class on active step indicators
+    activeStepIndicators.forEach((indicator) => {
+        indicator.classList.toggle("hidden");
+    });
+};
+
 // keyboard event listener
 document.addEventListener("keydown", (event) => {
   const key = event.key.toLowerCase();
@@ -144,12 +163,16 @@ document.addEventListener("keydown", (event) => {
   if (padKey !== undefined) {
     const pad = document.getElementById(`pad-${padKey}`);
     pad.classList.add("active");
+    // toggle edit mode if / key is pressed
+    if (padKey === "edit") {
+      toggleEditMode();
+    } else {
+      // set current pad text
+      setCurrentPadText(padKey);
 
-    // set current pad text
-    setCurrentPadText(padKey);
-
-    // play pad sound
-    playPadSound(padKey);
+      // play pad sound
+      playPadSound(padKey);
+    }
   }
 });
 
