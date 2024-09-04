@@ -296,7 +296,8 @@ button:hover {
 
 
 /* media query for desktop size */
-@media (min-width: 1280px) {
+/* @media (min-width: 1280px) */
+@media (orientation: landscape) {
   #main-content-container{
     grid-template-columns: 1fr 1fr;
     grid-template-rows: var(--effects-container-height-large);
