@@ -1,24 +1,28 @@
 :root {
-  --drum-pads-container-height: 50vh;
-  --drum-pads-container-width: 50vh;
+  --drum-pads-container-height: 50svh;
+  --drum-pads-container-width: 50svh;
 
-  --controls-container-height: 10vh;
-  --controls-container-width: 50vh;
+  --controls-container-height: 10svh;
+  --controls-container-width: 50svh;
 
-  --effects-container-height: 20vh;
-  --effects-container-height-large: 40vh;
-  --effects-container-width: 50vh;
+  --effects-container-height: 20svh;
+  --effects-container-height-large: 40svh;
+  --effects-container-width: 50svh;
 
-  --header-height: 9vh;
-  --header-width: 50vh;
+  --header-height: 9svh;
+  --header-width: 50svh;
 
   /* --pad-color: rgb(102, 59, 51);
   --pad-color-hover: rgb(217, 107, 85); */
   --pad-color: rgb(0, 0, 0);
-  --pad-color-hover: rgb(77, 77, 77);
+  --pad-color-hover: rgb(33, 33, 33);
+  --pad-color-active: rgb(77, 77, 77);
 
   --play-color: #456633;
   --play-color-hover: #66ff66;
+
+  --pad-text-small: 1.5vmin;
+  --pad-text-large: 2.5vmin;
 
   /* Primary Colors */
   --primary-color: #ff5733; /* Vibrant Orange for drum pads */
@@ -53,7 +57,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100svh;
   margin: 0;
   background-color: #f0f0f0;
   font-family: sans-serif;
@@ -187,17 +191,19 @@ button:hover {
   cursor: pointer;
   transition: 0.3s;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+
+  touch-action: auto;
 }
 
 .pad:hover {
   background-color: var(--pad-color-hover);
-  transform: translateY(2px);
-  box-shadow: 0 0 rgba(0, 0, 0, 0);
+  /* transform: translateY(2px); */
+  /* box-shadow: 0 0 rgba(0, 0, 0, 0); */
 }
 
 .pad.active{
-  background-color: var(--pad-color-hover);
-  transform: translateY(2px);
+  background-color: var(--pad-color-active);
+  transform: translateY(2px) scale(0.9);
   box-shadow: 0 0 rgba(0, 0, 0, 0);
 }
 
@@ -209,6 +215,7 @@ button:hover {
 .pad small{
     font-size: 1.2vmin;
     color: #cccccc;
+    display: none; /* small text only shown on larger browsers */
 }
 
 .pad.control p{
@@ -306,5 +313,9 @@ button:hover {
 
   #effects-container {
     height: var(--effects-container-height-large);
+  }
+
+  .pad small{
+    display: block;
   }
 }

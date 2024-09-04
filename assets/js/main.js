@@ -248,6 +248,9 @@ const setCurrentPadText = (pad) => {
 
 // play pad sound
 const playPadSound = (pad) => {
+    console.log("ended");
+    const padElement = document.getElementById(`pad-${pad}`);
+    padElement.classList.add("active");
   switch (pad) {
     case 1:
       synth1.triggerAttackRelease(synth1key, "8n");
@@ -290,6 +293,13 @@ const playPadSound = (pad) => {
   }
 };
 
+// btn touch up event listener
+const btnTouchEnd = (pad) => {
+    console.log("started");
+    const padElement = document.getElementById(`pad-${pad}`);
+    padElement.classList.remove("active");
+};
+
 const togglePlaySequence = () => {
   isPlaying = !isPlaying;
   if (isPlaying) {
@@ -330,7 +340,7 @@ document.addEventListener("keydown", (event) => {
   const padKey = padKeyMap[key];
   if (padKey !== undefined) {
     const pad = document.getElementById(`pad-${padKey}`);
-    pad.classList.add("active");
+    // pad.classList.add("active");
     // toggle edit mode if / key is pressed
     if (padKey === "edit") {
       toggleEditMode();
@@ -368,3 +378,14 @@ document.addEventListener("keyup", (event) => {
 playBtn.addEventListener("click", () => {
   togglePlaySequence();
 });
+
+//edit button toggles editing mode 
+editBtn.addEventListener("click", () => {
+  toggleEditMode();
+});
+
+
+//disbale dobule tap zoom
+document.addEventListener('dblclick', function(e) {
+  e.preventDefault();
+}, false);
