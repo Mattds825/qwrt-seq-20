@@ -59,7 +59,12 @@ const seq = new Tone.Sequence(
     for (let i = 1; i <= 16; i++) {
       if (steps[i][col]) {
         // playPadSound(i);
-        padsData[i - 1].sound.start(time);
+        //check if is a syth pad
+        if([1,2,3,4,5,6,7,8].includes(i)){
+            padsData[i - 1].sound.triggerAttackRelease(padsData[i - 1].key, "8n");
+        } else {
+            padsData[i - 1].sound.start(time);
+        }
       }
     }
 
