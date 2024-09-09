@@ -91,6 +91,7 @@ header{
     padding: 10px 0px;
 }
 
+
 #pads-container {
   /* background-color: red; */
   width: var(--drum-pads-container-width);

@@ -21,19 +21,18 @@
         <div class="container" id="effects-container">            
             <div class="grid-container">
                 <div class="grid-item title">
+                    <!-- Tempo -->
                     <h2>Tempo</h2>
                     <span>
                         <input type="range" min="60" max="240" value="82" id="tempo-slider" step="2" oninput="updateValue(this)"> 
                         <span id="slider-value-tempo">82</span>
                     </span>
-
+                    <!-- ./Tempo -->
                     <h2>Effects</h2>
-
-                    
                 </div>
                 <div class="grid-item effect">
                     <div class="slider-container">
-                        <input type="range" min="40" max="200" value="82" id="vol-slider" oninput="updateValue(this)">
+                        <input type="range" min="0" max="100" value="50" id="vol-slider" oninput="updateValue(this)">
                         <div class="slider-value" id="slider-value-vol">50</div>
                         <div class="slider-name">Volume</div>
                     </div>              
@@ -116,35 +115,35 @@
                 </div>
             </div>
             <div class="grid-item">
-                <div class="pad" id="pad-8" onclick="playPadSound(8)" data-pad-index="8">
+                <div class="pad" id="pad-8" onmousedown="playPadSound(8)"  onmouseup="btnTouchEnd(8)" data-pad-index="8">
                     <p>8</p>
                     <small>"R"</small>
                     <div class="step-active-indicator hidden"></div>
                 </div>
             </div>
             <div class="grid-item">
-                <div class="pad" id="pad-9" data-pad-index="9">
+                <div class="pad" id="pad-9" onmousedown="playPadSound(9)"  onmouseup="btnTouchEnd(9)" data-pad-index="9">
                     <p>9</p>
                     <small>"A"</small>
                     <div class="step-active-indicator hidden"></div>
                 </div>
             </div>
             <div class="grid-item">
-                <div class="pad" id="pad-10" data-pad-index="10">
+                <div class="pad" id="pad-10" onmousedown="playPadSound(10)"  onmouseup="btnTouchEnd(10)" data-pad-index="10">
                     <p>10</p>
                     <small>"S"</small>
                     <div class="step-active-indicator hidden"></div>
                 </div>
             </div>
             <div class="grid-item">
-                <div class="pad" id="pad-11" data-pad-index="11">
+                <div class="pad" id="pad-11" onmousedown="playPadSound(11)"  onmouseup="btnTouchEnd(11)" data-pad-index="11">
                     <p>11</p>
                     <small>"D"</small>
                     <div class="step-active-indicator hidden"></div>
                 </div>
             </div>
             <div class="grid-item">
-                <div class="pad" id="pad-12" data-pad-index="12">
+                <div class="pad" id="pad-12" onmousedown="playPadSound(12)"  onmouseup="btnTouchEnd(12)" data-pad-index="12">
                     <p>12</p>
                     <small>"F"</small>
                     <div class="step-active-indicator hidden"></div>
