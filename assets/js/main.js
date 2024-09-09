@@ -81,6 +81,7 @@ const mainContentContainer = document.getElementById("main-content-container");
 const playBtn = document.getElementById("pad-play");
 const editBtn = document.getElementById("pad-edit");
 const undoBtn = document.getElementById("pad-undo");
+const clearBtn = document.getElementById("pad-clear");
 const activeStepIndicators = document.querySelectorAll(
   ".step-active-indicator"
 );
@@ -161,7 +162,7 @@ const padsData = [
   {
     id: 12,
     name: "FX 4",
-    sound: fxWoodblock ,
+    sound: fxWoodblock,
     key: "F4",
   },
   {
@@ -209,6 +210,8 @@ const padKeyMap = {
   v: 16,
   "/": "edit",
   " ": "play",
+  "p": "clear",
+  "P": "clear",
 };
 
 const padNameMap = {
@@ -353,6 +356,19 @@ const toggleEditMode = () => {
   });
 };
 
+// clear all steps
+const clearSteps = () => {
+  for (let i = 1; i <= 16; i++) {
+    steps[i] = Array(16).fill(false);
+    const stepIndicators = document.querySelectorAll(
+      `#pad-${i} .step-active-indicator`
+    );
+    stepIndicators.forEach((indicator) => {
+      indicator.classList.remove("active");
+    });
+  }
+};
+
 // keyboard event listener
 document.addEventListener("keydown", (event) => {
   const key = event.key.toLowerCase();
@@ -365,6 +381,8 @@ document.addEventListener("keydown", (event) => {
       toggleEditMode();
     } else if (padKey === "play") {
       togglePlaySequence();
+    } else if (padKey === "clear") {
+      clearSteps();
     } else {
       // is a sound pad key
       if (isEditing) {
@@ -401,6 +419,11 @@ playBtn.addEventListener("click", () => {
 //edit button toggles editing mode
 editBtn.addEventListener("click", () => {
   toggleEditMode();
+});
+
+//clear button clears all steps
+clearBtn.addEventListener("click", () => {
+  clearSteps();
 });
 
 //disbale dobule tap zoom
