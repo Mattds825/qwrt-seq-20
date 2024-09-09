@@ -77,6 +77,7 @@ Tone.Transport.bpm.value = 82;
 const currentPadText = document.getElementById("current-pad-text");
 const currentModeText = document.getElementById("current-mode-text");
 const startBtn = document.getElementById("start-btn");
+const startText = document.getElementById("start-text");
 const mainContentContainer = document.getElementById("main-content-container");
 const playBtn = document.getElementById("pad-play");
 const editBtn = document.getElementById("pad-edit");
@@ -240,6 +241,7 @@ startBtn.addEventListener("click", async () => {
   mainContentContainer.classList.remove("hidden");
   mainContentContainer.style.display = "grid";
   startBtn.classList.add("hidden");
+  startText.classList.add("hidden");
 });
 
 // update slider values
