@@ -72,7 +72,7 @@ const seq = new Tone.Sequence(
   "16n"
 );
 
-Tone.Transport.bpm.value = 220;
+Tone.Transport.bpm.value = 82;
 
 const currentPadText = document.getElementById("current-pad-text");
 const currentModeText = document.getElementById("current-mode-text");
@@ -210,8 +210,8 @@ const padKeyMap = {
   v: 16,
   "/": "edit",
   " ": "play",
-  "p": "clear",
-  "P": "clear",
+  p: "clear",
+  P: "clear",
 };
 
 const padNameMap = {
@@ -242,7 +242,12 @@ startBtn.addEventListener("click", async () => {
   startBtn.classList.add("hidden");
 });
 
+// update slider values
 function updateValue(slider) {
+  if (slider.id === "tempo-slider") {
+    document.getElementById("slider-value-tempo").textContent = slider.value;
+    Tone.Transport.bpm.value = slider.value;
+  }
   if (slider.id === "vol-slider")
     document.getElementById("slider-value-vol").textContent = slider.value;
   if (slider.id === "rev-slider")

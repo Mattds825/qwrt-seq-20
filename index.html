@@ -21,11 +21,19 @@
         <div class="container" id="effects-container">            
             <div class="grid-container">
                 <div class="grid-item title">
+                    <h2>Tempo</h2>
+                    <span>
+                        <input type="range" min="60" max="240" value="82" id="tempo-slider" step="2" oninput="updateValue(this)"> 
+                        <span id="slider-value-tempo">82</span>
+                    </span>
+
                     <h2>Effects</h2>
+
+                    
                 </div>
                 <div class="grid-item effect">
                     <div class="slider-container">
-                        <input type="range" min="0" max="100" value="50" id="vol-slider" oninput="updateValue(this)">
+                        <input type="range" min="40" max="200" value="82" id="vol-slider" oninput="updateValue(this)">
                         <div class="slider-value" id="slider-value-vol">50</div>
                         <div class="slider-name">Volume</div>
                     </div>              
