@@ -4,6 +4,13 @@ const snare = new Tone.Player("assets/sounds/snare.wav").toDestination();
 const hat = new Tone.Player("assets/sounds/hat.wav").toDestination();
 const crash = new Tone.Player("assets/sounds/crash.wav").toDestination();
 
+const fxLaugh = new Tone.Player("assets/sounds/fx-laugh.wav").toDestination();
+const fxListen = new Tone.Player("assets/sounds/fx-listen.wav").toDestination();
+const fxTape = new Tone.Player("assets/sounds/fx-tape.wav").toDestination();
+const fxWoodblock = new Tone.Player(
+  "assets/sounds/fx-woodblock.wav"
+).toDestination();
+
 //create synths
 const synth1 = new Tone.Synth().toDestination();
 const synth2 = new Tone.Synth().toDestination();
@@ -49,10 +56,10 @@ const steps = {
 // Sequence
 const seq = new Tone.Sequence(
   (time, col) => {
-    for (let i = 1; i <= 16; i++) {      
+    for (let i = 1; i <= 16; i++) {
       if (steps[i][col]) {
         // playPadSound(i);
-        padsData[i-1].sound.start(time);
+        padsData[i - 1].sound.start(time);
       }
     }
 
@@ -136,25 +143,25 @@ const padsData = [
   {
     id: 9,
     name: "FX 1",
-    sound: synth1,
+    sound: fxLaugh,
     key: "C4",
   },
   {
     id: 10,
     name: "FX 2",
-    sound: synth2,
+    sound: fxListen,
     key: "D4",
   },
   {
     id: 11,
     name: "FX 3",
-    sound: synth3,
+    sound: fxTape,
     key: "E4",
   },
   {
     id: 12,
     name: "FX 4",
-    sound: synth4,
+    sound: fxWoodblock ,
     key: "F4",
   },
   {
@@ -248,9 +255,9 @@ const setCurrentPadText = (pad) => {
 
 // play pad sound
 const playPadSound = (pad) => {
-    console.log("ended");
-    const padElement = document.getElementById(`pad-${pad}`);
-    padElement.classList.add("active");
+  console.log("ended");
+  const padElement = document.getElementById(`pad-${pad}`);
+  padElement.classList.add("active");
   switch (pad) {
     case 1:
       synth1.triggerAttackRelease(synth1key, "8n");
@@ -276,6 +283,18 @@ const playPadSound = (pad) => {
     case 8:
       bass4.triggerAttackRelease(bass4key, "8n");
       break;
+    case 9:
+      fxLaugh.start();
+      break;
+    case 10:
+      fxListen.start();
+      break;
+    case 11:
+      fxTape.start();
+      break;
+    case 12:
+      fxWoodblock.start();
+      break;
     case 13:
       kick.start();
       break;
@@ -295,9 +314,9 @@ const playPadSound = (pad) => {
 
 // btn touch up event listener
 const btnTouchEnd = (pad) => {
-    console.log("started");
-    const padElement = document.getElementById(`pad-${pad}`);
-    padElement.classList.remove("active");
+  console.log("started");
+  const padElement = document.getElementById(`pad-${pad}`);
+  padElement.classList.remove("active");
 };
 
 const togglePlaySequence = () => {
@@ -379,13 +398,16 @@ playBtn.addEventListener("click", () => {
   togglePlaySequence();
 });
 
-//edit button toggles editing mode 
+//edit button toggles editing mode
 editBtn.addEventListener("click", () => {
   toggleEditMode();
 });
 
-
 //disbale dobule tap zoom
-document.addEventListener('dblclick', function(e) {
-  e.preventDefault();
-}, false);
+document.addEventListener(
+  "dblclick",
+  function (e) {
+    e.preventDefault();
+  },
+  false
+);
