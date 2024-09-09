@@ -53,30 +53,25 @@ const steps = {
   16: Array(16).fill(false),
 };
 
-// Sequence
+// Create Sequence
 const seq = new Tone.Sequence(
   (time, col) => {
     for (let i = 1; i <= 16; i++) {
       if (steps[i][col]) {
-        // playPadSound(i);
-        //check if is a syth pad
-        if([1,2,3,4,5,6,7,8].includes(i)){
-            padsData[i - 1].sound.triggerAttackRelease(padsData[i - 1].key, "8n");
+        //check if is a synth pad
+        if ([1, 2, 3, 4, 5, 6, 7, 8].includes(i)) {
+          padsData[i - 1].sound.triggerAttackRelease(padsData[i - 1].key, "8n");
         } else {
-            padsData[i - 1].sound.start(time);
+          padsData[i - 1].sound.start(time);
         }
       }
     }
-
-    // if (steps.kick[col]) kick.start(time);
-    // if (steps.snare[col]) snare.start(time);
-    // if (steps.hat[col]) hat.start(time);
-    // if (steps.cymbal[col]) cymbal.start(time);
   },
   [...Array(16).keys()],
   "16n"
 );
 
+// Set initial tempo
 Tone.Transport.bpm.value = 82;
 
 const currentPadText = document.getElementById("current-pad-text");
@@ -360,6 +355,24 @@ const toggleEditMode = () => {
   isEditing = !isEditing;
   currentModeText.textContent = isEditing ? "Edit" : "Play";
 
+  // remove .active class from all step indicators
+  const stepIndicators = document.querySelectorAll(".step-active-indicator");
+  stepIndicators.forEach((indicator) => {
+      indicator.classList.remove("active");
+    });
+    // set .active for step indicators of current selected pad that are aactive in the sequence
+    steps[currentSelectedPad].forEach((step, index) => {
+      if (step) {
+        console.log(step);
+        const stepIndicator = document.querySelector(
+          `#pad-${index} .step-active-indicator`
+        );
+        stepIndicator.classList.add("active");
+      }
+    });
+
+
+
   // togle hidden class on active step indicators
   activeStepIndicators.forEach((indicator) => {
     indicator.classList.toggle("hidden");
@@ -407,7 +420,7 @@ document.addEventListener("keydown", (event) => {
     }
 
     // set current selected pad
-    if (!isEditing) currentSelectedPad = padKey;
+    if (!isEditing && !["edit","play","clear"].includes(padKey)) currentSelectedPad = padKey;
   }
 });
 
