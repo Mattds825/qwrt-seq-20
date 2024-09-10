@@ -215,25 +215,6 @@ const padKeyMap = {
   P: "clear",
 };
 
-const padNameMap = {
-  1: "Synth 1",
-  2: "Synth 2",
-  3: "Synth 3",
-  4: "Synth 4",
-  5: "Bass 1",
-  6: "Bass 2",
-  7: "Bass 3",
-  8: "Bass 4",
-  9: "FX 1",
-  10: "FX 2",
-  11: "FX 3",
-  12: "FX 4",
-  13: "Drums | Kick",
-  14: "Drums | Snare",
-  15: "Drums | Hat",
-  16: "Drums | Crash",
-};
-
 // Start audio context
 startBtn.addEventListener("click", async () => {
   await Tone.start();
@@ -260,7 +241,9 @@ function updateValue(slider) {
 
 // set current pad text
 const setCurrentPadText = (pad) => {
-  currentPadText.textContent = padNameMap[pad];
+// get name from padsData array
+  currentPadText.textContent = padsData[pad-1].name;
+
 };
 
 // play pad sound
@@ -328,6 +311,16 @@ const btnTouchEnd = (pad) => {
   const padElement = document.getElementById(`pad-${pad}`);
   padElement.classList.remove("active");
 };
+
+// btn touch down event listener
+const btnTouchStart = (pad) => {
+    console.log("ended");
+    const padElement = document.getElementById(`pad-${pad}`);
+    padElement.classList.add("active");
+    playPadSound(pad);
+    setCurrentPadText(pad);
+
+}
 
 const togglePlaySequence = () => {
   isPlaying = !isPlaying;
