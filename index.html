@@ -40,15 +40,15 @@
                 </div>
                 <div class="grid-item effect">
                     <div class="slider-container">
-                        <input type="range" min="0" max="100" value="50" id="rev-slider" oninput="updateValue(this)">
-                        <div class="slider-value" id="slider-value-rev">50</div>
-                        <div class="slider-name">Reverb</div>
+                        <input type="range" min="100" max="10000" value="5000" id="filter-slider" oninput="updateValue(this)">
+                        <div class="slider-value" id="slider-value-filter">5000</div>
+                        <div class="slider-name">Frequency</div>
                     </div>                   
                 </div>
                 <div class="grid-item effect">
                     <div class="slider-container">
-                        <input type="range" min="0" max="100" value="50" id="dist-slider" oninput="updateValue(this)">
-                        <div class="slider-value" id="slider-value-dist">50</div>
+                        <input type="range" min="0" max="1" value="0" step="0.01" id="dist-slider" oninput="updateValue(this)">
+                        <div class="slider-value" id="slider-value-dist">0</div>
                         <div class="slider-name">Distortion</div>
                     </div>                    
                 </div>

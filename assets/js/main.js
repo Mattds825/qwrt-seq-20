@@ -33,6 +33,37 @@ let bass2key = "D2";
 let bass3key = "E2";
 let bass4key = "F2";
 
+// create effects
+let currVolume = 0;
+let currDistortion = 0;
+let currReverb = 0;
+let currFrequency = 5000;
+
+// volume control
+const volume = new Tone.Volume({
+    volume: currVolume,
+}).toDestination();
+
+// distortion effect
+const distortion = new Tone.Distortion({
+    distortion: 0, // Start with 50% distortion
+    oversample: "2x",
+});
+
+// reverb effect
+const reverb = new Tone.Reverb({
+    decay: 5,
+    preDelay: 0.01,
+    wet: 0.5,
+});
+
+//low-pass filter
+const filter = new Tone.Filter({
+    frequency: currFrequency,
+    type: "lowpass",
+    rolloff: -24,
+});
+
 // Track steps configuration for tracks 1-16
 const steps = {
   1: Array(16).fill(false),
@@ -215,6 +246,11 @@ const padKeyMap = {
   P: "clear",
 };
 
+//chain effects to every sounds sounrce
+Object.entries(padsData).forEach(([key, value]) => {
+    value.sound.chain(filter, distortion, volume);
+});
+
 // Start audio context
 startBtn.addEventListener("click", async () => {
   await Tone.start();
@@ -231,12 +267,21 @@ function updateValue(slider) {
     document.getElementById("slider-value-tempo").textContent = slider.value;
     Tone.Transport.bpm.value = slider.value;
   }
-  if (slider.id === "vol-slider")
+  if (slider.id === "vol-slider"){
     document.getElementById("slider-value-vol").textContent = slider.value;
-  if (slider.id === "rev-slider")
-    document.getElementById("slider-value-rev").textContent = slider.value;
-  if (slider.id === "dist-slider")
+    currVolume = (slider.value / 100) * (12 -(-12)) - 12;
+    volume.volume.value = currVolume;
+  }
+  if (slider.id === "filter-slider"){
+    document.getElementById("slider-value-filter").textContent = slider.value;
+    currFrequency = slider.value;
+    filter.frequency.value = currFrequency;
+  }
+  if (slider.id === "dist-slider"){
     document.getElementById("slider-value-dist").textContent = slider.value;
+    currDistortion = slider.value;
+    distortion.distortion = currDistortion;
+  }
 }
 
 // set current pad text
@@ -365,9 +410,6 @@ const toggleEditMode = () => {
         stepIndicator.classList.add("active");
       }
     });
-
-
-
   // togle hidden class on active step indicators
   activeStepIndicators.forEach((indicator) => {
     indicator.classList.toggle("hidden");
@@ -408,12 +450,10 @@ document.addEventListener("keydown", (event) => {
       } else {
         // set current pad text
         setCurrentPadText(padKey);
-
         // play pad sound
         playPadSound(padKey);
       }
     }
-
     // set current selected pad
     if (!isEditing && !["edit","play","clear"].includes(padKey)) currentSelectedPad = padKey;
   }
