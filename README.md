@@ -13,6 +13,8 @@ A lot can be said about physical drum machines, but nothing can be said without 
 
 ### The Roland Underground
 
+### The MIDI companions
+
 ### The Huge Market 
 
 ## Direct Inspirations 
@@ -26,7 +28,27 @@ My main hardware inspiration include the mpc2000, the sp404mk2 and many other 16
 
 ## User Stories
 
-## Mockups 
+## Features
+
+### Polyphonic play
+
+### 16 Step Editing
+
+### Effects 
+
+### Undo 
+
+### Responsive
+
+## UI/UX
+
+### Design Choices
+
+### Color Pallet 
+
+### Mockups
+
+### Accessibility
 
 ## Testing
 
@@ -40,5 +62,9 @@ I tried to keep this as minimal as possible
 - vanilla JS (no framework)
 - all css from scratch 
 - Tone.js (third part library for audio processing)
+- Sketch: Used to create mockups 
+
+
+### Code and Resources Used
 
 
