@@ -404,3 +404,22 @@ button:hover {
     box-shadow: 0px 0px 60px 5px rgba(255, 255, 255, 0.55);
   }
 }
+
+/* fade animation */
+.animate.fade {
+  animation-name: animate-fade;
+  animation-duration: 1s;
+  animation-delay: calc(var(--delay) * 0.05s);
+  /* animation-duration: 3s; */
+  animation-fill-mode: backwards;
+}
+@keyframes animate-fade {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
