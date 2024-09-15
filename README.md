@@ -67,4 +67,4 @@ I tried to keep this as minimal as possible
 
 ### Code and Resources Used
 
-
+ - this [solution](https://github.com/Tonejs/Tone.js/issues/767) was used to fix the audio not playing when source changed: 

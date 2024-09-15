@@ -116,6 +116,7 @@ const undoBtn = document.getElementById("pad-undo");
 const clearBtn = document.getElementById("pad-clear");
 const settingsBtn = document.getElementById("settings-btn");
 const closeSettingsModalBtn = document.getElementById("close-settings-modal-btn");
+const restAudioBtn = document.getElementById("reset-audio-btn");
 const settingsModalContainer = document.getElementById("settings-modal-container");
 const activeStepIndicators = document.querySelectorAll(
   ".step-active-indicator"
@@ -493,6 +494,11 @@ settingsBtn.addEventListener("click", () => {
 // close settings modal
 closeSettingsModalBtn.addEventListener("click", () => {
   settingsModalContainer.style.display = "none";
+});
+
+// reset audio button
+restAudioBtn.addEventListener("click", () => {
+  Tone.getContext()._context.resume();
 });
 
 //disbale dobule tap zoom

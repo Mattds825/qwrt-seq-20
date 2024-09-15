@@ -351,6 +351,13 @@ button:hover {
   color: var(--secondary-color);
 }
 
+.row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 /* -------------------- Modal -------------------- */
 
 #settings-modal-container {
