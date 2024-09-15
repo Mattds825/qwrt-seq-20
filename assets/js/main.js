@@ -114,6 +114,9 @@ const playBtn = document.getElementById("pad-play");
 const editBtn = document.getElementById("pad-edit");
 const undoBtn = document.getElementById("pad-undo");
 const clearBtn = document.getElementById("pad-clear");
+const settingsBtn = document.getElementById("settings-btn");
+const closeSettingsModalBtn = document.getElementById("close-settings-modal-btn");
+const settingsModalContainer = document.getElementById("settings-modal-container");
 const activeStepIndicators = document.querySelectorAll(
   ".step-active-indicator"
 );
@@ -121,8 +124,6 @@ const activeStepIndicators = document.querySelectorAll(
 let isEditing = false;
 let isPlaying = false;
 let currentSelectedPad = undefined;
-
-// TODO: make an array of pad objects to store all the pad's data
 
 const padsData = [
   {
@@ -482,6 +483,16 @@ editBtn.addEventListener("click", () => {
 //clear button clears all steps
 clearBtn.addEventListener("click", () => {
   clearSteps();
+});
+
+// settings button opens settings modal
+settingsBtn.addEventListener("click", () => {
+  settingsModalContainer.style.display = "flex";
+});
+
+// close settings modal
+closeSettingsModalBtn.addEventListener("click", () => {
+  settingsModalContainer.style.display = "none";
 });
 
 //disbale dobule tap zoom
