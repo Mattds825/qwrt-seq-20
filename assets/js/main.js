@@ -102,6 +102,7 @@ const seq = new Tone.Sequence(
   "16n"
 );
 
+
 // Set initial tempo
 Tone.Transport.bpm.value = 82;
 
@@ -405,7 +406,7 @@ const toggleEditMode = () => {
     });
     console.log(currentSelectedPad);
     // set .active for step indicators of current selected pad that are aactive in the sequence
-    steps[currentSelectedPad].forEach((step, index) => {
+    steps[currentSelectedPad-1].forEach((step, index) => {
       if (step) {
         console.log(step);
         const stepIndicator = document.querySelector(
