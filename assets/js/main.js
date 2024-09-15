@@ -66,6 +66,7 @@ const filter = new Tone.Filter({
 
 // Track steps configuration for tracks 1-16
 const steps = {
+  0: Array(16).fill(false),
   1: Array(16).fill(false),
   2: Array(16).fill(false),
   3: Array(16).fill(false),
@@ -81,19 +82,18 @@ const steps = {
   13: Array(16).fill(false),
   14: Array(16).fill(false),
   15: Array(16).fill(false),
-  16: Array(16).fill(false),
 };
 
 // Create Sequence
 const seq = new Tone.Sequence(
   (time, col) => {
-    for (let i = 1; i <= 16; i++) {
+    for (let i = 0; i < 16; i++) {
       if (steps[i][col]) {
         //check if is a synth pad
-        if ([1, 2, 3, 4, 5, 6, 7, 8].includes(i)) {
-          padsData[i - 1].sound.triggerAttackRelease(padsData[i - 1].key, "8n");
+        if ([0, 1, 2, 3, 4, 5, 6, 7].includes(i)) {
+          padsData[i].sound.triggerAttackRelease(padsData[i].key, "8n");
         } else {
-          padsData[i - 1].sound.start(time);
+          padsData[i].sound.start(time);
         }
       }
     }
@@ -385,7 +385,8 @@ const togglePlaySequence = () => {
 
 // toggle step
 const toggleStep = (track, step) => {
-  steps[track][step] = !steps[track][step];
+  // subtract 1 from track and step to match array index
+  steps[track-1][step-1] = !steps[track-1][step-1];
   const stepIndicator = document.querySelector(
     `#pad-${step} .step-active-indicator`
   );
@@ -402,12 +403,13 @@ const toggleEditMode = () => {
   stepIndicators.forEach((indicator) => {
       indicator.classList.remove("active");
     });
+    console.log(currentSelectedPad);
     // set .active for step indicators of current selected pad that are aactive in the sequence
     steps[currentSelectedPad].forEach((step, index) => {
       if (step) {
         console.log(step);
         const stepIndicator = document.querySelector(
-          `#pad-${index} .step-active-indicator`
+          `#pad-${index+1} .step-active-indicator`
         );
         stepIndicator.classList.add("active");
       }
@@ -420,10 +422,10 @@ const toggleEditMode = () => {
 
 // clear all steps
 const clearSteps = () => {
-  for (let i = 1; i <= 16; i++) {
+  for (let i = 0; i < 16; i++) {
     steps[i] = Array(16).fill(false);
     const stepIndicators = document.querySelectorAll(
-      `#pad-${i} .step-active-indicator`
+      `#pad-${i+1} .step-active-indicator`
     );
     stepIndicators.forEach((indicator) => {
       indicator.classList.remove("active");
