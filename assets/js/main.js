@@ -84,9 +84,24 @@ const steps = {
   15: Array(16).fill(false),
 };
 
+const resetAllPadColors = () => {
+  for (let i = 0; i < 16; i++) {
+    const currPadText = document.getElementById(`pad-${i + 1}`);
+    currPadText.style.color = "white";
+  }
+}
+
 // Create Sequence
 const seq = new Tone.Sequence(
   (time, col) => {
+
+    // duration of 1 step = 60/bpm/4
+    // set the text color of pad to blue for the length of the step 
+    resetAllPadColors();
+    const currPadText = document.getElementById(`pad-${col + 1}`);
+    const secondaryColor = getComputedStyle(document.body).getPropertyValue("--secondary-color");
+    currPadText.style.color = secondaryColor;
+
     for (let i = 0; i < 16; i++) {
       if (steps[i][col]) {
         //check if is a synth pad
@@ -378,6 +393,7 @@ const togglePlaySequence = () => {
   } else {
     Tone.Transport.stop();
     seq.stop();
+    resetAllPadColors();
   }
 
   const PlayButtonText = document.querySelector("#pad-play p");
