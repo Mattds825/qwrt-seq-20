@@ -282,16 +282,7 @@ button:hover {
   bottom: 0;
 }
 
-.slider-container input[type="range"] {
-  appearance: slider-vertical;
-  -webkit-appearance: slider-vertical;
-  width: 1px;
-  height: 60%;
-  margin-top: auto;
-  margin-bottom: auto;
-  background: red;
-  transform-origin: center;
-}
+
 
 .slider-container input[type="range"] {
   /* position: relative; */
@@ -465,7 +456,8 @@ button:hover {
   /* Slider */
 
   .slider-container input[type="range"] {
-    --h: 200%;
+    position: absolute;
+    --h: calc(var(--effects-container-height-large) * 0.6);
   }
 
   /* Modal */
