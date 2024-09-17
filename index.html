@@ -16,7 +16,12 @@
     <main class="hidden animate fade-glow" id="main-content-container">
       <!-- Header -->
       <header>
-        <h1>QWRT-SEQ-20 <span><i class="click-icon fa-solid fa-gear" id="settings-btn"></i></span></h1>
+        <h1>
+          QWRT-SEQ-20
+          <span
+            ><i class="click-icon fa-solid fa-gear" id="settings-btn"></i
+          ></span>
+        </h1>
       </header>
       <!--./Header -->
       <!-- Section for the effects -->
@@ -44,27 +49,49 @@
             </div>
             <!-- Pad Effects -->
             <div class="grid-item" id="pad-effects">
-                Pad Effects
-                <!-- Sequence Repeat -->
-                 <div class="pad-effect-div" id="seq-repeat">
-                    <!-- sequence repeat -->
-                 </div>
-                <!-- /.Sequence Repeat -->
-                <!-- Step Repeat -->
-                <div class="pad-effect-div" id="step-repeat">
-                    <!-- Step repeat -->
+              Pad Effects
+              <!-- Sequence Repeat -->
+              <div class="pad-effect-div" id="seq-repeat">
+                <!-- sequence repeat -->
+                <div class="pad-effect-inner">
+                <p>Seq Repeat</p>
+                  <div class="pad-effect-inner-row">
+                    <div class="pad-effect-inner-select"></div>
+                    <div class="pad-effect-inner-select"></div>
+                  </div>
                 </div>
-                <!-- /.Step Repeat -->
-                <!-- Step Offset -->
-                <div class="pad-effect-div" id="step-offest">
-                    <!-- Step Offset -->
-                </div>
-                <!-- /.Step Offset -->
-                <!-- Mute -->
-                <div class="pad pad-effect-div" id="mute-btn">
-                    <p>Mute</p>
-                </div>
-                <!-- /.Mute -->
+              </div>
+              <!-- /.Sequence Repeat -->
+              <!-- Step Repeat -->
+              <div class="pad-effect-div" id="step-repeat">
+                <div class="pad-effect-inner">
+                    <p>Step Repeat</p>
+                      <div class="pad-effect-inner-row">
+                        <div class="pad-effect-inner-select"></div>
+                        <div class="pad-effect-inner-select"></div>
+                        <div class="pad-effect-inner-select"></div>
+                        <div class="pad-effect-inner-select"></div>
+                      </div>
+                    </div>
+              </div>
+              <!-- /.Step Repeat -->
+              <!-- Step Offset -->
+              <div class="pad-effect-div" id="step-offest">
+                <div class="pad-effect-inner">
+                    <p>Step Offset</p>
+                      <div class="pad-effect-inner-row">
+                        <div class="pad-effect-inner-select"></div>
+                        <div class="pad-effect-inner-select"></div>
+                        <div class="pad-effect-inner-select"></div>
+                      </div>
+                    </div>
+              </div>
+              <!-- /.Step Offset -->
+              <!-- Mute -->
+              <div class="pad pad-effect-div" id="mute-btn">
+                <p>Mute</p>
+              </div>
+              <!-- /.Mute -->
             </div>
             <!--/. Pad Effects -->
             <div class="grid-item effect">
@@ -420,17 +447,18 @@
         </div>
 
         <div class="row">
-            <p>If You have lost all audio sound click this button:</p>
-            <button id="reset-audio-btn">
-                Reset Audio Context
-            </button>
+          <p>If You have lost all audio sound click this button:</p>
+          <button id="reset-audio-btn">Reset Audio Context</button>
         </div>
         <small>Copyright Matthew G Da Silva 2024</small>
       </div>
     </div>
     <!-- /.Settings Modal -->
 
-    <script src="https://kit.fontawesome.com/310ea35e5d.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/310ea35e5d.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.37/Tone.js"></script>
     <script src="assets/js/main.js"></script>
   </body>

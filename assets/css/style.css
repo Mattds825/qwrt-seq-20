@@ -28,7 +28,6 @@
 
   --container-color: #8b9b9f;
 
-
   /* Modal sizing */
   --modal-width-large: 50vw;
   --modal-height-large: 70vh;
@@ -104,7 +103,7 @@ header {
   padding: 10px 0px;
 }
 
-header{
+header {
   background: var(--container-color);
   color: black;
 }
@@ -176,15 +175,45 @@ header{
     ". . .";
 }
 
-#pad-effects{
+#pad-effects {
   display: none;
 }
 
-.pad-effect-div{
+.pad-effect-div {
   height: 100%;
   width: auto;
   aspect-ratio: 1/1;
-  background: red;
+}
+
+.pad-effect-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.pad-effect-inner-row {
+  width: 100%;
+  height: 25%;
+  gap: 0.2rem;
+  display: flex;
+}
+
+.pad-effect-inner-select {
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+
+.pad-effect-inner-select:hover{
+  background: var(--pad-color-hover);
+}
+
+.pad-effect-inner p {
+  font-size: 1.1vmin;
 }
 
 .grid-item {
@@ -282,8 +311,6 @@ button:hover {
   bottom: 0;
 }
 
-
-
 .slider-container input[type="range"] {
   /* position: relative; */
   appearance: none; /* removes browser-specific styling */
@@ -345,15 +372,15 @@ button:hover {
   background: var(--secondary-color);
 }
 
-.click-icon{
+.click-icon {
   cursor: pointer;
 }
 
-.click-icon:hover{
+.click-icon:hover {
   color: var(--secondary-color);
 }
 
-.row{
+.row {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -394,13 +421,12 @@ button:hover {
   color: white;
 }
 
-#close-settings-modal-btn{
+#close-settings-modal-btn {
   position: absolute;
   top: 0;
   right: 0;
   margin: 30px;
 }
-
 
 /* -------------------- Media Queries -------------------- */
 
@@ -428,18 +454,18 @@ button:hover {
   /* Effects Container */
 
   #effects-container {
-     height: var(--effects-container-height-large);
+    height: var(--effects-container-height-large);
   }
 
   #effects-container .grid-container {
     grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: 10% 90%;
-      grid-template-areas:
-    "title title title title"
-    "pad-effects . . .";
+    grid-template-rows: 10% 90%;
+    grid-template-areas:
+      "title title title title"
+      "pad-effects . . .";
   }
 
-  #pad-effects{
+  #pad-effects {
     display: flex;
     flex-direction: column;
     gap: 10px;
