@@ -208,9 +208,20 @@ header {
   background: black;
 }
 
+.pad-effect-inner-select.active{
+  background: var(--secondary-color);
+}
+
+
+.pad-effect-inner-select.active:hover{
+  background: var(--secondary-color);
+  opacity: 0.8;
+}
+
 .pad-effect-inner-select:hover{
   background: var(--pad-color-hover);
 }
+
 
 .pad-effect-inner p {
   font-size: 1.1vmin;

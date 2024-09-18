@@ -41,27 +41,27 @@ let currFrequency = 5000;
 
 // volume control
 const volume = new Tone.Volume({
-    volume: currVolume,
+  volume: currVolume,
 }).toDestination();
 
 // distortion effect
 const distortion = new Tone.Distortion({
-    distortion: 0, // Start with 50% distortion
-    oversample: "2x",
+  distortion: 0, // Start with 50% distortion
+  oversample: "2x",
 });
 
 // reverb effect
 const reverb = new Tone.Reverb({
-    decay: 5,
-    preDelay: 0.01,
-    wet: 0.5,
+  decay: 5,
+  preDelay: 0.01,
+  wet: 0.5,
 });
 
 //low-pass filter
 const filter = new Tone.Filter({
-    frequency: currFrequency,
-    type: "lowpass",
-    rolloff: -24,
+  frequency: currFrequency,
+  type: "lowpass",
+  rolloff: -24,
 });
 
 // Track steps configuration for tracks 1-16
@@ -89,17 +89,18 @@ const resetAllPadColors = () => {
     const currPadText = document.getElementById(`pad-${i + 1}`);
     currPadText.style.color = "white";
   }
-}
+};
 
 // Create Sequence
 const seq = new Tone.Sequence(
   (time, col) => {
-
     // duration of 1 step = 60/bpm/4
-    // set the text color of pad to blue for the length of the step 
+    // set the text color of pad to blue for the length of the step
     resetAllPadColors();
     const currPadText = document.getElementById(`pad-${col + 1}`);
-    const secondaryColor = getComputedStyle(document.body).getPropertyValue("--secondary-color");
+    const secondaryColor = getComputedStyle(document.body).getPropertyValue(
+      "--secondary-color"
+    );
     currPadText.style.color = secondaryColor;
 
     for (let i = 0; i < 16; i++) {
@@ -117,7 +118,6 @@ const seq = new Tone.Sequence(
   "16n"
 );
 
-
 // Set initial tempo
 Tone.Transport.bpm.value = 82;
 
@@ -131,9 +131,16 @@ const editBtn = document.getElementById("pad-edit");
 const undoBtn = document.getElementById("pad-undo");
 const clearBtn = document.getElementById("pad-clear");
 const settingsBtn = document.getElementById("settings-btn");
-const closeSettingsModalBtn = document.getElementById("close-settings-modal-btn");
+const closeSettingsModalBtn = document.getElementById(
+  "close-settings-modal-btn"
+);
 const restAudioBtn = document.getElementById("reset-audio-btn");
-const settingsModalContainer = document.getElementById("settings-modal-container");
+const settingsModalContainer = document.getElementById(
+  "settings-modal-container"
+);
+const padEffectInnerSelects = document.querySelectorAll(
+  ".pad-effect-inner-select"
+);
 const activeStepIndicators = document.querySelectorAll(
   ".step-active-indicator"
 );
@@ -148,96 +155,112 @@ const padsData = [
     name: "Synth 1",
     sound: synth1,
     key: "C4",
+    volume: 0,
   },
   {
     id: 2,
     name: "Synth 2",
     sound: synth2,
     key: "D4",
+    volume: 0,
   },
   {
     id: 3,
     name: "Synth 3",
     sound: synth3,
     key: "E4",
+    volume: 0,
   },
   {
     id: 4,
     name: "Synth 4",
     sound: synth4,
     key: "F4",
+    volume: 0,
   },
   {
     id: 5,
     name: "Bass 1",
     sound: bass1,
     key: "C2",
+    volume: 0,
   },
   {
     id: 6,
     name: "Bass 2",
     sound: bass2,
     key: "D2",
+    volume: 0,
   },
   {
     id: 7,
     name: "Bass 3",
     sound: bass3,
     key: "E2",
+    volume: 0,
   },
   {
     id: 8,
     name: "Bass 4",
     sound: bass4,
     key: "F2",
+    volume: 0,
   },
   {
     id: 9,
     name: "FX 1",
     sound: fxLaugh,
     key: "C4",
+    volume: 0,
   },
   {
     id: 10,
     name: "FX 2",
     sound: fxListen,
     key: "D4",
+    volume: 0,
   },
   {
     id: 11,
     name: "FX 3",
     sound: fxTape,
     key: "E4",
+    volume: 0,
   },
   {
     id: 12,
     name: "FX 4",
     sound: fxWoodblock,
     key: "F4",
+    volume: 0,
   },
   {
     id: 13,
     name: "Drums | Kick",
     sound: kick,
     key: "C2",
+    volume: 0,
   },
   {
     id: 14,
     name: "Drums | Snare",
     sound: snare,
     key: "D2",
+    volume: 0,
   },
   {
     id: 15,
     name: "Drums | Hat",
     sound: hat,
     key: "E2",
+    volume: 0,
   },
   {
     id: 16,
     name: "Drums | Crash",
     sound: crash,
     key: "F2",
+    volume: 0,
   },
 ];
 
@@ -266,7 +289,7 @@ const padKeyMap = {
 
 //chain effects to every sounds sounrce
 Object.entries(padsData).forEach(([key, value]) => {
-    value.sound.chain(filter, distortion, volume);
+  value.sound.chain(filter, distortion, volume);
 });
 
 // Start audio context
@@ -285,17 +308,17 @@ function updateValue(slider) {
     document.getElementById("slider-value-tempo").textContent = slider.value;
     Tone.Transport.bpm.value = slider.value;
   }
-  if (slider.id === "vol-slider"){
+  if (slider.id === "vol-slider") {
     document.getElementById("slider-value-vol").textContent = slider.value;
-    currVolume = (slider.value / 100) * (12 -(-12)) - 12;
+    currVolume = (slider.value / 100) * (12 - -12) - 12;
     volume.volume.value = currVolume;
   }
-  if (slider.id === "filter-slider"){
+  if (slider.id === "filter-slider") {
     document.getElementById("slider-value-filter").textContent = slider.value;
     currFrequency = slider.value;
     filter.frequency.value = currFrequency;
   }
-  if (slider.id === "dist-slider"){
+  if (slider.id === "dist-slider") {
     document.getElementById("slider-value-dist").textContent = slider.value;
     currDistortion = slider.value;
     distortion.distortion = currDistortion;
@@ -304,9 +327,8 @@ function updateValue(slider) {
 
 // set current pad text
 const setCurrentPadText = (pad) => {
-// get name from padsData array
-  currentPadText.textContent = padsData[pad-1].name;
-
+  // get name from padsData array
+  currentPadText.textContent = padsData[pad - 1].name;
 };
 
 // play pad sound
@@ -377,13 +399,12 @@ const btnTouchEnd = (pad) => {
 
 // btn touch down event listener
 const btnTouchStart = (pad) => {
-    console.log("ended");
-    const padElement = document.getElementById(`pad-${pad}`);
-    padElement.classList.add("active");
-    playPadSound(pad);
-    setCurrentPadText(pad);
-
-}
+  console.log("ended");
+  const padElement = document.getElementById(`pad-${pad}`);
+  padElement.classList.add("active");
+  playPadSound(pad);
+  setCurrentPadText(pad);
+};
 
 const togglePlaySequence = () => {
   isPlaying = !isPlaying;
@@ -403,7 +424,7 @@ const togglePlaySequence = () => {
 // toggle step
 const toggleStep = (track, step) => {
   // subtract 1 from track and step to match array index
-  steps[track-1][step-1] = !steps[track-1][step-1];
+  steps[track - 1][step - 1] = !steps[track - 1][step - 1];
   const stepIndicator = document.querySelector(
     `#pad-${step} .step-active-indicator`
   );
@@ -418,19 +439,19 @@ const toggleEditMode = () => {
   // remove .active class from all step indicators
   const stepIndicators = document.querySelectorAll(".step-active-indicator");
   stepIndicators.forEach((indicator) => {
-      indicator.classList.remove("active");
-    });
-    console.log(currentSelectedPad);
-    // set .active for step indicators of current selected pad that are aactive in the sequence
-    steps[currentSelectedPad-1].forEach((step, index) => {
-      if (step) {
-        console.log(step);
-        const stepIndicator = document.querySelector(
-          `#pad-${index+1} .step-active-indicator`
-        );
-        stepIndicator.classList.add("active");
-      }
-    });
+    indicator.classList.remove("active");
+  });
+  console.log(currentSelectedPad);
+  // set .active for step indicators of current selected pad that are aactive in the sequence
+  steps[currentSelectedPad - 1].forEach((step, index) => {
+    if (step) {
+      console.log(step);
+      const stepIndicator = document.querySelector(
+        `#pad-${index + 1} .step-active-indicator`
+      );
+      stepIndicator.classList.add("active");
+    }
+  });
   // togle hidden class on active step indicators
   activeStepIndicators.forEach((indicator) => {
     indicator.classList.toggle("hidden");
@@ -442,11 +463,46 @@ const clearSteps = () => {
   for (let i = 0; i < 16; i++) {
     steps[i] = Array(16).fill(false);
     const stepIndicators = document.querySelectorAll(
-      `#pad-${i+1} .step-active-indicator`
+      `#pad-${i + 1} .step-active-indicator`
     );
     stepIndicators.forEach((indicator) => {
       indicator.classList.remove("active");
     });
+  }
+};
+
+// edit pad volume
+/**
+ * @param {*} amount a value between 0 and 3
+ * if 0 set currentPad volume to -64
+ * if 1 set currentPad volume to -32
+ * if 2 set currentPad volume to -16
+ * if 3 set currentPad volume to 0
+ */
+const editPadVolume = (amount) => {
+  switch (Number(amount)) {
+    case 0:
+      padsData[currentSelectedPad - 1].volume = -64;
+      padsData[currentSelectedPad - 1].sound.volume.value =
+        -64;
+      break;
+    case 1:
+      padsData[currentSelectedPad - 1].volume = -32;
+      padsData[currentSelectedPad - 1].sound.volume.value =
+        -32;
+      break;
+    case 2:
+      padsData[currentSelectedPad - 1].volume = -16;
+      padsData[currentSelectedPad - 1].sound.volume.value =
+        -16;
+      break;
+    case 3:
+      padsData[currentSelectedPad - 1].volume = 0;
+      padsData[currentSelectedPad - 1].sound.volume.value =
+        0;
+      break;
+    default:
+      break;
   }
 };
 
@@ -476,7 +532,8 @@ document.addEventListener("keydown", (event) => {
       }
     }
     // set current selected pad
-    if (!isEditing && !["edit","play","clear"].includes(padKey)) currentSelectedPad = padKey;
+    if (!isEditing && !["edit", "play", "clear"].includes(padKey))
+      currentSelectedPad = padKey;
   }
 });
 
@@ -518,6 +575,42 @@ closeSettingsModalBtn.addEventListener("click", () => {
 // reset audio button
 restAudioBtn.addEventListener("click", () => {
   Tone.getContext()._context.resume();
+});
+
+// add event listener to pad effect inner selects
+padEffectInnerSelects.forEach((select) => {
+  select.addEventListener("click", (event) => {
+    // can only edit if there is a current selected pad
+    if (currentSelectedPad === undefined) return;
+
+    // check if select.id starts with pad-effect-inner-select-vol or  pad-effect-inner-select-seq
+    if (select.id.startsWith("pad-effect-inner-select-vol")) {
+      let amount = select.id.charAt(select.id.length - 1);
+      // set current effect inner select to active if not already active
+      if (select.classList.contains("active")) {
+        for (let i = 3; i > amount; i--) {
+          let innerSelect = document.querySelector(
+            `#pad-effect-inner-select-vol-${i}`
+          );
+          if (innerSelect.classList.contains("active")) {
+            innerSelect.classList.remove("active");
+          }
+        }
+      } else {
+        for (let i = 0; i < amount; i++) {
+          let innerSelect = document.querySelector(
+            `#pad-effect-inner-select-vol-${i}`
+          );
+          if (!innerSelect.classList.contains("active")) {
+            innerSelect.classList.add("active");
+          }
+        }
+        select.classList.add("active");
+      }
+      editPadVolume(amount);
+    } else if (select.id.startsWith("pad-effect-inner-select-seq")) {
+    }
+  });
 });
 
 //disbale dobule tap zoom
