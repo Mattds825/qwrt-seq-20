@@ -105,11 +105,15 @@ const seq = new Tone.Sequence(
 
     for (let i = 0; i < 16; i++) {
       if (steps[i][col]) {
-        //check if is a synth pad
-        if ([0, 1, 2, 3, 4, 5, 6, 7].includes(i)) {
-          padsData[i].sound.triggerAttackRelease(padsData[i].key, "8n");
-        } else {
-          padsData[i].sound.start(time);
+        //check if pad is not muted
+        if (!padsData[i].muted) {
+          //check if is a synth pad
+          if ([0, 1, 2, 3, 4, 5, 6, 7].includes(i)) {
+            1;
+            padsData[i].sound.triggerAttackRelease(padsData[i].key, "8n");
+          } else {
+            padsData[i].sound.start(time);
+          }
         }
       }
     }
@@ -141,6 +145,8 @@ const settingsModalContainer = document.getElementById(
 const padEffectInnerSelects = document.querySelectorAll(
   ".pad-effect-inner-select"
 );
+const padSoloBtn = document.getElementById("pad-solo-btn");
+const padMuteBtn = document.getElementById("pad-mute-btn");
 const activeStepIndicators = document.querySelectorAll(
   ".step-active-indicator"
 );
@@ -156,6 +162,7 @@ const padsData = [
     sound: synth1,
     key: "C4",
     volume: 0,
+    muted: false,
   },
   {
     id: 2,
@@ -163,6 +170,7 @@ const padsData = [
     sound: synth2,
     key: "D4",
     volume: 0,
+    muted: false,
   },
   {
     id: 3,
@@ -170,6 +178,7 @@ const padsData = [
     sound: synth3,
     key: "E4",
     volume: 0,
+    muted: false,
   },
   {
     id: 4,
@@ -177,6 +186,7 @@ const padsData = [
     sound: synth4,
     key: "F4",
     volume: 0,
+    muted: false,
   },
   {
     id: 5,
@@ -184,6 +194,7 @@ const padsData = [
     sound: bass1,
     key: "C2",
     volume: 0,
+    muted: false,
   },
   {
     id: 6,
@@ -191,6 +202,7 @@ const padsData = [
     sound: bass2,
     key: "D2",
     volume: 0,
+    muted: false,
   },
   {
     id: 7,
@@ -198,6 +210,7 @@ const padsData = [
     sound: bass3,
     key: "E2",
     volume: 0,
+    muted: false,
   },
   {
     id: 8,
@@ -205,6 +218,7 @@ const padsData = [
     sound: bass4,
     key: "F2",
     volume: 0,
+    muted: false,
   },
   {
     id: 9,
@@ -212,6 +226,7 @@ const padsData = [
     sound: fxLaugh,
     key: "C4",
     volume: 0,
+    muted: false,
   },
   {
     id: 10,
@@ -219,6 +234,7 @@ const padsData = [
     sound: fxListen,
     key: "D4",
     volume: 0,
+    muted: false,
   },
   {
     id: 11,
@@ -226,6 +242,7 @@ const padsData = [
     sound: fxTape,
     key: "E4",
     volume: 0,
+    muted: false,
   },
   {
     id: 12,
@@ -233,6 +250,7 @@ const padsData = [
     sound: fxWoodblock,
     key: "F4",
     volume: 0,
+    muted: false,
   },
   {
     id: 13,
@@ -240,6 +258,7 @@ const padsData = [
     sound: kick,
     key: "C2",
     volume: 0,
+    muted: false,
   },
   {
     id: 14,
@@ -247,6 +266,7 @@ const padsData = [
     sound: snare,
     key: "D2",
     volume: 0,
+    muted: false,
   },
   {
     id: 15,
@@ -254,6 +274,7 @@ const padsData = [
     sound: hat,
     key: "E2",
     volume: 0,
+    muted: false,
   },
   {
     id: 16,
@@ -261,6 +282,7 @@ const padsData = [
     sound: crash,
     key: "F2",
     volume: 0,
+    muted: false,
   },
 ];
 
@@ -285,6 +307,10 @@ const padKeyMap = {
   " ": "play",
   p: "clear",
   P: "clear",
+  i: "pad-solo",
+  I: "pad-solo",
+  n: "pad-mute",
+  N: "pad-mute",
 };
 
 //chain effects to every sounds sounrce
@@ -329,14 +355,14 @@ function updateValue(slider) {
 const setCurrentPadText = (pad) => {
   // get name from padsData array
   currentPadText.textContent = padsData[pad - 1].name;
-};  
+};
 
 //get maxAmount from volume
 const getMaxAmountFromVolume = (volume) => {
-  if(volume === 0) return 3;
-  if(volume === -16) return 2;
-  if(volume === -32) return 1;
-  if(volume === -64) return 0;
+  if (volume === 0) return 3;
+  if (volume === -16) return 2;
+  if (volume === -32) return 1;
+  if (volume === -64) return 0;
   return 0;
 };
 
@@ -347,9 +373,9 @@ const setPadEffects = (pad) => {
   padEffectInnerSelects.forEach((select) => {
     // set up the volume inner selects
     // check if select.id starts with pad-effect-inner-select-vol
-    if(select.id.startsWith("pad-effect-inner-select-vol")) {
+    if (select.id.startsWith("pad-effect-inner-select-vol")) {
       let amount = select.id.charAt(select.id.length - 1);
-      if(amount <= maxPadVolume) {
+      if (amount <= maxPadVolume) {
         select.classList.add("active");
       } else {
         select.classList.remove("active");
@@ -434,6 +460,7 @@ const btnTouchStart = (pad) => {
   setCurrentPadText(pad);
 };
 
+// toggle play/stop sequence
 const togglePlaySequence = () => {
   isPlaying = !isPlaying;
   if (isPlaying) {
@@ -499,6 +526,19 @@ const clearSteps = () => {
   }
 };
 
+// toggle pad mute
+const togglePadMute = () => {
+  // can only edit if there is a current selected pad
+  if (currentSelectedPad === undefined) return;
+
+  padsData[currentSelectedPad - 1].muted = !padsData[currentSelectedPad - 1].muted;
+
+  // set pad mute btn p child text color to blue
+  padMuteBtn.children[0].style.color = padsData[currentSelectedPad - 1].muted
+    ? "var(--secondary-color)"
+    : "white";
+};
+
 // edit pad volume
 /**
  * @param {*} amount a value between 0 and 3
@@ -511,23 +551,19 @@ const editPadVolume = (amount) => {
   switch (Number(amount)) {
     case 0:
       padsData[currentSelectedPad - 1].volume = -64;
-      padsData[currentSelectedPad - 1].sound.volume.value =
-        -64;
+      padsData[currentSelectedPad - 1].sound.volume.value = -64;
       break;
     case 1:
       padsData[currentSelectedPad - 1].volume = -32;
-      padsData[currentSelectedPad - 1].sound.volume.value =
-        -32;
+      padsData[currentSelectedPad - 1].sound.volume.value = -32;
       break;
     case 2:
       padsData[currentSelectedPad - 1].volume = -16;
-      padsData[currentSelectedPad - 1].sound.volume.value =
-        -16;
+      padsData[currentSelectedPad - 1].sound.volume.value = -16;
       break;
     case 3:
       padsData[currentSelectedPad - 1].volume = 0;
-      padsData[currentSelectedPad - 1].sound.volume.value =
-        0;
+      padsData[currentSelectedPad - 1].sound.volume.value = 0;
       break;
     default:
       break;
@@ -540,14 +576,18 @@ document.addEventListener("keydown", (event) => {
   const padKey = padKeyMap[key];
   if (padKey !== undefined) {
     const pad = document.getElementById(`pad-${padKey}`);
-    // pad.classList.add("active");
-    // toggle edit mode if / key is pressed
+    // toggle edit mode if '/' key is pressed
+    // toggle play sequence if 'Space' key is pressed
+    // clear steps if 'P' key is pressed
+    // toggle pad mute  if 'N' key is pressed
     if (padKey === "edit") {
       toggleEditMode();
     } else if (padKey === "play") {
       togglePlaySequence();
     } else if (padKey === "clear") {
       clearSteps();
+    }else if(padKey === "pad-mute"){
+      togglePadMute();
     } else {
       // is a sound pad key
       if (isEditing) {
@@ -639,6 +679,16 @@ padEffectInnerSelects.forEach((select) => {
     } else if (select.id.startsWith("pad-effect-inner-select-seq")) {
     }
   });
+});
+
+// add event listener to pad solo button
+padSoloBtn.addEventListener("click", () => {
+  
+});
+
+// add event listener to pad mute button
+padMuteBtn.addEventListener("click", () => {
+  togglePadMute();
 });
 
 //disbale dobule tap zoom
