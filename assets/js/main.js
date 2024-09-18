@@ -329,6 +329,33 @@ function updateValue(slider) {
 const setCurrentPadText = (pad) => {
   // get name from padsData array
   currentPadText.textContent = padsData[pad - 1].name;
+};  
+
+//get maxAmount from volume
+const getMaxAmountFromVolume = (volume) => {
+  if(volume === 0) return 3;
+  if(volume === -16) return 2;
+  if(volume === -32) return 1;
+  if(volume === -64) return 0;
+  return 0;
+};
+
+// set up the pad effects container for current pad
+const setPadEffects = (pad) => {
+  let padVolume = padsData[pad - 1].volume;
+  let maxPadVolume = getMaxAmountFromVolume(padVolume);
+  padEffectInnerSelects.forEach((select) => {
+    // set up the volume inner selects
+    // check if select.id starts with pad-effect-inner-select-vol
+    if(select.id.startsWith("pad-effect-inner-select-vol")) {
+      let amount = select.id.charAt(select.id.length - 1);
+      if(amount <= maxPadVolume) {
+        select.classList.add("active");
+      } else {
+        select.classList.remove("active");
+      }
+    }
+  });
 };
 
 // play pad sound
@@ -336,6 +363,7 @@ const playPadSound = (pad) => {
   console.log("ended");
   const padElement = document.getElementById(`pad-${pad}`);
   padElement.classList.add("active");
+  setPadEffects(pad);
   switch (pad) {
     case 1:
       synth1.triggerAttackRelease(synth1key, "8n");
