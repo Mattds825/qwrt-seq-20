@@ -390,57 +390,10 @@ const playPadSound = (pad) => {
   const padElement = document.getElementById(`pad-${pad}`);
   padElement.classList.add("active");
   setPadEffects(pad);
-  switch (pad) {
-    case 1:
-      synth1.triggerAttackRelease(synth1key, "8n");
-      break;
-    case 2:
-      synth2.triggerAttackRelease(synth2key, "8n");
-      break;
-    case 3:
-      synth3.triggerAttackRelease(synth3key, "8n");
-      break;
-    case 4:
-      synth4.triggerAttackRelease(synth4key, "8n");
-      break;
-    case 5:
-      bass1.triggerAttackRelease(bass1key, "8n");
-      break;
-    case 6:
-      bass2.triggerAttackRelease(bass2key, "8n");
-      break;
-    case 7:
-      bass3.triggerAttackRelease(bass3key, "8n");
-      break;
-    case 8:
-      bass4.triggerAttackRelease(bass4key, "8n");
-      break;
-    case 9:
-      fxLaugh.start();
-      break;
-    case 10:
-      fxListen.start();
-      break;
-    case 11:
-      fxTape.start();
-      break;
-    case 12:
-      fxWoodblock.start();
-      break;
-    case 13:
-      kick.start();
-      break;
-    case 14:
-      snare.start();
-      break;
-    case 15:
-      hat.start();
-      break;
-    case 16:
-      crash.start();
-      break;
-    default:
-      break;
+  if (pad < 9) {
+    padsData[pad-1].sound.triggerAttackRelease(padsData[pad-1].key, "8n");
+  } else {
+    padsData[pad-1].sound.start();
   }
 };
 
@@ -531,7 +484,8 @@ const togglePadMute = () => {
   // can only edit if there is a current selected pad
   if (currentSelectedPad === undefined) return;
 
-  padsData[currentSelectedPad - 1].muted = !padsData[currentSelectedPad - 1].muted;
+  padsData[currentSelectedPad - 1].muted =
+    !padsData[currentSelectedPad - 1].muted;
 
   // set pad mute btn p child text color to blue
   padMuteBtn.children[0].style.color = padsData[currentSelectedPad - 1].muted
@@ -586,7 +540,7 @@ document.addEventListener("keydown", (event) => {
       togglePlaySequence();
     } else if (padKey === "clear") {
       clearSteps();
-    }else if(padKey === "pad-mute"){
+    } else if (padKey === "pad-mute") {
       togglePadMute();
     } else {
       // is a sound pad key
@@ -682,9 +636,7 @@ padEffectInnerSelects.forEach((select) => {
 });
 
 // add event listener to pad solo button
-padSoloBtn.addEventListener("click", () => {
-  
-});
+padSoloBtn.addEventListener("click", () => {});
 
 // add event listener to pad mute button
 padMuteBtn.addEventListener("click", () => {
