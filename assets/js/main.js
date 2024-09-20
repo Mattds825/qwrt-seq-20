@@ -64,6 +64,11 @@ const filter = new Tone.Filter({
   rolloff: -24,
 });
 
+let soloData = {
+  solo: false,
+  soloPad: undefined,
+};
+
 // Track steps configuration for tracks 1-16
 const steps = {
   0: Array(16).fill(false),
@@ -107,12 +112,24 @@ const seq = new Tone.Sequence(
       if (steps[i][col]) {
         //check if pad is not muted
         if (!padsData[i].muted) {
-          //check if is a synth pad
-          if ([0, 1, 2, 3, 4, 5, 6, 7].includes(i)) {
-            1;
-            padsData[i].sound.triggerAttackRelease(padsData[i].key, "8n");
+          if (!soloData.solo) {
+            //check if is a synth pad
+            if ([0, 1, 2, 3, 4, 5, 6, 7].includes(i)) {
+              1;
+              padsData[i].sound.triggerAttackRelease(padsData[i].key, "8n");
+            } else {
+              padsData[i].sound.start(time);
+            }
           } else {
-            padsData[i].sound.start(time);
+            if(padsData[i].id === soloData.soloPad){
+              //check if is a synth pad
+              if ([0, 1, 2, 3, 4, 5, 6, 7].includes(i)) {
+                1;
+                padsData[i].sound.triggerAttackRelease(padsData[i].key, "8n");
+              } else {
+                padsData[i].sound.start(time);
+              }
+            }
           }
         }
       }
@@ -391,9 +408,9 @@ const playPadSound = (pad) => {
   padElement.classList.add("active");
   setPadEffects(pad);
   if (pad < 9) {
-    padsData[pad-1].sound.triggerAttackRelease(padsData[pad-1].key, "8n");
+    padsData[pad - 1].sound.triggerAttackRelease(padsData[pad - 1].key, "8n");
   } else {
-    padsData[pad-1].sound.start();
+    padsData[pad - 1].sound.start();
   }
 };
 
@@ -479,6 +496,22 @@ const clearSteps = () => {
   }
 };
 
+// toggle pad solo
+const togglePadSolo = () => {
+  if (currentSelectedPad === undefined) return;
+
+  soloData.solo = !soloData.solo;
+  soloData.soloPad = soloData.solo ? currentSelectedPad : undefined;
+
+  console.log(soloData.solo, soloData.soloPad);
+
+
+  // set pad solo btn p child text color to blue
+  padSoloBtn.children[0].style.color = soloData.soloPad !== undefined
+    ? "var(--secondary-color)"
+    : "white";
+};
+
 // toggle pad mute
 const togglePadMute = () => {
   // can only edit if there is a current selected pad
@@ -542,6 +575,8 @@ document.addEventListener("keydown", (event) => {
       clearSteps();
     } else if (padKey === "pad-mute") {
       togglePadMute();
+    } else if (padKey === "pad-solo") {
+      togglePadSolo();
     } else {
       // is a sound pad key
       if (isEditing) {
@@ -554,7 +589,7 @@ document.addEventListener("keydown", (event) => {
       }
     }
     // set current selected pad
-    if (!isEditing && !["edit", "play", "clear"].includes(padKey))
+    if (!isEditing && !["edit", "play", "clear","pad-mute","pad-solo"].includes(padKey))
       currentSelectedPad = padKey;
   }
 });
@@ -636,14 +671,16 @@ padEffectInnerSelects.forEach((select) => {
 });
 
 // add event listener to pad solo button
-padSoloBtn.addEventListener("click", () => {});
+padSoloBtn.addEventListener("click", () => {
+  togglePadSolo();
+});
 
 // add event listener to pad mute button
 padMuteBtn.addEventListener("click", () => {
   togglePadMute();
 });
 
-//disbale dobule tap zoom
+//disable double tap zoom
 document.addEventListener(
   "dblclick",
   function (e) {
