@@ -149,7 +149,7 @@ const startText = document.getElementById("start-text");
 const mainContentContainer = document.getElementById("main-content-container");
 const playBtn = document.getElementById("pad-play");
 const editBtn = document.getElementById("pad-edit");
-const undoBtn = document.getElementById("pad-undo");
+const padSelectModeBtn = document.getElementById("pad-select-mode");
 const clearBtn = document.getElementById("pad-clear");
 const settingsBtn = document.getElementById("settings-btn");
 const closeSettingsModalBtn = document.getElementById(
@@ -322,8 +322,8 @@ const padKeyMap = {
   v: 16,
   "/": "edit",
   " ": "play",
-  p: "clear",
-  P: "clear",
+  "backspace": "clear",
+  "delete": "clear",
   i: "pad-solo",
   I: "pad-solo",
   n: "pad-mute",
@@ -560,6 +560,7 @@ const editPadVolume = (amount) => {
 // keyboard event listener
 document.addEventListener("keydown", (event) => {
   const key = event.key.toLowerCase();
+  console.log(key);
   const padKey = padKeyMap[key];
   if (padKey !== undefined) {
     const pad = document.getElementById(`pad-${padKey}`);

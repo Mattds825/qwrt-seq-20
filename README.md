@@ -41,7 +41,7 @@ My main hardware inspiration include the mpc2000, the sp404mk2 and many other 16
 - Solo 
 - Mute 
 
-### 2 Sequencer per sound 
+### 2 Sequences per sound 
 
 Allows user to have sequence A and B for each pad, increasing the amount of sequence combinations for performances. 
 
