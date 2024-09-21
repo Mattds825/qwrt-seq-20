@@ -170,6 +170,7 @@ const activeStepIndicators = document.querySelectorAll(
 
 let isEditing = false;
 let isPlaying = false;
+let isSelecting = false;
 let currentSelectedPad = undefined;
 
 const padsData = [
@@ -322,6 +323,7 @@ const padKeyMap = {
   v: 16,
   "/": "edit",
   " ": "play",
+  p: "select",
   "backspace": "clear",
   "delete": "clear",
   i: "pad-solo",
@@ -401,9 +403,14 @@ const setPadEffects = (pad) => {
   });
 };
 
+// toggle pad without sound
+const togglePad = (pad) => {
+  const padElement = document.getElementById(`pad-${pad}`);
+  padElement.classList.add("active");
+};
+
 // play pad sound
 const playPadSound = (pad) => {
-  console.log("ended");
   const padElement = document.getElementById(`pad-${pad}`);
   padElement.classList.add("active");
   setPadEffects(pad);
@@ -423,6 +430,7 @@ const btnTouchEnd = (pad) => {
 
 // btn touch down event listener
 const btnTouchStart = (pad) => {
+  // TODO: check if editing or selecting
   console.log("ended");
   const padElement = document.getElementById(`pad-${pad}`);
   padElement.classList.add("active");
@@ -456,6 +464,21 @@ const toggleStep = (track, step) => {
   stepIndicator.classList.toggle("active");
 };
 
+//toggle pad select mode
+const togglePadSelectMode = () => {
+  // cannot select pad if in edit mode
+  if (isEditing) return;
+
+  isSelecting = !isSelecting;
+  
+  // set pad select mode btn p child text color to blue
+  padSelectModeBtn.children[0].style.color = isSelecting
+    ? "var(--secondary-color)"
+    : "white";
+
+    currentModeText.textContent = isSelecting ? "Select" : "Play";
+};
+
 // toggle edit mode text
 const toggleEditMode = () => {
   isEditing = !isEditing;
@@ -467,7 +490,7 @@ const toggleEditMode = () => {
     indicator.classList.remove("active");
   });
   console.log(currentSelectedPad);
-  // set .active for step indicators of current selected pad that are aactive in the sequence
+  // set .active for step indicators of current selected pad that are active in the sequence
   steps[currentSelectedPad - 1].forEach((step, index) => {
     if (step) {
       console.log(step);
@@ -570,6 +593,8 @@ document.addEventListener("keydown", (event) => {
     // toggle pad mute  if 'N' key is pressed
     if (padKey === "edit") {
       toggleEditMode();
+    } else if(padKey === "select"){
+      togglePadSelectMode();
     } else if (padKey === "play") {
       togglePlaySequence();
     } else if (padKey === "clear") {
@@ -582,7 +607,12 @@ document.addEventListener("keydown", (event) => {
       // is a sound pad key
       if (isEditing) {
         toggleStep(currentSelectedPad, padKey);
-      } else {
+      } else if(isSelecting){
+        // set current pad text
+        setCurrentPadText(padKey);
+        // toggle the pad without sound 
+        togglePad(padKey);
+      }else {
         // set current pad text
         setCurrentPadText(padKey);
         // play pad sound
@@ -669,6 +699,11 @@ padEffectInnerSelects.forEach((select) => {
     } else if (select.id.startsWith("pad-effect-inner-select-seq")) {
     }
   });
+});
+
+// add event listener to pad select mode button
+padSelectModeBtn.addEventListener("click", () => {
+  togglePadSelectMode();
 });
 
 // add event listener to pad solo button
