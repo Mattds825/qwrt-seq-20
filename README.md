@@ -91,4 +91,6 @@ I tried to keep this as minimal as possible
 
 - [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript) Used for all javascript documentation needs
 
+- [redketchup.io](https://redketchup.io/favicon-generator) used to generate favicon
+
  - this [solution](https://github.com/Tonejs/Tone.js/issues/767) was used to fix the audio not playing when source changed: 

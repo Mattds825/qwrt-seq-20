@@ -332,7 +332,7 @@ const padKeyMap = {
   N: "pad-mute",
 };
 
-//chain effects to every sounds sounrce
+//chain effects to every sounds source
 Object.entries(padsData).forEach(([key, value]) => {
   value.sound.chain(filter, distortion, volume);
 });
