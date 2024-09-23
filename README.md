@@ -27,6 +27,18 @@ My main hardware inspiration include the mpc2000, the sp404mk2 and many other 16
 
 ## User Stories
 
+### Casual Live Playing 
+
+user know how to use a drum machine that want to just open the site and play sum drum pads to pass the time 
+
+### Casual Sequence Making
+
+user that want to spend a bit more time in the app to create a sequence and play with the effects 
+
+### First Time Drum Machine User
+
+user that has never playing with a drum machine and wants to explore the possibilities
+
 ## Features
 
 ### Polyphonic play

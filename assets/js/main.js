@@ -99,11 +99,9 @@ let soloData = {
   soloPad: undefined,
 };
 
-
-
 /**
  * data for each of the pads
- * @property {id} number 
+ * @property {id} number
  * @property {name} string
  * @property {sound} Tone.Player
  * @property {key} string
@@ -314,14 +312,13 @@ const padKeyMap = {
   "/": "edit",
   " ": "play",
   p: "select",
-  "backspace": "clear",
-  "delete": "clear",
+  backspace: "clear",
+  delete: "clear",
   i: "pad-solo",
   I: "pad-solo",
   n: "pad-mute",
   N: "pad-mute",
 };
-
 
 // reset all pad text colors to white
 const resetAllPadTextColors = () => {
@@ -344,12 +341,11 @@ const seq = new Tone.Sequence(
     currPadText.style.color = secondaryColor;
 
     for (let i = 0; i < 16; i++) {
-
       // use destructed object to get the padsData
-      const {id, stepsA, stepsB, sound, currSeq, muted} = padsData[i];
+      const { id, stepsA, stepsB, sound, currSeq, muted } = padsData[i];
 
-      if(currSeq === "A"){
-        if(stepsA[col]){
+      if (currSeq === "A") {
+        if (stepsA[col]) {
           if (!muted) {
             if (!soloData.solo) {
               if (i < 8) {
@@ -358,7 +354,7 @@ const seq = new Tone.Sequence(
                 sound.start(time);
               }
             } else {
-              if(id === soloData.soloPad){
+              if (id === soloData.soloPad) {
                 if (i < 8) {
                   sound.triggerAttackRelease(padsData[i].key, "8n");
                 } else {
@@ -369,7 +365,6 @@ const seq = new Tone.Sequence(
           }
         }
       }
-
     }
   },
   [...Array(16).keys()],
@@ -436,6 +431,7 @@ const getMaxAmountFromVolume = (volume) => {
 const setPadEffects = (pad) => {
   let padVolume = padsData[pad - 1].volume;
   let maxPadVolume = getMaxAmountFromVolume(padVolume);
+  let currPadSelectedSeq = padsData[pad - 1].currSeq;
   padEffectInnerSelects.forEach((select) => {
     // set up the volume inner selects
     // check if select.id starts with pad-effect-inner-select-vol
@@ -445,6 +441,11 @@ const setPadEffects = (pad) => {
         select.classList.add("active");
       } else {
         select.classList.remove("active");
+      }
+    } else if (select.id.startsWith("pad-effect-inner-select-seq")) {
+      let selectedSeq = select.id.charAt(select.id.length - 1);
+      if (selectedSeq === currPadSelectedSeq) {
+        select.classList.add("active");
       }
     }
   });
@@ -503,9 +504,9 @@ const togglePlaySequence = () => {
 
 // toggle step
 const toggleStep = (track, step) => {
-
-  if(padsData[track - 1].currSeq === "A"){
-    padsData[track - 1].stepsA[step - 1] = !padsData[track - 1].stepsA[step - 1];
+  if (padsData[track - 1].currSeq === "A") {
+    padsData[track - 1].stepsA[step - 1] =
+      !padsData[track - 1].stepsA[step - 1];
   }
 
   const stepIndicator = document.querySelector(
@@ -520,13 +521,13 @@ const togglePadSelectMode = () => {
   if (isEditing) return;
 
   isSelecting = !isSelecting;
-  
+
   // set pad select mode btn p child text color to blue
   padSelectModeBtn.children[0].style.color = isSelecting
     ? "var(--secondary-color)"
     : "white";
 
-    currentModeText.textContent = isSelecting ? "Select" : "Play";
+  currentModeText.textContent = isSelecting ? "Select" : "Play";
 };
 
 // toggle edit mode text
@@ -541,9 +542,9 @@ const toggleEditMode = () => {
   });
   console.log(currentSelectedPad);
   // set .active for step indicators of current selected pad that are active in the sequence
-  const {stepsA, stepsB, currSeq} = padsData[currentSelectedPad - 1];
+  const { stepsA, stepsB, currSeq } = padsData[currentSelectedPad - 1];
 
-  if(currSeq === "A"){
+  if (currSeq === "A") {
     stepsA.forEach((step, index) => {
       if (step) {
         const stepIndicator = document.querySelector(
@@ -552,7 +553,7 @@ const toggleEditMode = () => {
         stepIndicator.classList.add("active");
       }
     });
-  } else if(currSeq === "B"){
+  } else if (currSeq === "B") {
     stepsB.forEach((step, index) => {
       if (step) {
         const stepIndicator = document.querySelector(
@@ -590,11 +591,9 @@ const togglePadSolo = () => {
 
   console.log(soloData.solo, soloData.soloPad);
 
-
   // set pad solo btn p child text color to blue
-  padSoloBtn.children[0].style.color = soloData.soloPad !== undefined
-    ? "var(--secondary-color)"
-    : "white";
+  padSoloBtn.children[0].style.color =
+    soloData.soloPad !== undefined ? "var(--secondary-color)" : "white";
 };
 
 // toggle pad mute
@@ -645,7 +644,6 @@ const editPadVolume = (amount) => {
 // keyboard event listener
 document.addEventListener("keydown", (event) => {
   const key = event.key.toLowerCase();
-  console.log(key);
   const padKey = padKeyMap[key];
   if (padKey !== undefined) {
     const pad = document.getElementById(`pad-${padKey}`);
@@ -655,7 +653,7 @@ document.addEventListener("keydown", (event) => {
     // toggle pad mute  if 'N' key is pressed
     if (padKey === "edit") {
       toggleEditMode();
-    } else if(padKey === "select"){
+    } else if (padKey === "select") {
       togglePadSelectMode();
     } else if (padKey === "play") {
       togglePlaySequence();
@@ -669,12 +667,12 @@ document.addEventListener("keydown", (event) => {
       // is a sound pad key
       if (isEditing) {
         toggleStep(currentSelectedPad, padKey);
-      } else if(isSelecting){
+      } else if (isSelecting) {
         // set current pad text
         setCurrentPadText(padKey);
-        // toggle the pad without sound 
+        // toggle the pad without sound
         togglePad(padKey);
-      }else {
+      } else {
         // set current pad text
         setCurrentPadText(padKey);
         // play pad sound
@@ -682,7 +680,10 @@ document.addEventListener("keydown", (event) => {
       }
     }
     // set current selected pad
-    if (!isEditing && !["edit", "play", "clear","pad-mute","pad-solo"].includes(padKey))
+    if (
+      !isEditing &&
+      !["edit", "play", "clear", "pad-mute", "pad-solo"].includes(padKey)
+    )
       currentSelectedPad = padKey;
   }
 });
@@ -759,6 +760,8 @@ padEffectInnerSelects.forEach((select) => {
       }
       editPadVolume(amount);
     } else if (select.id.startsWith("pad-effect-inner-select-seq")) {
+      let selectedSeq = select.id.charAt(select.id.length - 1);
+      console.log(selectedSeq);
     }
   });
 });
