@@ -64,84 +64,6 @@ const filter = new Tone.Filter({
   rolloff: -24,
 });
 
-let soloData = {
-  solo: false,
-  soloPad: undefined,
-};
-
-// Track steps configuration for tracks 1-16
-const steps = {
-  0: Array(16).fill(false),
-  1: Array(16).fill(false),
-  2: Array(16).fill(false),
-  3: Array(16).fill(false),
-  4: Array(16).fill(false),
-  5: Array(16).fill(false),
-  6: Array(16).fill(false),
-  7: Array(16).fill(false),
-  8: Array(16).fill(false),
-  9: Array(16).fill(false),
-  10: Array(16).fill(false),
-  11: Array(16).fill(false),
-  12: Array(16).fill(false),
-  13: Array(16).fill(false),
-  14: Array(16).fill(false),
-  15: Array(16).fill(false),
-};
-
-const resetAllPadColors = () => {
-  for (let i = 0; i < 16; i++) {
-    const currPadText = document.getElementById(`pad-${i + 1}`);
-    currPadText.style.color = "white";
-  }
-};
-
-// Create Sequence
-const seq = new Tone.Sequence(
-  (time, col) => {
-    // duration of 1 step = 60/bpm/4
-    // set the text color of pad to blue for the length of the step
-    resetAllPadColors();
-    const currPadText = document.getElementById(`pad-${col + 1}`);
-    const secondaryColor = getComputedStyle(document.body).getPropertyValue(
-      "--secondary-color"
-    );
-    currPadText.style.color = secondaryColor;
-
-    for (let i = 0; i < 16; i++) {
-      if (steps[i][col]) {
-        //check if pad is not muted
-        if (!padsData[i].muted) {
-          if (!soloData.solo) {
-            //check if is a synth pad
-            if ([0, 1, 2, 3, 4, 5, 6, 7].includes(i)) {
-              1;
-              padsData[i].sound.triggerAttackRelease(padsData[i].key, "8n");
-            } else {
-              padsData[i].sound.start(time);
-            }
-          } else {
-            if(padsData[i].id === soloData.soloPad){
-              //check if is a synth pad
-              if ([0, 1, 2, 3, 4, 5, 6, 7].includes(i)) {
-                1;
-                padsData[i].sound.triggerAttackRelease(padsData[i].key, "8n");
-              } else {
-                padsData[i].sound.start(time);
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  [...Array(16).keys()],
-  "16n"
-);
-
-// Set initial tempo
-Tone.Transport.bpm.value = 82;
-
 const currentPadText = document.getElementById("current-pad-text");
 const currentModeText = document.getElementById("current-mode-text");
 const startBtn = document.getElementById("start-btn");
@@ -172,7 +94,25 @@ let isEditing = false;
 let isPlaying = false;
 let isSelecting = false;
 let currentSelectedPad = undefined;
+let soloData = {
+  solo: false,
+  soloPad: undefined,
+};
 
+
+
+/**
+ * data for each of the pads
+ * @property {id} number 
+ * @property {name} string
+ * @property {sound} Tone.Player
+ * @property {key} string
+ * @property {volume} number values are -64, -32, -16, 0
+ * @property {muted} boolean
+ * @property {stepsA} Array
+ * @property {stepsB} Array
+ * @property {currSeq} string
+ */
 const padsData = [
   {
     id: 1,
@@ -181,6 +121,9 @@ const padsData = [
     key: "C4",
     volume: 0,
     muted: false,
+    stepsA: Array(16).fill(false),
+    stepsB: Array(16).fill(false),
+    currSeq: "A",
   },
   {
     id: 2,
@@ -189,6 +132,9 @@ const padsData = [
     key: "D4",
     volume: 0,
     muted: false,
+    stepsA: Array(16).fill(false),
+    stepsB: Array(16).fill(false),
+    currSeq: "A",
   },
   {
     id: 3,
@@ -197,7 +143,11 @@ const padsData = [
     key: "E4",
     volume: 0,
     muted: false,
+    stepsA: Array(16).fill(false),
+    stepsB: Array(16).fill(false),
+    currSeq: "A",
   },
+
   {
     id: 4,
     name: "Synth 4",
@@ -205,6 +155,9 @@ const padsData = [
     key: "F4",
     volume: 0,
     muted: false,
+    stepsA: Array(16).fill(false),
+    stepsB: Array(16).fill(false),
+    currSeq: "A",
   },
   {
     id: 5,
@@ -213,6 +166,9 @@ const padsData = [
     key: "C2",
     volume: 0,
     muted: false,
+    stepsA: Array(16).fill(false),
+    stepsB: Array(16).fill(false),
+    currSeq: "A",
   },
   {
     id: 6,
@@ -221,6 +177,9 @@ const padsData = [
     key: "D2",
     volume: 0,
     muted: false,
+    stepsA: Array(16).fill(false),
+    stepsB: Array(16).fill(false),
+    currSeq: "A",
   },
   {
     id: 7,
@@ -229,6 +188,9 @@ const padsData = [
     key: "E2",
     volume: 0,
     muted: false,
+    stepsA: Array(16).fill(false),
+    stepsB: Array(16).fill(false),
+    currSeq: "A",
   },
   {
     id: 8,
@@ -237,6 +199,9 @@ const padsData = [
     key: "F2",
     volume: 0,
     muted: false,
+    stepsA: Array(16).fill(false),
+    stepsB: Array(16).fill(false),
+    currSeq: "A",
   },
   {
     id: 9,
@@ -245,6 +210,9 @@ const padsData = [
     key: "C4",
     volume: 0,
     muted: false,
+    stepsA: Array(16).fill(false),
+    stepsB: Array(16).fill(false),
+    currSeq: "A",
   },
   {
     id: 10,
@@ -253,6 +221,9 @@ const padsData = [
     key: "D4",
     volume: 0,
     muted: false,
+    stepsA: Array(16).fill(false),
+    stepsB: Array(16).fill(false),
+    currSeq: "A",
   },
   {
     id: 11,
@@ -261,6 +232,9 @@ const padsData = [
     key: "E4",
     volume: 0,
     muted: false,
+    stepsA: Array(16).fill(false),
+    stepsB: Array(16).fill(false),
+    currSeq: "A",
   },
   {
     id: 12,
@@ -269,6 +243,9 @@ const padsData = [
     key: "F4",
     volume: 0,
     muted: false,
+    stepsA: Array(16).fill(false),
+    stepsB: Array(16).fill(false),
+    currSeq: "A",
   },
   {
     id: 13,
@@ -277,6 +254,9 @@ const padsData = [
     key: "C2",
     volume: 0,
     muted: false,
+    stepsA: Array(16).fill(false),
+    stepsB: Array(16).fill(false),
+    currSeq: "A",
   },
   {
     id: 14,
@@ -285,6 +265,9 @@ const padsData = [
     key: "D2",
     volume: 0,
     muted: false,
+    stepsA: Array(16).fill(false),
+    stepsB: Array(16).fill(false),
+    currSeq: "A",
   },
   {
     id: 15,
@@ -293,6 +276,9 @@ const padsData = [
     key: "E2",
     volume: 0,
     muted: false,
+    stepsA: Array(16).fill(false),
+    stepsB: Array(16).fill(false),
+    currSeq: "A",
   },
   {
     id: 16,
@@ -301,9 +287,13 @@ const padsData = [
     key: "F2",
     volume: 0,
     muted: false,
+    stepsA: Array(16).fill(false),
+    stepsB: Array(16).fill(false),
+    currSeq: "A",
   },
 ];
 
+// keyboard key to pad key map
 const padKeyMap = {
   1: 1,
   2: 2,
@@ -331,6 +321,63 @@ const padKeyMap = {
   n: "pad-mute",
   N: "pad-mute",
 };
+
+
+// reset all pad text colors to white
+const resetAllPadTextColors = () => {
+  for (let i = 0; i < 16; i++) {
+    const currPadText = document.getElementById(`pad-${i + 1}`);
+    currPadText.style.color = "white";
+  }
+};
+
+// Create Sequence
+const seq = new Tone.Sequence(
+  (time, col) => {
+    // duration of 1 step = 60/bpm/4
+    // set the text color of pad to blue for the length of the step
+    resetAllPadTextColors();
+    const currPadText = document.getElementById(`pad-${col + 1}`);
+    const secondaryColor = getComputedStyle(document.body).getPropertyValue(
+      "--secondary-color"
+    );
+    currPadText.style.color = secondaryColor;
+
+    for (let i = 0; i < 16; i++) {
+
+      // use destructed object to get the padsData
+      const {id, stepsA, stepsB, sound, currSeq, muted} = padsData[i];
+
+      if(currSeq === "A"){
+        if(stepsA[col]){
+          if (!muted) {
+            if (!soloData.solo) {
+              if (i < 8) {
+                sound.triggerAttackRelease(padsData[i].key, "8n");
+              } else {
+                sound.start(time);
+              }
+            } else {
+              if(id === soloData.soloPad){
+                if (i < 8) {
+                  sound.triggerAttackRelease(padsData[i].key, "8n");
+                } else {
+                  sound.start(time);
+                }
+              }
+            }
+          }
+        }
+      }
+
+    }
+  },
+  [...Array(16).keys()],
+  "16n"
+);
+
+// Set initial tempo
+Tone.Transport.bpm.value = 82;
 
 //chain effects to every sounds source
 Object.entries(padsData).forEach(([key, value]) => {
@@ -447,7 +494,7 @@ const togglePlaySequence = () => {
   } else {
     Tone.Transport.stop();
     seq.stop();
-    resetAllPadColors();
+    resetAllPadTextColors();
   }
 
   const PlayButtonText = document.querySelector("#pad-play p");
@@ -456,8 +503,11 @@ const togglePlaySequence = () => {
 
 // toggle step
 const toggleStep = (track, step) => {
-  // subtract 1 from track and step to match array index
-  steps[track - 1][step - 1] = !steps[track - 1][step - 1];
+
+  if(padsData[track - 1].currSeq === "A"){
+    padsData[track - 1].stepsA[step - 1] = !padsData[track - 1].stepsA[step - 1];
+  }
+
   const stepIndicator = document.querySelector(
     `#pad-${step} .step-active-indicator`
   );
@@ -491,16 +541,27 @@ const toggleEditMode = () => {
   });
   console.log(currentSelectedPad);
   // set .active for step indicators of current selected pad that are active in the sequence
-  steps[currentSelectedPad - 1].forEach((step, index) => {
-    if (step) {
-      console.log(step);
-      const stepIndicator = document.querySelector(
-        `#pad-${index + 1} .step-active-indicator`
-      );
-      stepIndicator.classList.add("active");
-    }
-  });
-  // togle hidden class on active step indicators
+  const {stepsA, stepsB, currSeq} = padsData[currentSelectedPad - 1];
+
+  if(currSeq === "A"){
+    stepsA.forEach((step, index) => {
+      if (step) {
+        const stepIndicator = document.querySelector(
+          `#pad-${index + 1} .step-active-indicator`
+        );
+        stepIndicator.classList.add("active");
+      }
+    });
+  } else if(currSeq === "B"){
+    stepsB.forEach((step, index) => {
+      if (step) {
+        const stepIndicator = document.querySelector(
+          `#pad-${index + 1} .step-active-indicator`
+        );
+        stepIndicator.classList.add("active");
+      }
+    });
+  }
   activeStepIndicators.forEach((indicator) => {
     indicator.classList.toggle("hidden");
   });
@@ -509,7 +570,8 @@ const toggleEditMode = () => {
 // clear all steps
 const clearSteps = () => {
   for (let i = 0; i < 16; i++) {
-    steps[i] = Array(16).fill(false);
+    padsData[i].stepsA = Array(16).fill(false);
+    padsData[i].stepsB = Array(16).fill(false);
     const stepIndicators = document.querySelectorAll(
       `#pad-${i + 1} .step-active-indicator`
     );
