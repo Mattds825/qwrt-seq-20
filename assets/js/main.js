@@ -560,38 +560,45 @@ const togglePadSelectMode = () => {
   currentModeText.textContent = isSelecting ? "Select" : "Play";
 };
 
-// toggle edit mode text
-const toggleEditMode = () => {
-  isEditing = !isEditing;
-  currentModeText.textContent = isEditing ? "Edit" : "Play";
-
-  // remove .active class from all step indicators
+// clear steps indictors on pads
+const clearStepIndicators = () => {
   const stepIndicators = document.querySelectorAll(".step-active-indicator");
   stepIndicators.forEach((indicator) => {
     indicator.classList.remove("active");
   });
-  console.log(currentSelectedPad);
-  // set .active for step indicators of current selected pad that are active in the sequence
+};
+
+
+// set .active for step indicators of current selected pad that are active in the sequence
+const fillSteps = (steps) => {
+  steps.forEach((step, index) => {
+    if (step) {
+      const stepIndicator = document.querySelector(
+        `#pad-${index + 1} .step-active-indicator`
+      );
+      stepIndicator.classList.add("active");
+    }
+  });
+};
+
+// toggle edit mode text
+const toggleEditMode = () => {
+  // can only edit if there is a current selected pad
+  if (currentSelectedPad === undefined) return;
+
+  isEditing = !isEditing;
+  currentModeText.textContent = isEditing ? "Edit" : "Play";
+
+  // remove .active class from all step indicators
+  clearStepIndicators();
+  
   const { stepsA, stepsB, currSeq } = padsData[currentSelectedPad - 1];
 
+  // fill active steps for corresponding sequence
   if (currSeq === "A") {
-    stepsA.forEach((step, index) => {
-      if (step) {
-        const stepIndicator = document.querySelector(
-          `#pad-${index + 1} .step-active-indicator`
-        );
-        stepIndicator.classList.add("active");
-      }
-    });
+    fillSteps(stepsA);
   } else if (currSeq === "B") {
-    stepsB.forEach((step, index) => {
-      if (step) {
-        const stepIndicator = document.querySelector(
-          `#pad-${index + 1} .step-active-indicator`
-        );
-        stepIndicator.classList.add("active");
-      }
-    });
+    fillSteps(stepsB);
   }
   activeStepIndicators.forEach((indicator) => {
     indicator.classList.toggle("hidden");
@@ -599,7 +606,7 @@ const toggleEditMode = () => {
 };
 
 // clear all steps
-const clearSteps = () => {
+const clearAllSteps = () => {
   for (let i = 0; i < 16; i++) {
     padsData[i].stepsA = Array(16).fill(false);
     padsData[i].stepsB = Array(16).fill(false);
@@ -688,7 +695,7 @@ document.addEventListener("keydown", (event) => {
     } else if (padKey === "play") {
       togglePlaySequence();
     } else if (padKey === "clear") {
-      clearSteps();
+      clearAllSteps();
     } else if (padKey === "pad-mute") {
       togglePadMute();
     } else if (padKey === "pad-solo") {
@@ -740,7 +747,7 @@ editBtn.addEventListener("click", () => {
 
 //clear button clears all steps
 clearBtn.addEventListener("click", () => {
-  clearSteps();
+  clearAllSteps();
 });
 
 // settings button opens settings modal
@@ -800,6 +807,14 @@ padEffectInnerSelects.forEach((select) => {
 
       // set current selected sequence to selected sequence in padsData
       padsData[currentSelectedPad - 1].currSeq = selectedSeq;
+
+      // clear then fill active steps for corresponding sequence
+      clearStepIndicators();
+      if (selectedSeq === "A") {
+        fillSteps(padsData[currentSelectedPad - 1].stepsA);
+      } else if (selectedSeq === "B") {
+        fillSteps(padsData[currentSelectedPad - 1].stepsB);
+      }
     }
   });
 });
