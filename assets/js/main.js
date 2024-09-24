@@ -364,6 +364,26 @@ const seq = new Tone.Sequence(
             }
           }
         }
+      } else if(currSeq === "B"){
+        if (stepsB[col]) {
+          if (!muted) {
+            if (!soloData.solo) {
+              if (i < 8) {
+                sound.triggerAttackRelease(padsData[i].key, "8n");
+              } else {
+                sound.start(time);
+              }
+            } else {
+              if (id === soloData.soloPad) {
+                if (i < 8) {
+                  sound.triggerAttackRelease(padsData[i].key, "8n");
+                } else {
+                  sound.start(time);
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -427,11 +447,18 @@ const getMaxAmountFromVolume = (volume) => {
   return 0;
 };
 
+// remove active class from all pad-effect-inner-select-seq
+const clearPadSequenceInnerSelects = () => {
+  document.querySelector("#pad-effect-inner-select-seq-A").classList.remove("active");
+  document.querySelector("#pad-effect-inner-select-seq-B").classList.remove("active");
+};
+
 // set up the pad effects container for current pad
 const setPadEffects = (pad) => {
   let padVolume = padsData[pad - 1].volume;
   let maxPadVolume = getMaxAmountFromVolume(padVolume);
   let currPadSelectedSeq = padsData[pad - 1].currSeq;
+  clearPadSequenceInnerSelects();
   padEffectInnerSelects.forEach((select) => {
     // set up the volume inner selects
     // check if select.id starts with pad-effect-inner-select-vol
@@ -507,6 +534,9 @@ const toggleStep = (track, step) => {
   if (padsData[track - 1].currSeq === "A") {
     padsData[track - 1].stepsA[step - 1] =
       !padsData[track - 1].stepsA[step - 1];
+  } else if (padsData[track - 1].currSeq === "B") {
+    padsData[track - 1].stepsB[step - 1] =
+      !padsData[track - 1].stepsB[step - 1];
   }
 
   const stepIndicator = document.querySelector(
@@ -761,7 +791,15 @@ padEffectInnerSelects.forEach((select) => {
       editPadVolume(amount);
     } else if (select.id.startsWith("pad-effect-inner-select-seq")) {
       let selectedSeq = select.id.charAt(select.id.length - 1);
-      console.log(selectedSeq);
+
+      // clear all pad-effect-inner-select-seq active classes
+      clearPadSequenceInnerSelects();
+
+      // add active class to selected pad-effect-inner-select-seq
+      document.querySelector(`#pad-effect-inner-select-seq-${selectedSeq}`).classList.add("active");
+
+      // set current selected sequence to selected sequence in padsData
+      padsData[currentSelectedPad - 1].currSeq = selectedSeq;
     }
   });
 });
