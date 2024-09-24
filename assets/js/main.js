@@ -110,6 +110,8 @@ let soloData = {
  * @property {stepsA} Array
  * @property {stepsB} Array
  * @property {currSeq} string
+ * @property {playPadSound} function that plays the pad sound
+ * @property {playPadSoundInStep} function that plays the pad sound in a step
  */
 const padsData = [
   {
@@ -122,6 +124,8 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
+    playPadSound: () => synth1.triggerAttackRelease("C4", "8n"),
+    playPadSoundInStep: (time) => synth1.triggerAttackRelease("C4", "8n"),
   },
   {
     id: 2,
@@ -133,6 +137,8 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
+    playPadSound: () => synth2.triggerAttackRelease("D4", "8n"),
+    playPadSoundInStep: (time) => synth2.triggerAttackRelease("D4", "8n"),
   },
   {
     id: 3,
@@ -144,6 +150,8 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
+    playPadSound: () => synth3.triggerAttackRelease("E4", "8n"),
+    playPadSoundInStep: (time) => synth3.triggerAttackRelease("E4", "8n"),
   },
 
   {
@@ -156,6 +164,8 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
+    playPadSound: () => synth4.triggerAttackRelease("F4", "8n"),
+    playPadSoundInStep: (time) => synth4.triggerAttackRelease("F4", "8n"),
   },
   {
     id: 5,
@@ -167,6 +177,8 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
+    playPadSound: () => bass1.triggerAttackRelease("C2", "8n"),
+    playPadSoundInStep: (time) => bass1.triggerAttackRelease("C2", "8n"),
   },
   {
     id: 6,
@@ -178,6 +190,8 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
+    playPadSound: () => bass2.triggerAttackRelease("D2", "8n"),
+    playPadSoundInStep: (time) => bass2.triggerAttackRelease("D2", "8n"),
   },
   {
     id: 7,
@@ -189,6 +203,8 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
+    playPadSound: () => bass3.triggerAttackRelease("E2", "8n"),
+    playPadSoundInStep: (time) => bass3.triggerAttackRelease("E2", "8n"),
   },
   {
     id: 8,
@@ -200,6 +216,8 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
+    playPadSound: () => bass4.triggerAttackRelease("F2", "8n"),
+    playPadSoundInStep: (time) => bass4.triggerAttackRelease("F2", "8n"),
   },
   {
     id: 9,
@@ -211,6 +229,8 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
+    playPadSound: () => fxLaugh.start(),
+    playPadSoundInStep: (time) => fxLaugh.start(time),
   },
   {
     id: 10,
@@ -222,6 +242,8 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
+    playPadSound: () => fxListen.start(),
+    playPadSoundInStep: (time) => fxListen.start(time),
   },
   {
     id: 11,
@@ -233,6 +255,8 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
+    playPadSound: () => fxTape.start(),
+    playPadSoundInStep: (time) => fxTape.start(time),
   },
   {
     id: 12,
@@ -244,6 +268,8 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
+    playPadSound: () => fxWoodblock.start(),
+    playPadSoundInStep: (time) => fxWoodblock.start(time),
   },
   {
     id: 13,
@@ -255,6 +281,8 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
+    playPadSound: () => kick.start(),
+    playPadSoundInStep: (time) => kick.start(time),
   },
   {
     id: 14,
@@ -266,6 +294,8 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
+    playPadSound: () => snare.start(),
+    playPadSoundInStep: (time) => snare.start(time),
   },
   {
     id: 15,
@@ -277,6 +307,8 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
+    playPadSound: () => hat.start(),
+    playPadSoundInStep: (time) => hat.start(time),
   },
   {
     id: 16,
@@ -288,6 +320,8 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
+    playPadSound: () => crash.start(),
+    playPadSoundInStep: (time) => crash.start(time),
   },
 ];
 
@@ -342,24 +376,16 @@ const seq = new Tone.Sequence(
 
     for (let i = 0; i < 16; i++) {
       // use destructed object to get the padsData
-      const { id, stepsA, stepsB, sound, currSeq, muted } = padsData[i];
+      const { id, stepsA, stepsB, sound, currSeq, muted, playPadSoundInStep } = padsData[i];
 
       if (currSeq === "A") {
         if (stepsA[col]) {
           if (!muted) {
             if (!soloData.solo) {
-              if (i < 8) {
-                sound.triggerAttackRelease(padsData[i].key, "8n");
-              } else {
-                sound.start(time);
-              }
+              playPadSoundInStep(time);
             } else {
               if (id === soloData.soloPad) {
-                if (i < 8) {
-                  sound.triggerAttackRelease(padsData[i].key, "8n");
-                } else {
-                  sound.start(time);
-                }
+                playPadSoundInStep(time);
               }
             }
           }
@@ -368,18 +394,10 @@ const seq = new Tone.Sequence(
         if (stepsB[col]) {
           if (!muted) {
             if (!soloData.solo) {
-              if (i < 8) {
-                sound.triggerAttackRelease(padsData[i].key, "8n");
-              } else {
-                sound.start(time);
-              }
+              playPadSoundInStep(time);
             } else {
               if (id === soloData.soloPad) {
-                if (i < 8) {
-                  sound.triggerAttackRelease(padsData[i].key, "8n");
-                } else {
-                  sound.start(time);
-                }
+                playPadSoundInStep(time);
               }
             }
           }
@@ -489,11 +507,7 @@ const playPadSound = (pad) => {
   const padElement = document.getElementById(`pad-${pad}`);
   padElement.classList.add("active");
   setPadEffects(pad);
-  if (pad < 9) {
-    padsData[pad - 1].sound.triggerAttackRelease(padsData[pad - 1].key, "8n");
-  } else {
-    padsData[pad - 1].sound.start();
-  }
+  padsData[pad - 1].playPadSound();
 };
 
 // btn touch up event listener
