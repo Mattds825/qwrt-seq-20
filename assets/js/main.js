@@ -376,33 +376,43 @@ const seq = new Tone.Sequence(
 
     for (let i = 0; i < 16; i++) {
       // use destructed object to get the padsData
-      const { id, stepsA, stepsB, sound, currSeq, muted, playPadSoundInStep } = padsData[i];
+      const { id, stepsA, stepsB, sound, currSeq, muted, playPadSoundInStep } =
+        padsData[i];
 
-      if (currSeq === "A") {
-        if (stepsA[col]) {
-          if (!muted) {
-            if (!soloData.solo) {
-              playPadSoundInStep(time);
-            } else {
-              if (id === soloData.soloPad) {
-                playPadSoundInStep(time);
-              }
-            }
-          }
-        }
-      } else if(currSeq === "B"){
-        if (stepsB[col]) {
-          if (!muted) {
-            if (!soloData.solo) {
-              playPadSoundInStep(time);
-            } else {
-              if (id === soloData.soloPad) {
-                playPadSoundInStep(time);
-              }
-            }
-          }
-        }
+      // create check conditions for playing sound in sequence
+      const shouldPlayInSeqA =
+        currSeq === "A" && 
+        stepsA[col] && 
+        !muted && 
+        !soloData.solo;
+      const shouldPlayInSeqASoloed =
+        currSeq === "A" &&
+        stepsA[col] &&
+        !muted &&
+        soloData.solo &&
+        id === soloData.soloPad;
+      const shouldPlayInSeqB =
+        currSeq === "B" && 
+        stepsB[col] && 
+        !muted && 
+        !soloData.solo;
+      const shouldPlayInSeqBSoloed =
+        currSeq === "B" &&
+        stepsB[col] &&
+        !muted &&
+        soloData.solo &&
+        id === soloData.soloPad;
+
+      // play sound in step if conditions are met
+      if (
+        shouldPlayInSeqA ||
+        shouldPlayInSeqASoloed ||
+        shouldPlayInSeqB ||
+        shouldPlayInSeqBSoloed
+      ) {
+        playPadSoundInStep(time);
       }
+
     }
   },
   [...Array(16).keys()],
@@ -467,8 +477,12 @@ const getMaxAmountFromVolume = (volume) => {
 
 // remove active class from all pad-effect-inner-select-seq
 const clearPadSequenceInnerSelects = () => {
-  document.querySelector("#pad-effect-inner-select-seq-A").classList.remove("active");
-  document.querySelector("#pad-effect-inner-select-seq-B").classList.remove("active");
+  document
+    .querySelector("#pad-effect-inner-select-seq-A")
+    .classList.remove("active");
+  document
+    .querySelector("#pad-effect-inner-select-seq-B")
+    .classList.remove("active");
 };
 
 // set up the pad effects container for current pad
@@ -582,7 +596,6 @@ const clearStepIndicators = () => {
   });
 };
 
-
 // set .active for step indicators of current selected pad that are active in the sequence
 const fillSteps = (steps) => {
   steps.forEach((step, index) => {
@@ -605,7 +618,7 @@ const toggleEditMode = () => {
 
   // remove .active class from all step indicators
   clearStepIndicators();
-  
+
   const { stepsA, stepsB, currSeq } = padsData[currentSelectedPad - 1];
 
   // fill active steps for corresponding sequence
@@ -817,7 +830,9 @@ padEffectInnerSelects.forEach((select) => {
       clearPadSequenceInnerSelects();
 
       // add active class to selected pad-effect-inner-select-seq
-      document.querySelector(`#pad-effect-inner-select-seq-${selectedSeq}`).classList.add("active");
+      document
+        .querySelector(`#pad-effect-inner-select-seq-${selectedSeq}`)
+        .classList.add("active");
 
       // set current selected sequence to selected sequence in padsData
       padsData[currentSelectedPad - 1].currSeq = selectedSeq;
