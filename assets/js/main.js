@@ -73,6 +73,7 @@ const playBtn = document.getElementById("pad-play");
 const editBtn = document.getElementById("pad-edit");
 const padSelectModeBtn = document.getElementById("pad-select-mode");
 const clearBtn = document.getElementById("pad-clear");
+const muteAllBtn = document.getElementById("pad-mute-all");
 const settingsBtn = document.getElementById("settings-btn");
 const closeSettingsModalBtn = document.getElementById(
   "close-settings-modal-btn"
@@ -94,6 +95,7 @@ let isEditing = false;
 let isPlaying = false;
 let isSelecting = false;
 let currentSelectedPad = undefined;
+let allPadsMuted = false;
 let soloData = {
   solo: false,
   soloPad: undefined,
@@ -352,6 +354,8 @@ const padKeyMap = {
   I: "pad-solo",
   n: "pad-mute",
   N: "pad-mute",
+  m: "mute-all",
+  M: "mute-all",
 };
 
 // reset all pad text colors to white
@@ -381,22 +385,26 @@ const seq = new Tone.Sequence(
 
       // create check conditions for playing sound in sequence
       const shouldPlayInSeqA =
+        !allPadsMuted &&
         currSeq === "A" && 
         stepsA[col] && 
         !muted && 
         !soloData.solo;
       const shouldPlayInSeqASoloed =
+        !allPadsMuted &&
         currSeq === "A" &&
         stepsA[col] &&
         !muted &&
         soloData.solo &&
         id === soloData.soloPad;
       const shouldPlayInSeqB =
+        !allPadsMuted &&
         currSeq === "B" && 
         stepsB[col] && 
         !muted && 
         !soloData.solo;
       const shouldPlayInSeqBSoloed =
+        !allPadsMuted &&
         currSeq === "B" &&
         stepsB[col] &&
         !muted &&
@@ -646,6 +654,18 @@ const clearAllSteps = () => {
   }
 };
 
+// toggle mute all pads
+const toggleMuteAllPads = () => {
+  // toggle allPadsMuted
+  // use separate variable to preserve the individual pads muted state
+  allPadsMuted = !allPadsMuted;
+  
+  // set pad mute btn p child text color to blue
+  muteAllBtn.children[0].style.color = allPadsMuted
+    ? "var(--secondary-color)"
+    : "white";
+};
+
 // toggle pad solo
 const togglePadSolo = () => {
   if (currentSelectedPad === undefined) return;
@@ -727,6 +747,8 @@ document.addEventListener("keydown", (event) => {
       togglePadMute();
     } else if (padKey === "pad-solo") {
       togglePadSolo();
+    } else if (padKey === "mute-all") {
+      toggleMuteAllPads();
     } else {
       // is a sound pad key
       if (isEditing) {
@@ -746,7 +768,7 @@ document.addEventListener("keydown", (event) => {
     // set current selected pad
     if (
       !isEditing &&
-      !["edit", "play", "clear", "pad-mute", "pad-solo"].includes(padKey)
+      !["edit", "play", "clear", "pad-mute", "pad-solo", "mute-all"].includes(padKey)
     )
       currentSelectedPad = padKey;
   }
@@ -861,6 +883,11 @@ padSoloBtn.addEventListener("click", () => {
 // add event listener to pad mute button
 padMuteBtn.addEventListener("click", () => {
   togglePadMute();
+});
+
+// add event listener to mute all button
+muteAllBtn.addEventListener("click", () => {
+  toggleMuteAllPads();
 });
 
 //disable double tap zoom
