@@ -4,17 +4,25 @@ The Goal of this project is to bring an old-school philosophy of making drum mac
 
 16 pads, intuitive keybinding, of the box sounds and endless creative possibilities is the ultimate goal.
 
-## History 
+## History
 
-A lot can be said about physical drum machines that have inspired this project, but nothing can be said without mentioning some huge names.
+The evolution of drum machines has had a profound impact on music production, inspiring the creation of this drum machine app. While many physical devices have shaped the landscape, a few iconic names stand out as monumental influences.
 
-### The MPC Revolution 
+### The MPC Revolution
+
+The Akai MPC (Music Production Center) series, introduced in the late 1980s, revolutionized beat-making by combining sampling, sequencing, and pad-based performance into one unit. It became a cornerstone for hip-hop and electronic producers, allowing for intuitive live play and creative flexibility. Its velocity-sensitive pads and workflow have directly influenced the design and functionality of modern drum machines, including this app.
 
 ### The Roland Underground
 
-### The MIDI companions and VSTs
+The Roland TR-808 and TR-909 drum machines, released in the 1980s, played a key role in shaping electronic, hip-hop, and dance music. The 808's deep kicks and snappy snares became iconic, while the 909 introduced more complex rhythms and automation. These machines popularized programmable drum sequences, providing a foundation for how modern digital drum machines approach beat construction.
 
-### The Huge Market 
+### The MIDI Companions and VSTs
+
+As MIDI technology advanced, hardware drum machines gained the ability to integrate with other gear and computers. Virtual Studio Technology (VST) plugins expanded this further, allowing users to simulate classic drum machines digitally. These developments opened up a world of customization, with MIDI drum pads and VST instruments becoming key tools for modern producers, bridging the gap between physical and virtual drum machines.
+
+### The Huge Market
+
+The popularity of drum machines has exploded, with a wide range of options for both hardware and software available today. From portable, budget-friendly devices to sophisticated DAW-integrated software, the market now offers tools for every type of producer. This widespread availability has democratized beat-making, and this drum machine app continues that tradition by offering an accessible, powerful, and creative tool for everyone.
 
 ## Direct Inspirations 
 
