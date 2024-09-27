@@ -6,13 +6,13 @@ The Goal of this project is to bring an old-school philosophy of making drum mac
 
 ## History 
 
-A lot can be said about physical drum machines, but nothing can be said without mentioning some huge names.
+A lot can be said about physical drum machines that have inspired this project, but nothing can be said without mentioning some huge names.
 
 ### The MPC Revolution 
 
 ### The Roland Underground
 
-### The MIDI companions
+### The MIDI companions and VSTs
 
 ### The Huge Market 
 
@@ -103,23 +103,59 @@ Offer clear, immediate feedback to help users understand how their actions affec
 
 ## Features
 
-### Polyphonic play
+### Polyphonic Play
 
-### 16 Step Editing
+The drum machine supports polyphonic play, allowing multiple drum pads to be triggered simultaneously. This enables users to create rich, layered rhythms and complex drum patterns by combining multiple sounds at once, whether in live play or when sequencing.
 
-### Effects 
+### 16-Step Editing
 
-### Individual Pad Editing 
+Create and edit drum sequences with ease using the intuitive 16-step sequencer. This step grid allows users to place drum hits over a 16-step timeline, perfect for building looped patterns and beats with precision. Each step represents a note, making it simple to build complex, rhythmically varied sequences.
 
-- Volume
-- Solo 
-- Mute 
+### Keybinding for Controls
 
-### 2 Sequences per sound 
+The drum machine features intuitive keyboard controls for triggering drum pads and navigating the interface. Keybindings are designed to be easy to remember and use, allowing users to trigger sounds, start and stop sequences, and adjust settings without needing to rely on a mouse, making live performances and creative sessions smoother.
 
-Allows user to have sequence A and B for each pad, increasing the amount of sequence combinations for performances. 
+### Effects
 
-### Responsive
+Enhance your beats with built-in audio effects, providing creative control over the sound of your drum patterns:
+
+- Volume: Adjust the overall loudness of each drum sound or the entire mix.
+- Filter: Apply a low-pass filter to shape the frequency range of your sounds, allowing for smoother or more muffled tones.
+- Distortion: Add grit and intensity to your beats by applying distortion, perfect for creating more aggressive or raw sounds.
+
+### Individual Pad Editing
+
+Each drum pad can be individually customized, allowing for fine-tuned control over your performance:
+
+- Volume: Adjust the volume for each pad independently to balance your mix.
+- Solo: Isolate a pad’s sound so that only it plays, allowing for focused listening or emphasizing certain elements in your performance.
+- Mute: Silence any specific pad without deleting its sequence, providing flexibility in live play or composition.
+
+### Built-in Sounds
+
+Get started right away with a versatile library of built-in sounds. The sound set includes basic drum kit elements such as kick, snare, hi-hats, and crash cymbals, as well as additional sound effects, bass notes, and synth keys for melodic and experimental compositions. These preloaded sounds ensure users have the tools they need to create beats across multiple genres.
+
+### Two Sequences per Sound
+
+Each drum pad can store two separate sequences, A and B, giving users the flexibility to switch between different patterns for the same sound. This allows for dynamic changes during live performances or more complex arrangement possibilities when composing, providing more versatility in how rhythms evolve over time.
+
+### Multifunctional Pads
+
+The drum machine's pads are designed to be versatile, offering different functionalities depending on the selected mode. This allows users to perform, edit, and manage their sequences more efficiently without needing separate controls for every action.
+
+**Play, Edit, and Select Modes**
+- PLAY Mode:
+    In this mode, the pads act as live triggers for the assigned drum sounds. Users can play the pads in real time, creating rhythms and beats on the fly. The pads respond to key presses or mouse clicks, providing an immediate and intuitive way to perform.
+- EDIT Mode:
+    In Edit Mode, the pads transition to become part of the sequence editing interface. Users can input or modify steps in the 16-step sequencer by pressing the pads, adding or removing beats at specific points in the sequence. This mode allows for easy fine-tuning of the rhythm without switching interfaces.
+- SELECT Mode:
+    Select Mode allows users to choose specific pads for further editing or customization. In this mode, selecting a pad enables options for adjusting its individual settings such as volume, mute, solo, or effects, making it simple to focus on one sound at a time while refining the overall beat.
+
+By switching between these modes, the user can seamlessly transition from playing beats live to editing sequences and fine-tuning individual sounds, all through the same set of pads. This multifunctional approach streamlines the workflow and keeps the interface uncluttered.
+
+### Responsive Design
+
+The drum machine is designed to work seamlessly across different devices and screen sizes. The interface automatically adjusts to provide the best possible user experience, with two distinct layouts optimized for desktop and mobile. This ensures that whether you’re using a laptop, tablet, or smartphone, the drum machine remains fully functional and accessible.
 
 ## UI/UX
 
