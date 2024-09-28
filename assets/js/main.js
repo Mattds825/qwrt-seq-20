@@ -1,3 +1,5 @@
+/*-------------------------- Variable Declarations */
+
 // Load sound files
 const kick = new Tone.Player("assets/sounds/kick.wav").toDestination();
 const snare = new Tone.Player("assets/sounds/snare.wav").toDestination();
@@ -358,6 +360,8 @@ const padKeyMap = {
   M: "mute-all",
 };
 
+/*-------------------------- Functions */
+
 // reset all pad text colors to white
 const resetAllPadTextColors = () => {
   for (let i = 0; i < 16; i++) {
@@ -386,9 +390,9 @@ const seq = new Tone.Sequence(
       // create check conditions for playing sound in sequence
       const shouldPlayInSeqA =
         !allPadsMuted &&
-        currSeq === "A" && 
-        stepsA[col] && 
-        !muted && 
+        currSeq === "A" &&
+        stepsA[col] &&
+        !muted &&
         !soloData.solo;
       const shouldPlayInSeqASoloed =
         !allPadsMuted &&
@@ -399,9 +403,9 @@ const seq = new Tone.Sequence(
         id === soloData.soloPad;
       const shouldPlayInSeqB =
         !allPadsMuted &&
-        currSeq === "B" && 
-        stepsB[col] && 
-        !muted && 
+        currSeq === "B" &&
+        stepsB[col] &&
+        !muted &&
         !soloData.solo;
       const shouldPlayInSeqBSoloed =
         !allPadsMuted &&
@@ -420,7 +424,6 @@ const seq = new Tone.Sequence(
       ) {
         playPadSoundInStep(time);
       }
-
     }
   },
   [...Array(16).keys()],
@@ -434,39 +437,6 @@ Tone.Transport.bpm.value = 82;
 Object.entries(padsData).forEach(([key, value]) => {
   value.sound.chain(filter, distortion, volume);
 });
-
-// Start audio context
-startBtn.addEventListener("click", async () => {
-  await Tone.start();
-  console.log("Audio context started");
-  mainContentContainer.classList.remove("hidden");
-  mainContentContainer.style.display = "grid";
-  startBtn.classList.add("hidden");
-  startText.classList.add("hidden");
-});
-
-// update slider values
-function updateValue(slider) {
-  if (slider.id === "tempo-slider") {
-    document.getElementById("slider-value-tempo").textContent = slider.value;
-    Tone.Transport.bpm.value = slider.value;
-  }
-  if (slider.id === "vol-slider") {
-    document.getElementById("slider-value-vol").textContent = slider.value;
-    currVolume = (slider.value / 100) * (12 - -12) - 12;
-    volume.volume.value = currVolume;
-  }
-  if (slider.id === "filter-slider") {
-    document.getElementById("slider-value-filter").textContent = slider.value;
-    currFrequency = slider.value;
-    filter.frequency.value = currFrequency;
-  }
-  if (slider.id === "dist-slider") {
-    document.getElementById("slider-value-dist").textContent = slider.value;
-    currDistortion = slider.value;
-    distortion.distortion = currDistortion;
-  }
-}
 
 // set current pad text
 const setCurrentPadText = (pad) => {
@@ -530,23 +500,6 @@ const playPadSound = (pad) => {
   padElement.classList.add("active");
   setPadEffects(pad);
   padsData[pad - 1].playPadSound();
-};
-
-// btn touch up event listener
-const btnTouchEnd = (pad) => {
-  console.log("started");
-  const padElement = document.getElementById(`pad-${pad}`);
-  padElement.classList.remove("active");
-};
-
-// btn touch down event listener
-const btnTouchStart = (pad) => {
-  // TODO: check if editing or selecting
-  console.log("ended");
-  const padElement = document.getElementById(`pad-${pad}`);
-  padElement.classList.add("active");
-  playPadSound(pad);
-  setCurrentPadText(pad);
 };
 
 // toggle play/stop sequence
@@ -659,7 +612,7 @@ const toggleMuteAllPads = () => {
   // toggle allPadsMuted
   // use separate variable to preserve the individual pads muted state
   allPadsMuted = !allPadsMuted;
-  
+
   // set pad mute btn p child text color to blue
   muteAllBtn.children[0].style.color = allPadsMuted
     ? "var(--secondary-color)"
@@ -694,6 +647,29 @@ const togglePadMute = () => {
     : "white";
 };
 
+const handlePadSequenceSelect = (select) => {
+  let selectedSeq = select.id.charAt(select.id.length - 1);
+
+  // clear all pad-effect-inner-select-seq active classes
+  clearPadSequenceInnerSelects();
+
+  // add active class to selected pad-effect-inner-select-seq
+  document
+    .querySelector(`#pad-effect-inner-select-seq-${selectedSeq}`)
+    .classList.add("active");
+
+  // set current selected sequence to selected sequence in padsData
+  padsData[currentSelectedPad - 1].currSeq = selectedSeq;
+
+  // clear then fill active steps for corresponding sequence
+  clearStepIndicators();
+  if (selectedSeq === "A") {
+    fillSteps(padsData[currentSelectedPad - 1].stepsA);
+  } else if (selectedSeq === "B") {
+    fillSteps(padsData[currentSelectedPad - 1].stepsB);
+  }
+};
+
 // edit pad volume
 /**
  * @param {*} amount a value between 0 and 3
@@ -724,6 +700,45 @@ const editPadVolume = (amount) => {
       break;
   }
 };
+
+const handlePadVolumeSelect = (select) => {
+  let amount = select.id.charAt(select.id.length - 1);
+  // set current effect inner select to active if not already active
+  if (select.classList.contains("active")) {
+    for (let i = 3; i > amount; i--) {
+      let innerSelect = document.querySelector(
+        `#pad-effect-inner-select-vol-${i}`
+      );
+      if (innerSelect.classList.contains("active")) {
+        innerSelect.classList.remove("active");
+      }
+    }
+  } else {
+    for (let i = 0; i < amount; i++) {
+      let innerSelect = document.querySelector(
+        `#pad-effect-inner-select-vol-${i}`
+      );
+      if (!innerSelect.classList.contains("active")) {
+        innerSelect.classList.add("active");
+      }
+    }
+    select.classList.add("active");
+  }
+  editPadVolume(amount);
+};
+
+
+/*-------------------Event Listeners and functions triggered from HTML */
+
+// Start audio context
+startBtn.addEventListener("click", async () => {
+  await Tone.start();
+  console.log("Audio context started");
+  mainContentContainer.classList.remove("hidden");
+  mainContentContainer.style.display = "grid";
+  startBtn.classList.add("hidden");
+  startText.classList.add("hidden");
+});
 
 // keyboard event listener
 document.addEventListener("keydown", (event) => {
@@ -768,7 +783,9 @@ document.addEventListener("keydown", (event) => {
     // set current selected pad
     if (
       !isEditing &&
-      !["edit", "play", "clear", "pad-mute", "pad-solo", "mute-all"].includes(padKey)
+      !["edit", "play", "clear", "pad-mute", "pad-solo", "mute-all"].includes(
+        padKey
+      )
     )
       currentSelectedPad = padKey;
   }
@@ -783,6 +800,23 @@ document.addEventListener("keyup", (event) => {
     pad.classList.remove("active");
   }
 });
+
+// btn touch up event listener
+const btnTouchEnd = (pad) => {
+  console.log("started");
+  const padElement = document.getElementById(`pad-${pad}`);
+  padElement.classList.remove("active");
+};
+
+// btn touch down event listener
+const btnTouchStart = (pad) => {
+  // TODO: check if editing or selecting
+  console.log("ended");
+  const padElement = document.getElementById(`pad-${pad}`);
+  padElement.classList.add("active");
+  playPadSound(pad);
+  setCurrentPadText(pad);
+};
 
 // play button plays sequence
 playBtn.addEventListener("click", () => {
@@ -814,6 +848,29 @@ restAudioBtn.addEventListener("click", () => {
   Tone.getContext()._context.resume();
 });
 
+// update slider values
+function updateValue(slider) {
+  if (slider.id === "tempo-slider") {
+    document.getElementById("slider-value-tempo").textContent = slider.value;
+    Tone.Transport.bpm.value = slider.value;
+  }
+  if (slider.id === "vol-slider") {
+    document.getElementById("slider-value-vol").textContent = slider.value;
+    currVolume = (slider.value / 100) * (12 - -12) - 12;
+    volume.volume.value = currVolume;
+  }
+  if (slider.id === "filter-slider") {
+    document.getElementById("slider-value-filter").textContent = slider.value;
+    currFrequency = slider.value;
+    filter.frequency.value = currFrequency;
+  }
+  if (slider.id === "dist-slider") {
+    document.getElementById("slider-value-dist").textContent = slider.value;
+    currDistortion = slider.value;
+    distortion.distortion = currDistortion;
+  }
+}
+
 // add event listener to pad effect inner selects
 padEffectInnerSelects.forEach((select) => {
   select.addEventListener("click", (event) => {
@@ -822,50 +879,9 @@ padEffectInnerSelects.forEach((select) => {
 
     // check if select.id starts with pad-effect-inner-select-vol or  pad-effect-inner-select-seq
     if (select.id.startsWith("pad-effect-inner-select-vol")) {
-      let amount = select.id.charAt(select.id.length - 1);
-      // set current effect inner select to active if not already active
-      if (select.classList.contains("active")) {
-        for (let i = 3; i > amount; i--) {
-          let innerSelect = document.querySelector(
-            `#pad-effect-inner-select-vol-${i}`
-          );
-          if (innerSelect.classList.contains("active")) {
-            innerSelect.classList.remove("active");
-          }
-        }
-      } else {
-        for (let i = 0; i < amount; i++) {
-          let innerSelect = document.querySelector(
-            `#pad-effect-inner-select-vol-${i}`
-          );
-          if (!innerSelect.classList.contains("active")) {
-            innerSelect.classList.add("active");
-          }
-        }
-        select.classList.add("active");
-      }
-      editPadVolume(amount);
+      handlePadVolumeSelect(select);
     } else if (select.id.startsWith("pad-effect-inner-select-seq")) {
-      let selectedSeq = select.id.charAt(select.id.length - 1);
-
-      // clear all pad-effect-inner-select-seq active classes
-      clearPadSequenceInnerSelects();
-
-      // add active class to selected pad-effect-inner-select-seq
-      document
-        .querySelector(`#pad-effect-inner-select-seq-${selectedSeq}`)
-        .classList.add("active");
-
-      // set current selected sequence to selected sequence in padsData
-      padsData[currentSelectedPad - 1].currSeq = selectedSeq;
-
-      // clear then fill active steps for corresponding sequence
-      clearStepIndicators();
-      if (selectedSeq === "A") {
-        fillSteps(padsData[currentSelectedPad - 1].stepsA);
-      } else if (selectedSeq === "B") {
-        fillSteps(padsData[currentSelectedPad - 1].stepsB);
-      }
+      handlePadSequenceSelect(select);
     }
   });
 });
