@@ -79,6 +79,14 @@ body {
   font-family: sans-serif;
 }
 
+h2 {
+  font-size: medium;
+}
+
+h3 {
+  font-size: small;
+}
+
 #main-content-container {
   /* display: grid; */
   grid-template-columns: 1fr;
@@ -197,7 +205,7 @@ header {
 
 .pad-effect-inner-row {
   width: 100%;
-  height: 25%;
+  height: 50%;
   gap: 0.2rem;
   display: flex;
 }
@@ -217,25 +225,27 @@ header {
   line-height: 100%;
 }
 
-.pad-effect-inner-select.active{
+.pad-effect-inner-select.active {
   background: var(--secondary-color);
 }
 
-
-.pad-effect-inner-select.active:hover{
+.pad-effect-inner-select.active:hover {
   background: var(--secondary-color);
   opacity: 0.8;
   cursor: pointer;
 }
 
-.pad-effect-inner-select:hover{
+.pad-effect-inner-select:hover {
   background: var(--pad-color-hover);
   cursor: pointer;
 }
 
-
 .pad-effect-inner p {
   font-size: 1.1vmin;
+}
+
+.pad-effect-div p {
+  font-size: 1.5vmin;
 }
 
 .grid-item {
@@ -283,7 +293,7 @@ button:hover {
   height: 100%;
   width: auto;
   aspect-ratio: 1/1;
-  border-radius: 16px;
+  border-radius: 0.5rem;
   cursor: pointer;
   transition: 0.3s;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
@@ -370,7 +380,7 @@ button:hover {
 }
 
 .slider-value {
-  font-size: 18px;
+  font-size: 1.8vmin;
   text-align: center;
   position: relative;
   margin-top: auto;
@@ -380,6 +390,7 @@ button:hover {
 .slider-name {
   position: relative;
   font-weight: bold;
+  font-size: 1.5vmin;
   /* margin-top: auto; */
 }
 
@@ -405,6 +416,14 @@ button:hover {
 .row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 100%;
 }
@@ -448,6 +467,20 @@ button:hover {
   top: 0;
   right: 0;
   margin: 30px;
+}
+
+#pad-settings-mobile {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  text-align: center;
+  background: gray;
+  padding: 12px 100px;
+  gap: 10px;
+}
+
+#pad-settings-mobile p {
+  margin: 0;
 }
 
 /* -------------------- Media Queries -------------------- */
@@ -513,6 +546,15 @@ button:hover {
   .modal {
     width: var(--modal-width-large);
     height: var(--modal-height-large);
+  }
+
+  /* Pad settings mobile */
+  #pad-settings-mobile {
+    display: none;
+  }
+
+  #pad-effects-title {
+    margin-inline: 50%;
   }
 }
 

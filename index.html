@@ -57,7 +57,7 @@
             </div>
             <!-- Pad Effects -->
             <div class="grid-item" id="pad-effects">
-              Pad Effects
+              <h3 id="pad-effects-title">Pad Effects</h3>
               <!-- Sequence Repeat -->
               <div class="pad-effect-div" id="seq-repeat">
                 <!-- sequence repeat -->
@@ -481,7 +481,71 @@
           <label for="visuals-checkbox"> Show Visuals</label><br />
         </div>
 
-        <div class="row">
+        <!-- Pad Setting Mobile -->
+         <div id="pad-settings-mobile">
+          <h3 id="pad-effects-title">Pad Effects</h3>
+              <!-- Sequence Repeat -->
+              <div class="pad-effect-div" id="seq-repeat">
+                <!-- sequence repeat -->
+                <div class="pad-effect-inner">
+                  <p>Seq</p>
+                  <div class="pad-effect-inner-row">
+                    <div
+                      class="pad-effect-inner-select"
+                      id="pad-effect-inner-select-seq-A"
+                    >
+                      <p>A</p>
+                    </div>
+                    <div
+                      class="pad-effect-inner-select"
+                      id="pad-effect-inner-select-seq-B"
+                    >
+                      <p>B</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.Sequence Repeat -->
+              <!-- Pad Volume -->
+              <div class="pad-effect-div" id="pad-volume">
+                <div class="pad-effect-inner">
+                  <p>Vol</p>
+                  <div class="pad-effect-inner-row">
+                    <div
+                      class="pad-effect-inner-select"
+                      id="pad-effect-inner-select-vol-0"
+                    ></div>
+                    <div
+                      class="pad-effect-inner-select"
+                      id="pad-effect-inner-select-vol-1"
+                    ></div>
+                    <div
+                      class="pad-effect-inner-select"
+                      id="pad-effect-inner-select-vol-2"
+                    ></div>
+                    <div
+                      class="pad-effect-inner-select"
+                      id="pad-effect-inner-select-vol-3"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.Pad Volume -->
+              <!-- Solo -->
+              <div class="pad pad-effect-div" id="pad-solo-btn">
+                <p>Solo</p>
+                <small>I</small>
+              </div>
+              <!-- /.Solo -->
+              <!-- Mute -->
+              <div class="pad pad-effect-div" id="pad-mute-btn">
+                <p>Mute</p>
+                <small>N</small>
+              </div>
+         </div>
+        <!--/.Pad Setting Mobile -->
+
+        <div class="col">
           <p>If You have lost all audio sound click this button:</p>
           <button id="reset-audio-btn">Reset Audio Context</button>
         </div>
