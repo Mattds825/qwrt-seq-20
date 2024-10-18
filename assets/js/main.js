@@ -360,6 +360,14 @@ const padKeyMap = {
   M: "mute-all",
 };
 
+// Set initial tempo
+Tone.Transport.bpm.value = 82;
+
+//chain effects to every sounds source
+Object.entries(padsData).forEach(([key, value]) => {
+  value.sound.chain(filter, distortion, volume);
+});
+
 /*-------------------------- Functions */
 
 // reset all pad text colors to white
@@ -430,13 +438,7 @@ const seq = new Tone.Sequence(
   "16n"
 );
 
-// Set initial tempo
-Tone.Transport.bpm.value = 82;
 
-//chain effects to every sounds source
-Object.entries(padsData).forEach(([key, value]) => {
-  value.sound.chain(filter, distortion, volume);
-});
 
 // set current pad text
 const setCurrentPadText = (pad) => {
@@ -701,6 +703,12 @@ const editPadVolume = (amount) => {
   }
 };
 
+
+/**
+ * Handles the selection of pad volume by toggling the active state of the inner select elements.
+ *
+ * @param {HTMLSelectElement} select - The select element that triggered the event.
+ */
 const handlePadVolumeSelect = (select) => {
   let amount = select.id.charAt(select.id.length - 1);
   // set current effect inner select to active if not already active
@@ -728,28 +736,21 @@ const handlePadVolumeSelect = (select) => {
 };
 
 
-/*-------------------Event Listeners and functions triggered from HTML */
-
-// Start audio context
-startBtn.addEventListener("click", async () => {
-  await Tone.start();
-  console.log("Audio context started");
-  mainContentContainer.classList.remove("hidden");
-  mainContentContainer.style.display = "grid";
-  startBtn.classList.add("hidden");
-  startText.classList.add("hidden");
-});
-
-// keyboard event listener
-document.addEventListener("keydown", (event) => {
-  const key = event.key.toLowerCase();
-  const padKey = padKeyMap[key];
+/**
+ * Handles the action when a pad is clicked based on the provided pad key.
+ *
+ * @param {string} padKey - The key representing the pad action. Possible values:
+ *   - "edit": Toggles edit mode.
+ *   - "select": Toggles pad select mode.
+ *   - "play": Toggles play sequence.
+ *   - "clear": Clears all steps.
+ *   - "pad-mute": Toggles pad mute.
+ *   - "pad-solo": Toggles pad solo.
+ *   - "mute-all": Toggles mute for all pads.
+ *   - Any other string: Represents a sound pad key.
+ */
+const handlePadClicked = (padKey) => {
   if (padKey !== undefined) {
-    const pad = document.getElementById(`pad-${padKey}`);
-    // toggle edit mode if '/' key is pressed
-    // toggle play sequence if 'Space' key is pressed
-    // clear steps if 'P' key is pressed
-    // toggle pad mute  if 'N' key is pressed
     if (padKey === "edit") {
       toggleEditMode();
     } else if (padKey === "select") {
@@ -774,6 +775,8 @@ document.addEventListener("keydown", (event) => {
         // toggle the pad without sound
         togglePad(padKey);
       } else {
+        // play pad sound
+
         // set current pad text
         setCurrentPadText(padKey);
         // play pad sound
@@ -789,6 +792,25 @@ document.addEventListener("keydown", (event) => {
     )
       currentSelectedPad = padKey;
   }
+};
+
+/*-------------------Event Listeners and functions triggered from HTML */
+
+// Start audio context
+startBtn.addEventListener("click", async () => {
+  await Tone.start();
+  console.log("Audio context started");
+  mainContentContainer.classList.remove("hidden");
+  mainContentContainer.style.display = "grid";
+  startBtn.classList.add("hidden");
+  startText.classList.add("hidden");
+});
+
+// keyboard event listener
+document.addEventListener("keydown", (event) => {
+  const key = event.key.toLowerCase();
+  const padKey = padKeyMap[key];
+  handlePadClicked(padKey);
 });
 
 // keyup listener
@@ -811,11 +833,7 @@ const btnTouchEnd = (pad) => {
 // btn touch down event listener
 const btnTouchStart = (pad) => {
   // TODO: check if editing or selecting
-  console.log("ended");
-  const padElement = document.getElementById(`pad-${pad}`);
-  padElement.classList.add("active");
-  playPadSound(pad);
-  setCurrentPadText(pad);
+  handlePadClicked(pad);
 };
 
 // play button plays sequence

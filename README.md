@@ -188,9 +188,16 @@ there are the initial mockups:
 
 ### Accessibility
 
+- button hover
+- etc
+
 ## Testing
 
 See full testing in the [TESTING.md](./TESTING.md) file
+
+### Known Bugs
+
+- An a Mac if you have airpods connected and you start playing audio on another apple device, if you airpods are configured to automatically switch the sound won't work anymore
 
 ## Credits 
 
@@ -212,3 +219,7 @@ I tried to keep this as minimal as possible
 - [redketchup.io](https://redketchup.io/favicon-generator) used to generate favicon
 
  - this [solution](https://github.com/Tonejs/Tone.js/issues/767) was used to fix the audio not playing when source changed: 
+
+
+## TODO 
+
