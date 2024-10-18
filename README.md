@@ -191,13 +191,17 @@ there are the initial mockups:
 - button hover
 - etc
 
+- voice readout features for visually impaired users 
+
 ## Testing
 
 See full testing in the [TESTING.md](./TESTING.md) file
 
 ### Known Bugs
 
-- An a Mac if you have airpods connected and you start playing audio on another apple device, if you airpods are configured to automatically switch the sound won't work anymore
+- On a Mac if you have airpods connected and you start playing audio on another apple device, if you airpods are configured to automatically switch the sound won't work anymore
+
+## Deployment 
 
 ## Credits 
 
@@ -214,6 +218,8 @@ I tried to keep this as minimal as possible
 
 ### Code and Resources Used
 
+- [Tone.js Docs](https://tonejs.github.io/docs/14.7.39/index.html) Used to understand the API and use some examples as starting point
+
 - [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript) Used for all javascript documentation needs
 
 - [redketchup.io](https://redketchup.io/favicon-generator) used to generate favicon
@@ -223,3 +229,22 @@ I tried to keep this as minimal as possible
 
 ## TODO 
 
+- add elegant error handling
+
+- drum machine color editing
+
+
+- visual feedback when sequence playing (corner colors)
+
+- add visually imparied features
+    - voice with mode
+    - errors with voice
+
+- add tutorial button 
+    - create tutorial videos
+
+- JS, CSS, HTML validation 
+
+- unit testing
+
+- deployment
