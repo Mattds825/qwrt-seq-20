@@ -485,6 +485,8 @@ const setPadEffects = (pad) => {
       let selectedSeq = select.id.charAt(select.id.length - 1);
       if (selectedSeq === currPadSelectedSeq) {
         select.classList.add("active");
+      } else {
+        if(select.classList.contains("active"))select.classList.remove("active");
       }
     }
   });
@@ -580,7 +582,7 @@ const toggleEditMode = () => {
   currentModeText.textContent = isEditing ? "Edit" : "Play";
 
   // remove .active class from all step indicators
-  clearStepIndicators();
+  // clearStepIndicators();
 
   const { stepsA, stepsB, currSeq } = padsData[currentSelectedPad - 1];
 
@@ -651,7 +653,8 @@ const togglePadMute = () => {
 
 const handlePadSequenceSelect = (select) => {
   let selectedSeq = select.id.charAt(select.id.length - 1);
-
+  
+  console.log("selecting sequence", selectedSeq);
   // clear all pad-effect-inner-select-seq active classes
   clearPadSequenceInnerSelects();
 
@@ -667,9 +670,15 @@ const handlePadSequenceSelect = (select) => {
   clearStepIndicators();
   if (selectedSeq === "A") {
     fillSteps(padsData[currentSelectedPad - 1].stepsA);
+    document.querySelector("#pad-effect-inner-select-seq-A").classList.add("active");
+    document.querySelector("#pad-effect-inner-select-seq-B").classList.remove("active");
   } else if (selectedSeq === "B") {
     fillSteps(padsData[currentSelectedPad - 1].stepsB);
+    document.querySelector("#pad-effect-inner-select-seq-A").classList.add("active");
+    document.querySelector("#pad-effect-inner-select-seq-B").classList.remove("active");
   }
+
+  setPadEffects(currentSelectedPad);
 };
 
 // edit pad volume
@@ -733,6 +742,7 @@ const handlePadVolumeSelect = (select) => {
     select.classList.add("active");
   }
   editPadVolume(amount);
+  setPadEffects(currentSelectedPad);
 };
 
 
@@ -854,6 +864,7 @@ clearBtn.addEventListener("click", () => {
 // settings button opens settings modal
 settingsBtn.addEventListener("click", () => {
   settingsModalContainer.style.display = "flex";
+  setPadEffects(currentSelectedPad);
 });
 
 // close settings modal
