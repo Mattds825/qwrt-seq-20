@@ -229,6 +229,10 @@ I tried to keep this as minimal as possible
 
 ## TODO 
 
+- fix favicon missing in prod. because of manifest
+
+put html pad in js iteration and `` 
+
 - add elegant error handling
 
 - drum machine color editing

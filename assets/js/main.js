@@ -760,6 +760,7 @@ const handlePadVolumeSelect = (select) => {
  *   - Any other string: Represents a sound pad key.
  */
 const handlePadClicked = (padKey) => {
+  // TODO: use switch statement
   if (padKey !== undefined) {
     if (padKey === "edit") {
       toggleEditMode();
