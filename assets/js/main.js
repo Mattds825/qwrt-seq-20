@@ -471,6 +471,8 @@ const setPadEffects = (pad) => {
   let maxPadVolume = getMaxAmountFromVolume(padVolume);
   let currPadSelectedSeq = padsData[pad - 1].currSeq;
   clearPadSequenceInnerSelects();
+
+  
   padEffectInnerSelects.forEach((select) => {
     // set up the volume inner selects
     // check if select.id starts with pad-effect-inner-select-vol
@@ -582,7 +584,7 @@ const toggleEditMode = () => {
   currentModeText.textContent = isEditing ? "Edit" : "Play";
 
   // remove .active class from all step indicators
-  // clearStepIndicators();
+  clearStepIndicators();
 
   const { stepsA, stepsB, currSeq } = padsData[currentSelectedPad - 1];
 
