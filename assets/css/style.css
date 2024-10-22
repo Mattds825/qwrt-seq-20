@@ -525,7 +525,8 @@ button:hover {
     flex-direction: column;
     gap: 10px;
     grid-area: pad-effects;
-    /* height: 100px; */
+    width: 80px;
+    margin-inline: auto;
   }
 
   /* Pads */
