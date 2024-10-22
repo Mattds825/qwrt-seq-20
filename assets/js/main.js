@@ -285,7 +285,11 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => kick.start(),
+    playPadSound: () => {
+      console.log("playing kick");
+      kick.context.resume();
+      kick.start(Tone.now());
+    },
     playPadSoundInStep: (time) => kick.start(time),
   },
   {
@@ -838,7 +842,6 @@ document.addEventListener("keyup", (event) => {
 
 // btn touch up event listener
 const btnTouchEnd = (pad) => {
-  console.log("started");
   const padElement = document.getElementById(`pad-${pad}`);
   padElement.classList.remove("active");
 };

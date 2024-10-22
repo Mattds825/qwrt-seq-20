@@ -201,6 +201,11 @@ See full testing in the [TESTING.md](./TESTING.md) file
 
 - On a Mac if you have airpods connected and you start playing audio on another apple device, if you airpods are configured to automatically switch the sound won't work anymore
 
+#### IOS device silent bug
+
+If you try playing one of the audio files on an ios device which has been set to mute, the audio will not play
+With recent ios updates the device must not be muted for the audio to play
+
 ## Deployment 
 
 ## Credits 
