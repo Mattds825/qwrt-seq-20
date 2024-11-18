@@ -193,6 +193,8 @@ there are the initial mockups:
 
 - voice readout features for visually impaired users 
 
+#### Error Prevention
+
 ## Testing
 
 See full testing in the [TESTING.md](./TESTING.md) file
