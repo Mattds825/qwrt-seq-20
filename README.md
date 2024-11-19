@@ -140,11 +140,17 @@ The drum machine supports polyphonic play, allowing multiple drum pads to be tri
 
 ### 16-Step Editing
 
-Create and edit drum sequences with ease using the intuitive 16-step sequencer. This step grid allows users to place drum hits over a 16-step timeline, perfect for building looped patterns and beats with precision. Each step represents a note, making it simple to build complex, rhythmically varied sequences.
+Create and edit drum sequences with ease using the intuitive 16-step sequencer. This step grid allows users to sounds over a 16-step timeline, perfect for building looped patterns and beats with precision. Each step represents a note, making it simple to build complex, rhythmically varied sequences. the When the user is in edit mode they can see the steps for the selected pad and they can toggle the individual steps on or off. In the image below you can see a sequence of steps for the hat pad to play on steps (1,3,5,7,9,11,13,15)
+
+![image of pads step editing](documentation/features/step-editing.png)
 
 ### Keybinding for Controls
 
-The drum machine features intuitive keyboard controls for triggering drum pads and navigating the interface. Keybindings are designed to be easy to remember and use, allowing users to trigger sounds, start and stop sequences, and adjust settings without needing to rely on a mouse, making live performances and creative sessions smoother.
+The drum machine features intuitive keyboard controls for triggering drum pads and navigating the interface. Keybindings are designed to be easy to remember and use, allowing users to trigger sounds, start and stop sequences, and adjust settings without needing to rely on a mouse, making live performances and creative sessions smoother. The user has access to all the pads through the keybindings, all the control buttons to control playback and change modes and pad specific effects can also be accessed through keybindings. This allows the user to also use the multifunctional feature of the pads to play, edit and select with just the keybinding and mode combinations. these keybinding are visible to a user when in landscape mode and appear bellow the main text of the buttons or pads.
+
+![image for pads keybinding](documentation/features/pads-keybings.png)
+![image for controls keybinding](documentation/features/controls-keybindings.png)
+![image for pad effects keybinding](documentation/features/pad-effects-keybindings.png)
 
 ### Effects
 
@@ -161,14 +167,42 @@ Each drum pad can be individually customized, allowing for fine-tuned control ov
 - Volume: Adjust the volume for each pad independently to balance your mix.
 - Solo: Isolate a pad’s sound so that only it plays, allowing for focused listening or emphasizing certain elements in your performance.
 - Mute: Silence any specific pad without deleting its sequence, providing flexibility in live play or composition.
+- Seq A or B: allow users to switch between these two sequences for each pad
+
+All these are accessed through the "Pad Effects" section, which is found on the far left of the drum machine in landscape mode and inside the settings modal in portrait mode (mobile). and control the currently selected pad's state
+
+![pad effects](documentation/features//pad-effects.png)
 
 ### Built-in Sounds
 
 Get started right away with a versatile library of built-in sounds. The sound set includes basic drum kit elements such as kick, snare, hi-hats, and crash cymbals, as well as additional sound effects, bass notes, and synth keys for melodic and experimental compositions. These preloaded sounds ensure users have the tools they need to create beats across multiple genres.
 
+The following image shows a breakdown of where each sound group is found in the 4x4 pad grid:
+
+![image of pads sound breakdown](documentation/features/pad-sounds-breakdown.png)
+
 ### Two Sequences per Sound
 
-Each drum pad can store two separate sequences, A and B, giving users the flexibility to switch between different patterns for the same sound. This allows for dynamic changes during live performances or more complex arrangement possibilities when composing, providing more versatility in how rhythms evolve over time.
+Each drum pad can store two separate sequences, A and B, giving users the flexibility to switch between different patterns for the same sound. This allows for dynamic changes during live performances or more complex arrangement possibilities when composing, providing more versatility in how rhythms evolve over time. This is found in the Pad Effects section
+
+![image of pad sequence select](documentation/features/pad-sequence-select.png)
+
+### Controls 
+
+There is a control section in the drum machine that is populated with button that control playback 
+and have certain function that can be used when making and editing sequences and playing sounds
+
+these include:
+- **Play/Pause Button**
+    - allows user to start and stop sequence playback
+- **Edit Mode Button**
+    - allows user to enter and exit edit mode
+- **Select Mode Button**
+    - allows user to enter and exit select mode
+- **Mute Button**
+    - allows user to mute all pads during sequence playback
+- **Clear Button**
+    - allows user to clear every steps in every pads sequences 
 
 ### Multifunctional Pads
 
@@ -182,11 +216,28 @@ The drum machine's pads are designed to be versatile, offering different functio
 - SELECT Mode:
     Select Mode allows users to choose specific pads for further editing or customization. In this mode, selecting a pad enables options for adjusting its individual settings such as volume, mute, solo, or effects, making it simple to focus on one sound at a time while refining the overall beat.
 
+The Modes can be switched with the corresponding Button. 
+
 By switching between these modes, the user can seamlessly transition from playing beats live to editing sequences and fine-tuning individual sounds, all through the same set of pads. This multifunctional approach streamlines the workflow and keeps the interface uncluttered.
 
 ### Responsive Design
 
 The drum machine is designed to work seamlessly across different devices and screen sizes. The interface automatically adjusts to provide the best possible user experience, with two distinct layouts optimized for desktop and mobile. This ensures that whether you’re using a laptop, tablet, or smartphone, the drum machine remains fully functional and accessible.
+
+For me this meant changing the layout of the drum machine based on display orientation firstly. Using Css Grid they are two major layouts for the drum machine to accommodate
+the orientation. Furthermore on mobile the Pad Effects section is moved to the settings dialog to save space. Lastly the buttons, pads and text have a responsive size to look good on every device
+
+#### Desktop/Tablet (Landscape)
+
+![image of landscape design](documentation/layout/landscape-layout.png)
+
+#### Mobile/Tablet (Portrait)
+
+![image of portrait design](documentation/layout/portrait-layout.png)
+
+**Setting Modal with Pad Effects**
+
+![image of setting modal in landscape](documentation/features/mobile-settings-modal.png)
 
 ## UI/UX
 
@@ -199,9 +250,11 @@ The use should be also able to customize the background of the drum machine to t
 
 ### Mockups
 
-The basic mockups where first made and then when the design was achieved the design language was followed and additional features where added
+The basic mockups where first made to get a general view for the layout and and proportions.
+As can be seen in the final product the skeleton of the Mockup was taken and expanded with additional 
+features and a refined style after the basic Mockup was able to be implemented with CSS.
 
-there are the initial mockups:
+The following are the initial rough mockups for the Mobile and Desktop Designs:
 
 | Mobile   |      Landscape/Desktop      |
 |----------|:-------------:|
@@ -212,7 +265,7 @@ there are the initial mockups:
 ### Accessibility
 
 - button hover
-- etc
+- feedback for button clicks and touches
 
 - voice readout features for visually impaired users 
 
@@ -233,11 +286,14 @@ With recent ios updates the device must not be muted for the audio to play
 
 ## Deployment 
 
+Deployed using Github pages. This was done through the online github portal and setting the root directory of the repository as the path for the site
+
 ## Credits 
 
-### Tools adn Technologies Used 
+### Tools and Technologies Used 
 
-I tried to keep this as minimal as possible
+I tried to keep the stack as minimal as possible, opting to use vanilla JS and 
+Tone js as the 3rd party library to handle the audio engine functionality
 
 - HTML/CSS/Javascript 
 - vanilla JS (no framework)
@@ -245,6 +301,8 @@ I tried to keep this as minimal as possible
 - Tone.js (third part library for audio processing)
 - Sketch: Used to create mockups 
 - ChatGpt - Used to research and create expand paragraphs about the history of drum machines. Also used to fix grammar, spelling and improve writing presentation
+- Github - Used and CI tool 
+- Github pages - Used for deployment
 
 
 ### Code and Resources Used
@@ -260,9 +318,7 @@ I tried to keep this as minimal as possible
 
 ## TODO 
 
-- fix favicon missing in prod. because of manifest
-
-put html pad in js iteration and `` 
+- put html pad in js iteration and `` 
 
 - add elegant error handling
 
@@ -281,5 +337,3 @@ put html pad in js iteration and ``
 - JS, CSS, HTML validation 
 
 - unit testing
-
-- deployment
