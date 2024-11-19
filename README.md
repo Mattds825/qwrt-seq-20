@@ -10,15 +10,23 @@ The evolution of drum machines has had a profound impact on music production, in
 
 ### The MPC Revolution
 
-The Akai MPC (Music Production Center) series, introduced in the late 1980s, revolutionized beat-making by combining sampling, sequencing, and pad-based performance into one unit. It became a cornerstone for hip-hop and electronic producers, allowing for intuitive live play and creative flexibility. Its velocity-sensitive pads and workflow have directly influenced the design and functionality of modern drum machines, including this app.
+The Akai MPC (Music Production Center) series, introduced in the late 1980s, transformed beat-making by merging sampling, sequencing, and pad-based performance. The MPC 60, designed with Roger Linn, featured 12-bit sampling and became a hip-hop staple for its warm, gritty sound and intuitive workflow. The MPC 3000, with 16-bit sampling and expanded features, defined the golden era of hip-hop, used by icons like Dr. Dre and DJ Premier.
+
+The MPC 2000 and 2000XL, released in the late 1990s, further democratized music production with features like time-stretching and sample zoning, pivotal for hip-hop and electronic genres. The MPC’s velocity-sensitive pads and streamlined design influenced the evolution of modern drum machines, cementing its status as a cornerstone of contemporary music production.
+
+[akai mpc 60](https://www.vintagesynth.com/sites/default/files/2017-05/akai_mpc60.jpg)
 
 ### The Roland Underground
 
-The Roland TR-808 and TR-909 drum machines, released in the 1980s, played a key role in shaping electronic, hip-hop, and dance music. The 808's deep kicks and snappy snares became iconic, while the 909 introduced more complex rhythms and automation. These machines popularized programmable drum sequences, providing a foundation for how modern digital drum machines approach beat construction.
+The Roland TR-808 and TR-909 drum machines revolutionized music production in the 1980s, defining genres like hip-hop, house, and techno with their iconic sounds and programmable sequences. They laid the foundation for modern beatmaking and remain staples in electronic music.
+
+Roland’s SP-series samplers—especially the SP-202, SP-303, and SP-404—expanded this legacy. The SP-202 introduced accessible sampling, while the SP-303, made famous by producers like J Dilla, added effects and a warm, lo-fi character. The SP-404 further innovated with live performance tools and resampling workflows, becoming essential for lo-fi hip-hop and experimental producers. Together, these tools shaped modern music’s sound and creative processes.
 
 ### The MIDI Companions and VSTs
 
-As MIDI technology advanced, hardware drum machines gained the ability to integrate with other gear and computers. Virtual Studio Technology (VST) plugins expanded this further, allowing users to simulate classic drum machines digitally. These developments opened up a world of customization, with MIDI drum pads and VST instruments becoming key tools for modern producers, bridging the gap between physical and virtual drum machines.
+As MIDI technology advanced, hardware drum machines integrated seamlessly with other gear and computers, paving the way for digital production. Virtual Studio Technology (VST) plugins allowed producers to emulate classic drum machines and samplers within software, offering limitless customization without physical hardware. This innovation expanded the creative potential of modern music-making.
+
+The rise of Digital Audio Workstations (DAWs) like Logic Pro, FL Studio, and Ableton Live further transformed production. These platforms combined MIDI controllers with powerful sequencing, sampling, and editing tools. Features like FL Studio’s step sequencer and Logic’s Drum Machine Designer streamlined beat-making, bridging the gap between tactile performance and digital versatility, and ensuring the enduring influence of drum machines and samplers.
 
 ### The Huge Market
 
@@ -28,7 +36,8 @@ The popularity of drum machines has exploded, with a wide range of options for b
 
 In design and feel I had to go with what I know best and that is the 16 pad layout. Which I find both easy to use to sequence and intuitive to perform live.
 
-My main hardware inspiration include the mpc2000, the sp404mk2 and many other 16 pad sampler
+My main hardware inspiration include the mpc2000, mpc500, the sp404mk2, the teenage engineering po-33 and other 16 pad sampler designs. 
+On the software side I leaned on my familiarity with Koala Sampler and the VST's in Logic Pro and FlStudio  
 
 - add images here 
 
@@ -212,7 +221,7 @@ With recent ios updates the device must not be muted for the audio to play
 
 ## Credits 
 
-### Technologies Used 
+### Tools adn Technologies Used 
 
 I tried to keep this as minimal as possible
 
@@ -221,6 +230,7 @@ I tried to keep this as minimal as possible
 - all css from scratch 
 - Tone.js (third part library for audio processing)
 - Sketch: Used to create mockups 
+- ChatGpt - Used to research and create expand paragraphs about the history of drum machines. Also used to fix grammar, spelling and improve writing presentation
 
 
 ### Code and Resources Used
