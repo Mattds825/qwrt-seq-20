@@ -14,7 +14,11 @@ The Akai MPC (Music Production Center) series, introduced in the late 1980s, tra
 
 The MPC 2000 and 2000XL, released in the late 1990s, further democratized music production with features like time-stretching and sample zoning, pivotal for hip-hop and electronic genres. The MPC’s velocity-sensitive pads and streamlined design influenced the evolution of modern drum machines, cementing its status as a cornerstone of contemporary music production.
 
-[akai mpc 60](https://www.vintagesynth.com/sites/default/files/2017-05/akai_mpc60.jpg)
+Mpc 60             |  Mpc2000
+:-------------------------:|:-------------------------:
+![iamge of akai mpc 60](https://www.vintagesynth.com/sites/default/files/2017-05/akai_mpc60.jpg)  |  ![image of akai mpc 200](https://dt7v1i9vyp3mf.cloudfront.net/styles/news_large/s3/imagelibrary/1/1999-12-akaimpc2000-1-C5rnLKYdRh0UU51gzSconTunRKa.q8_R.jpg)
+
+
 
 ### The Roland Underground
 
@@ -22,11 +26,19 @@ The Roland TR-808 and TR-909 drum machines revolutionized music production in th
 
 Roland’s SP-series samplers—especially the SP-202, SP-303, and SP-404—expanded this legacy. The SP-202 introduced accessible sampling, while the SP-303, made famous by producers like J Dilla, added effects and a warm, lo-fi character. The SP-404 further innovated with live performance tools and resampling workflows, becoming essential for lo-fi hip-hop and experimental producers. Together, these tools shaped modern music’s sound and creative processes.
 
+TR-808             |  SP302 | SP404
+:-------------------------:|:-------------------------: | :-------------------------:
+![iamge of roland tr808](https://static.roland.com/assets/images/products/main/rc_tr-808_main.jpg)  |  ![image of roland sp-303](https://www.vintagesynth.com/sites/default/files/2017-05/sp303.jpg) | ![image of roland sp-303](https://static.roland.com/assets/images/products/gallery/sp_404_top_gal.jpg)
+
 ### The MIDI Companions and VSTs
 
 As MIDI technology advanced, hardware drum machines integrated seamlessly with other gear and computers, paving the way for digital production. Virtual Studio Technology (VST) plugins allowed producers to emulate classic drum machines and samplers within software, offering limitless customization without physical hardware. This innovation expanded the creative potential of modern music-making.
 
-The rise of Digital Audio Workstations (DAWs) like Logic Pro, FL Studio, and Ableton Live further transformed production. These platforms combined MIDI controllers with powerful sequencing, sampling, and editing tools. Features like FL Studio’s step sequencer and Logic’s Drum Machine Designer streamlined beat-making, bridging the gap between tactile performance and digital versatility, and ensuring the enduring influence of drum machines and samplers.
+The rise of Digital Audio Workstations (DAWs) like Logic Pro, FL Studio, and Ableton Live further transformed production. These platforms combined MIDI controllers with powerful sequencing, sampling, and editing tools. Features like FL Studio’s step sequencer and Logic’s Drum Machine Designer streamlined beat-making, bridging the gap between tactile performance and digital versatility, and ensuring the enduring influence of drum machines and samplers. A personal favorite is Koala Sampler
+
+Koala Sampler             |  FlStudio Drum Machine 
+:-------------------------:|:-------------------------:
+![image of Koala Sampler](https://i.ytimg.com/vi/RJarbWzfa5I/maxresdefault.jpg)  |  ![image of FlStudio Drum Machine](https://i0.wp.com/diymusic.co.uk/wp-content/uploads/2015/07/FPC-Fruity-Loops.jpg?fit=743%2C359&ssl=1) | ![image of roland sp-303](https://static.roland.com/assets/images/products/gallery/sp_404_top_gal.jpg)
 
 ### The Huge Market
 
@@ -39,7 +51,9 @@ In design and feel I had to go with what I know best and that is the 16 pad layo
 My main hardware inspiration include the mpc2000, mpc500, the sp404mk2, the teenage engineering po-33 and other 16 pad sampler designs. 
 On the software side I leaned on my familiarity with Koala Sampler and the VST's in Logic Pro and FlStudio  
 
-- add images here 
+**Design Inspiration Board**
+
+![image of design inspiration board](documentation/qwrt-seq-20-insparation-board.png) 
 
 
 ## User Stories
