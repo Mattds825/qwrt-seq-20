@@ -246,13 +246,26 @@ the orientation. Furthermore on mobile the Pad Effects section is moved to the s
 The goal is to have the web app look sleek and modern but still have all the information you need in presented in a coherent.
 The use should be also able to customize the background of the drum machine to their liking
 
-### Color Pallet
+### Color Palette
+
+The main color palette for this site is defined below:
+
+- pad-color: rgb(0, 0, 0);
+- pad-color-hover: rgb(33, 33, 33);
+- pad-color-active: rgb(77, 77, 77);
+- container-color: #8b9b9f;
+- secondary-color: #33c1ff; /* Bright Blue for interactive elements */
+- background-color: #1e1e1e; /* Dark Gray for the overall background */
 
 ### Mockups
 
 The basic mockups where first made to get a general view for the layout and and proportions.
 As can be seen in the final product the skeleton of the Mockup was taken and expanded with additional 
 features and a refined style after the basic Mockup was able to be implemented with CSS.
+
+Initially a rough sketch was made to visual the very basic skeleton and start conceptualizing the features:
+
+![image of hand drawn mockup](/documentation/mockups/hand-drawn-mockup.jpg)
 
 The following are the initial rough mockups for the Mobile and Desktop Designs:
 
@@ -266,10 +279,16 @@ The following are the initial rough mockups for the Mobile and Desktop Designs:
 
 - button hover
 - feedback for button clicks and touches
+- mode and current pad always shown
+- keybinding for ease of use
+- manual available
 
 - voice readout features for visually impaired users 
 
 #### Error Prevention
+
+When users do an action that is not supported are goes against the programming of the drum machine
+they will be shown an elegant toast at the bottom of the screen with a concise error message
 
 ## Testing
 
@@ -282,7 +301,7 @@ See full testing in the [TESTING.md](./TESTING.md) file
 #### IOS device silent bug
 
 If you try playing one of the audio files on an ios device which has been set to mute, the audio will not play
-With recent ios updates the device must not be muted for the audio to play
+With recent ios updates the **device must not be muted for the audio to play**
 
 ## Deployment 
 
