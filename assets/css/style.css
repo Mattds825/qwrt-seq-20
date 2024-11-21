@@ -282,6 +282,26 @@ button:hover {
   box-shadow: 0 0 rgba(0, 0, 0, 0);
 }
 
+.btn {
+  background-color: var(--pad-color);
+  border-style: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  margin-inline: auto;
+  width: auto;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+}
+
+.btn:hover {
+  background-color: var(--pad-color-hover);
+  transform: translateY(2px);
+  box-shadow: 0 0 rgba(0, 0, 0, 0);
+}
+
+
 .pad {
   display: flex;
   flex-direction: column;
@@ -483,6 +503,14 @@ button:hover {
   margin: 0;
 }
 
+#landscape-manual-div{
+  display: none;
+}
+
+#portrait-manual-div{
+  display: block;
+}
+
 /* -------------------- Media Queries -------------------- */
 
 /* media query for desktop size */
@@ -547,6 +575,14 @@ button:hover {
   .modal {
     width: var(--modal-width-large);
     height: var(--modal-height-large);
+  }
+
+  #portrait-manual-div{
+    display: none;
+  }
+
+  #landscape-manual-div{
+    display: block;
   }
 
   /* Pad settings mobile */
