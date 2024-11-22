@@ -282,6 +282,8 @@ The following are the initial rough mockups for the Mobile and Desktop Designs:
 - mode and current pad always shown
 - keybinding for ease of use
 - manual available
+- Ensuring that the background always has enough contrast with the text to make it readable
+- checking for prefers-reduced-motion to disable animations for users who don't want them
 
 - voice readout features for visually impaired users 
 
@@ -306,6 +308,40 @@ With recent ios updates the **device must not be muted for the audio to play**
 ## Deployment 
 
 Deployed using Github pages. This was done through the online github portal and setting the root directory of the repository as the path for the site
+
+Deployed site can be found in this ![link](https://mattds825.github.io/qwrt-seq-20/)
+
+-> **Steps to deploy a website using GitHub Pages**
+
+1. Open your github repositroy
+2. Open the settings
+3. Select 'Pages' from the side menu
+4. Select the branch you want to deply from the dropdown
+
+Concise steps can be found [here](https://www.codecademy.com/article/f1-u3-github-pages)
+
+## Local Development
+
+### How to Fork
+
+1. Log in or Create a GitHub account
+2. go the repository page [github.com/Mattds825/qwrt-seq-20](https://github.com/Mattds825/qwrt-seq-20)
+3. click the fork button 
+
+Concise steps can be found [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) 
+
+### How to Clone
+
+1. Open the folder where you would like to clone the project
+2. Open a terminal window
+3. Enter the following command: <code>git clone https://github.com/Mattds825/qwrt-seq-20.git</code>
+
+Concise steps can be found [here](https://github.com/git-guides/git-clone)
+
+### How to run Locally
+
+You can either open the html file in your browser of choice, or you can use a vscode plugin such as
+live server or live preview
 
 ## Credits 
 
