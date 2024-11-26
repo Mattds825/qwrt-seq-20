@@ -844,18 +844,6 @@ document.addEventListener("keyup", (event) => {
   }
 });
 
-// btn touch up event listener
-const btnTouchEnd = (pad) => {
-  const padElement = document.getElementById(`pad-${pad}`);
-  padElement.classList.remove("active");
-};
-
-// btn touch down event listener
-const btnTouchStart = (pad) => {
-  // TODO: check if editing or selecting
-  handlePadClicked(pad);
-};
-
 // play button plays sequence
 playBtn.addEventListener("click", () => {
   togglePlaySequence();
@@ -952,17 +940,17 @@ for (let i = 1; i <= 16; i++) {
   // check if device is touch or mouse and add event listener
   if ("ontouchstart" in window) {
     pad.addEventListener("touchstart", () => {
-      btnTouchStart(i);
+      handlePadClicked(i);
     });
     pad.addEventListener("touchend", () => {
-      btnTouchEnd(i);
+      pad.classList.remove("active");
     });
   } else {
     pad.addEventListener("mousedown", () => {
-      btnTouchStart(i);
+      handlePadClicked(i);
     });
     pad.addEventListener("mouseup", () => {
-      btnTouchEnd(i);
+      pad.classList.remove("active");
     });
   }
 }

@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
-
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" /> 
 
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>QWRT-SEQ-20</title>
@@ -35,22 +33,25 @@
           <div class="grid-container">
             <div class="grid-item title">
               <!-- Tempo -->
-              <h2 class="animate fade" style="--delay: 1">Tempo</h2>
-              <span class="aniamte fade" style="--delay: 1">
-                <input
-                  class="slider2"
-                  type="range"
-                  min="60"
-                  max="240"
-                  value="82"
-                  id="tempo-slider"
-                  step="2"
-                  oninput="updateValue(this)"
-                />
-                <span id="slider-value-tempo">82</span>
-              </span>
+              <h2 class="animate fade" style="--delay: 1">Tempo: 
+                <span class="animate fade" style="--delay: 1">
+                  <input
+                    class="slider2"
+                    type="range"
+                    min="60"
+                    max="240"
+                    value="82"
+                    id="tempo-slider"
+                    step="2"
+                    oninput="updateValue(this)"
+                  />
+                  <span id="slider-value-tempo">82</span>
+                  BPM
+                </span>
+              </h2>
+            
               <!-- ./Tempo -->
-              <h2 class="animate fade" style="--delay: 1">Effects</h2>
+              
             </div>
             <!-- Pad Effects -->
             <div class="grid-item" id="pad-effects">
@@ -436,15 +437,7 @@
       <div id="settings-modal" class="modal">
         <h2>Settings</h2>
         <i class="click-icon fa-solid fa-x" id="close-settings-modal-btn"></i>
-        <div>
-          <input
-            type="checkbox"
-            id="visuals-checkbox"
-            name="visuals-checkbox"
-            value="Bike"
-          />
-          <label for="visuals-checkbox"> Show Visuals</label><br />
-        </div>
+      
 
         <div id="landscape-manual-div">
           <a

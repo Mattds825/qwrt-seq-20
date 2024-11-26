@@ -20,9 +20,6 @@
   --pad-color-hover: rgb(33, 33, 33);
   --pad-color-active: rgb(77, 77, 77);
 
-  --play-color: #456633;
-  --play-color-hover: #66ff66;
-
   --pad-text-small: 1.5vmin;
   --pad-text-large: 2.5vmin;
 
@@ -34,8 +31,6 @@
   --modal-width-small: 80vw;
   --modal-height-small: 80vh;
 
-  /* Primary Colors */
-  --primary-color: #ff5733; /* Vibrant Orange for drum pads */
   --secondary-color: #33c1ff; /* Bright Blue for interactive elements */
   --accent-color: #ffd700; /* Golden Yellow for effects and highlights */
 
@@ -44,11 +39,6 @@
   --pad-background-color: #2c2c2c; /* Slightly lighter gray for drum pad background */
   --text-color: #ffffff; /* White for primary text */
   --muted-text-color: #aaaaaa; /* Light gray for secondary text */
-
-  /* Button and Effect Colors */
-  --button-color: #ff33a1; /* Hot Pink for active buttons */
-  --button-hover-color: #ff66c4; /* Lighter Pink for button hover states */
-  --effect-color: #00ffa5; /* Neon Green for sound effects indicators */
 
   /* Shadows and Borders */
   --shadow-color: rgba(0, 0, 0, 0.5); /* Soft black shadow for depth */
@@ -77,6 +67,10 @@ body {
   /* background-color: #f0f0f0; */
   background-color: black;
   font-family: sans-serif;
+  
+  overflow: hidden;
+  
+  touch-action: none;
 }
 
 h2 {
@@ -127,7 +121,6 @@ header {
 }
 
 #pads-container {
-  /* background-color: red; */
   width: var(--drum-pads-container-width);
   height: var(--drum-pads-container-height);
   padding: 1rem;
@@ -135,7 +128,6 @@ header {
 }
 
 #controls-container {
-  /* background-color: blue; */
   width: var(--controls-container-width);
   height: var(--controls-container-height);
   padding: 1rem;
@@ -143,7 +135,6 @@ header {
 }
 
 #effects-container {
-  /* background-color: blue; */
   width: var(--effects-container-width);
   height: var(--effects-container-height);
   padding: 1rem;
@@ -322,9 +313,7 @@ button:hover {
 }
 
 .pad:hover {
-  background-color: var(--pad-color-hover);
-  /* transform: translateY(2px); */
-  /* box-shadow: 0 0 rgba(0, 0, 0, 0); */
+  background-color: var(--pad-color-hover);  
 }
 
 .pad.active {
@@ -346,6 +335,7 @@ button:hover {
 
 .pad.control p {
   font-size: 1.5vmin;
+  padding: 0.5rem;
 }
 
 .pad.control small {
@@ -363,8 +353,7 @@ button:hover {
   bottom: 0;
 }
 
-.slider-container input[type="range"] {
-  /* position: relative; */
+.slider-container input[type="range"] {  
   appearance: none; /* removes browser-specific styling */
   --h: 60%;
   width: var(--h); /* width of slider (actually the height when rotated)*/
@@ -410,8 +399,7 @@ button:hover {
 .slider-name {
   position: relative;
   font-weight: bold;
-  font-size: 1.5vmin;
-  /* margin-top: auto; */
+  font-size: 1.8vmin;
 }
 
 .step-active-indicator {
@@ -450,8 +438,7 @@ button:hover {
 
 /* -------------------- Modal -------------------- */
 
-#settings-modal-container {
-  /* display: flex; */
+#settings-modal-container {  
   display: none;
   position: absolute;
   width: 100%;
@@ -477,7 +464,7 @@ button:hover {
   display: flex;
   padding: 30px;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 2rem;
   align-items: center;
   color: white;
 }
@@ -525,7 +512,6 @@ button:hover {
   /* Header */
 
   header {
-    /* display: none; */
     position: absolute;
     top: 10%;
     left: 0;
