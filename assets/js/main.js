@@ -442,8 +442,6 @@ const seq = new Tone.Sequence(
   "16n"
 );
 
-
-
 // set current pad text
 const setCurrentPadText = (pad) => {
   // get name from padsData array
@@ -476,7 +474,6 @@ const setPadEffects = (pad) => {
   let currPadSelectedSeq = padsData[pad - 1].currSeq;
   clearPadSequenceInnerSelects();
 
-  
   padEffectInnerSelects.forEach((select) => {
     // set up the volume inner selects
     // check if select.id starts with pad-effect-inner-select-vol
@@ -492,7 +489,8 @@ const setPadEffects = (pad) => {
       if (selectedSeq === currPadSelectedSeq) {
         select.classList.add("active");
       } else {
-        if(select.classList.contains("active"))select.classList.remove("active");
+        if (select.classList.contains("active"))
+          select.classList.remove("active");
       }
     }
   });
@@ -659,7 +657,7 @@ const togglePadMute = () => {
 
 const handlePadSequenceSelect = (select) => {
   let selectedSeq = select.id.charAt(select.id.length - 1);
-  
+
   console.log("selecting sequence", selectedSeq);
   // clear all pad-effect-inner-select-seq active classes
   clearPadSequenceInnerSelects();
@@ -676,12 +674,20 @@ const handlePadSequenceSelect = (select) => {
   clearStepIndicators();
   if (selectedSeq === "A") {
     fillSteps(padsData[currentSelectedPad - 1].stepsA);
-    document.querySelector("#pad-effect-inner-select-seq-A").classList.add("active");
-    document.querySelector("#pad-effect-inner-select-seq-B").classList.remove("active");
+    document
+      .querySelector("#pad-effect-inner-select-seq-A")
+      .classList.add("active");
+    document
+      .querySelector("#pad-effect-inner-select-seq-B")
+      .classList.remove("active");
   } else if (selectedSeq === "B") {
     fillSteps(padsData[currentSelectedPad - 1].stepsB);
-    document.querySelector("#pad-effect-inner-select-seq-A").classList.add("active");
-    document.querySelector("#pad-effect-inner-select-seq-B").classList.remove("active");
+    document
+      .querySelector("#pad-effect-inner-select-seq-A")
+      .classList.add("active");
+    document
+      .querySelector("#pad-effect-inner-select-seq-B")
+      .classList.remove("active");
   }
 
   setPadEffects(currentSelectedPad);
@@ -718,7 +724,6 @@ const editPadVolume = (amount) => {
   }
 };
 
-
 /**
  * Handles the selection of pad volume by toggling the active state of the inner select elements.
  *
@@ -750,7 +755,6 @@ const handlePadVolumeSelect = (select) => {
   editPadVolume(amount);
   setPadEffects(currentSelectedPad);
 };
-
 
 /**
  * Handles the action when a pad is clicked based on the provided pad key.
@@ -940,6 +944,28 @@ padMuteBtn.addEventListener("click", () => {
 muteAllBtn.addEventListener("click", () => {
   toggleMuteAllPads();
 });
+
+// add event listener to all sound pads
+for (let i = 1; i <= 16; i++) {
+  const pad = document.getElementById(`pad-${i}`);
+
+  // check if device is touch or mouse and add event listener
+  if ("ontouchstart" in window) {
+    pad.addEventListener("touchstart", () => {
+      btnTouchStart(i);
+    });
+    pad.addEventListener("touchend", () => {
+      btnTouchEnd(i);
+    });
+  } else {
+    pad.addEventListener("mousedown", () => {
+      btnTouchStart(i);
+    });
+    pad.addEventListener("mouseup", () => {
+      btnTouchEnd(i);
+    });
+  }
+}
 
 //disable double tap zoom
 document.addEventListener(

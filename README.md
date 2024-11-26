@@ -377,17 +377,9 @@ Tone js as the 3rd party library to handle the audio engine functionality
 
 - add elegant error handling
 
-- drum machine color editing
-
-
-- visual feedback when sequence playing (corner colors)
-
 - add visually imparied features
     - voice with mode
     - errors with voice
-
-- add tutorial button 
-    - create tutorial videos
 
 - JS, CSS, HTML validation 
 

@@ -179,8 +179,6 @@
                 class="pad animate fade"
                 id="pad-1"
                 style="--delay: 1"
-                onmousedown="btnTouchStart(1)"
-                onmouseup="btnTouchEnd(1)"
                 data-pad-index="1"
               >
                 <p>1</p>
@@ -193,8 +191,6 @@
                 class="pad animate fade"
                 id="pad-2"
                 style="--delay: 2"
-                onmousedown="btnTouchStart(2)"
-                onmouseup="btnTouchEnd(2)"
                 data-pad-index="2"
               >
                 <p>2</p>
@@ -207,8 +203,6 @@
                 class="pad animate fade"
                 id="pad-3"
                 style="--delay: 3"
-                onmousedown="btnTouchStart(3)"
-                onmouseup="btnTouchEnd(3)"
                 data-pad-index="3"
               >
                 <p>3</p>
@@ -221,8 +215,6 @@
                 class="pad animate fade"
                 id="pad-4"
                 style="--delay: 4"
-                onmousedown="btnTouchStart(4)"
-                onmouseup="btnTouchEnd(4)"
                 data-pad-index="4"
               >
                 <p>4</p>
@@ -235,8 +227,6 @@
                 class="pad animate fade"
                 id="pad-5"
                 style="--delay: 5"
-                onmousedown="btnTouchStart(5)"
-                onmouseup="btnTouchEnd(5)"
                 data-pad-index="5"
               >
                 <p>5</p>
@@ -249,8 +239,6 @@
                 class="pad animate fade"
                 id="pad-6"
                 style="--delay: 6"
-                onmousedown="btnTouchStart(6)"
-                onmouseup="btnTouchEnd(6)"
                 data-pad-index="6"
               >
                 <p>6</p>
@@ -263,8 +251,6 @@
                 class="pad animate fade"
                 id="pad-7"
                 style="--delay: 7"
-                onmousedown="btnTouchStart(7)"
-                onmouseup="btnTouchEnd(7)"
                 data-pad-index="7"
               >
                 <p>7</p>
@@ -277,8 +263,6 @@
                 class="pad animate fade"
                 id="pad-8"
                 style="--delay: 8"
-                onmousedown="btnTouchStart(8)"
-                onmouseup="btnTouchEnd(8)"
                 data-pad-index="8"
               >
                 <p>8</p>
@@ -291,8 +275,6 @@
                 class="pad animate fade"
                 id="pad-9"
                 style="--delay: 9"
-                onmousedown="btnTouchStart(9)"
-                onmouseup="btnTouchEnd(9)"
                 data-pad-index="9"
               >
                 <p>9</p>
@@ -305,8 +287,6 @@
                 class="pad animate fade"
                 id="pad-10"
                 style="--delay: 10"
-                onmousedown="btnTouchStart(10)"
-                onmouseup="btnTouchEnd(10)"
                 data-pad-index="10"
               >
                 <p>10</p>
@@ -319,8 +299,6 @@
                 class="pad animate fade"
                 id="pad-11"
                 style="--delay: 11"
-                onmousedown="btnTouchStart(11)"
-                onmouseup="btnTouchEnd(11)"
                 data-pad-index="11"
               >
                 <p>11</p>
@@ -333,8 +311,6 @@
                 class="pad animate fade"
                 id="pad-12"
                 style="--delay: 12"
-                onmousedown="btnTouchStart(12)"
-                onmouseup="btnTouchEnd(12)"
                 data-pad-index="12"
               >
                 <p>12</p>
@@ -347,8 +323,6 @@
                 class="pad animate fade"
                 id="pad-13"
                 style="--delay: 13"
-                onmousedown="btnTouchStart(13)"
-                onmouseup="btnTouchEnd(13)"
                 data-pad-index="13"
               >
                 <p>13</p>
@@ -361,8 +335,6 @@
                 class="pad animate fade"
                 id="pad-14"
                 style="--delay: 14"
-                onmousedown="btnTouchStart(14)"
-                onmouseup="btnTouchEnd(14)"
                 data-pad-index="14"
               >
                 <p>14</p>
@@ -375,8 +347,6 @@
                 class="pad animate fade"
                 id="pad-15"
                 style="--delay: 15"
-                onmousedown="btnTouchStart(15)"
-                onmouseup="btnTouchEnd(15)"
                 data-pad-index="15"
               >
                 <p>15</p>
@@ -389,8 +359,6 @@
                 class="pad animate fade"
                 id="pad-16"
                 style="--delay: 16"
-                onmousedown="btnTouchStart(16)"
-                onmouseup="btnTouchEnd(16)"
                 data-pad-index="16"
               >
                 <p>16</p>
@@ -479,85 +447,98 @@
         </div>
 
         <div id="landscape-manual-div">
-          <a href="/assets/manuals/manual-desktop.pdf" target="_blank" class="btn">Open Manual</a>
+          <a
+            href="/assets/manuals/manual-desktop.pdf"
+            target="_blank"
+            class="btn"
+            >Open Manual</a
+          >
         </div>
 
         <div id="portrait-manual-div">
-          <a href="/assets/manuals/manual-desktop.pdf" target="_blank" class="btn">Open Manual</a>
+          <a
+            href="/assets/manuals/manual-desktop.pdf"
+            target="_blank"
+            class="btn"
+            >Open Manual</a
+          >
         </div>
 
         <!-- Pad Setting Mobile -->
-         <div id="pad-settings-mobile">
+        <div id="pad-settings-mobile">
           <h3 id="pad-effects-title">Pad Effects</h3>
-              <!-- Sequence Repeat -->
-              <div class="pad-effect-div" id="seq-repeat">
-                <!-- sequence repeat -->
-                <div class="pad-effect-inner">
-                  <p>Seq</p>
-                  <div class="pad-effect-inner-row">
-                    <div
-                      class="pad-effect-inner-select"
-                      id="pad-effect-inner-select-seq-A"
-                    >
-                      <p>A</p>
-                    </div>
-                    <div
-                      class="pad-effect-inner-select"
-                      id="pad-effect-inner-select-seq-B"
-                    >
-                      <p>B</p>
-                    </div>
-                  </div>
+          <!-- Sequence Repeat -->
+          <div class="pad-effect-div" id="seq-repeat">
+            <!-- sequence repeat -->
+            <div class="pad-effect-inner">
+              <p>Seq</p>
+              <div class="pad-effect-inner-row">
+                <div
+                  class="pad-effect-inner-select"
+                  id="pad-effect-inner-select-seq-A"
+                >
+                  <p>A</p>
+                </div>
+                <div
+                  class="pad-effect-inner-select"
+                  id="pad-effect-inner-select-seq-B"
+                >
+                  <p>B</p>
                 </div>
               </div>
-              <!-- /.Sequence Repeat -->
-              <!-- Pad Volume -->
-              <div class="pad-effect-div" id="pad-volume">
-                <div class="pad-effect-inner">
-                  <p>Vol</p>
-                  <div class="pad-effect-inner-row">
-                    <div
-                      class="pad-effect-inner-select"
-                      id="pad-effect-inner-select-vol-0"
-                    ></div>
-                    <div
-                      class="pad-effect-inner-select"
-                      id="pad-effect-inner-select-vol-1"
-                    ></div>
-                    <div
-                      class="pad-effect-inner-select"
-                      id="pad-effect-inner-select-vol-2"
-                    ></div>
-                    <div
-                      class="pad-effect-inner-select"
-                      id="pad-effect-inner-select-vol-3"
-                    ></div>
-                  </div>
-                </div>
+            </div>
+          </div>
+          <!-- /.Sequence Repeat -->
+          <!-- Pad Volume -->
+          <div class="pad-effect-div" id="pad-volume">
+            <div class="pad-effect-inner">
+              <p>Vol</p>
+              <div class="pad-effect-inner-row">
+                <div
+                  class="pad-effect-inner-select"
+                  id="pad-effect-inner-select-vol-0"
+                ></div>
+                <div
+                  class="pad-effect-inner-select"
+                  id="pad-effect-inner-select-vol-1"
+                ></div>
+                <div
+                  class="pad-effect-inner-select"
+                  id="pad-effect-inner-select-vol-2"
+                ></div>
+                <div
+                  class="pad-effect-inner-select"
+                  id="pad-effect-inner-select-vol-3"
+                ></div>
               </div>
-              <!-- /.Pad Volume -->
-              <!-- Solo -->
-              <div class="pad pad-effect-div" id="pad-solo-btn">
-                <p>Solo</p>
-                <small>I</small>
-              </div>
-              <!-- /.Solo -->
-              <!-- Mute -->
-              <div class="pad pad-effect-div" id="pad-mute-btn">
-                <p>Mute</p>
-                <small>N</small>
-              </div>
-         </div>
+            </div>
+          </div>
+          <!-- /.Pad Volume -->
+          <!-- Solo -->
+          <div class="pad pad-effect-div" id="pad-solo-btn">
+            <p>Solo</p>
+            <small>I</small>
+          </div>
+          <!-- /.Solo -->
+          <!-- Mute -->
+          <div class="pad pad-effect-div" id="pad-mute-btn">
+            <p>Mute</p>
+            <small>N</small>
+          </div>
+        </div>
         <!--/.Pad Setting Mobile -->
 
         <div class="col">
           <p>If You have lost all audio sound click this button:</p>
           <button id="reset-audio-btn">Reset Audio Context</button>
         </div>
-        
+
         <div class="col">
           <h3>**Important**</h3>
-          <p>If you are using this on an Iphone or Ipad you must ensure that it is not muted, otherwise the sound will not play</p>
+          <p>
+            If you are using this on an Iphone or Ipad you must ensure that it
+            is not muted, otherwise the sound will not play
+          </p>
         </div>
         <small>Copyright Matthew G Da Silva 2024</small>
       </div>
