@@ -281,16 +281,19 @@ The following are the initial rough mockups for the Mobile and Desktop Designs:
 - feedback for button clicks and touches
 - mode and current pad always shown
 - keybinding for ease of use
-- manual available
+- manual available for both mobile and desktop users 
+    - [desktop manual](/assets/manuals/manual-desktop.pdf)
+    - [mobile manual](/assets/manuals/manual-mobile.pdf)
 - Ensuring that the background always has enough contrast with the text to make it readable
 - checking for prefers-reduced-motion to disable animations for users who don't want them
-
-- voice readout features for visually impaired users 
 
 #### Error Prevention
 
 When users do an action that is not supported are goes against the programming of the drum machine
 they will be shown an elegant toast at the bottom of the screen with a concise error message
+
+- Trying to edit a pad without any being selected
+- Trying to use landscape mode on a device that is too small to support it
 
 ## Testing
 
@@ -369,6 +372,11 @@ Tone js as the 3rd party library to handle the audio engine functionality
 - [redketchup.io](https://redketchup.io/favicon-generator) used to generate favicon
 
  - this [solution](https://github.com/Tonejs/Tone.js/issues/767) was used to fix the audio not playing when source changed: 
+
+ - [mdm doc multi-touch](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/Multi-touch_interaction) and this
+ [stack overflow page](https://stackoverflow.com/questions/2915833/how-to-check-browser-for-touchstart-support-using-js-jquery)
+ used as resources to fix the multi touch issues on touch capable devices
+
 
 
 ## TODO 
