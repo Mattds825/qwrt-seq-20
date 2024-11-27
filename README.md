@@ -257,6 +257,15 @@ The main color palette for this site is defined below:
 - secondary-color: #33c1ff; /* Bright Blue for interactive elements */
 - background-color: #1e1e1e; /* Dark Gray for the overall background */
 
+### Font
+
+Google fonts was used, specifically the [Kode Mono](https://fonts.google.com/specimen/Kode+Mono) Font
+
+![Mode mono font](/documentation/ui/kode-mono-font.png)
+
+This font was chosen to match the fonts on some earlier late 90s early 2000s Drum machines
+and samplers as they used a dot matrix display to show textual info. This is a modern take on that
+
 ### Mockups
 
 The basic mockups where first made to get a general view for the layout and and proportions.
@@ -292,8 +301,17 @@ The following are the initial rough mockups for the Mobile and Desktop Designs:
 When users do an action that is not supported are goes against the programming of the drum machine
 they will be shown an elegant toast at the bottom of the screen with a concise error message
 
-- Trying to edit a pad without any being selected
-- Trying to use landscape mode on a device that is too small to support it
+- Trying to edit a pad without any being selected. This can happen when clicking the edit or any
+of the pad effects before there is any pad selection made or any pad is played.
+
+![no pad error toast](/documentation/ui/no-pad-error.png)
+
+Also when users want to delete all the steps in the drum machine there is a confirm dialog to ensure
+the button was not clicked by mistake
+
+![delete steps confirm dialogue](/documentation/ui/del-steps-confirm.png)
+
+
 
 ## Testing
 
@@ -312,7 +330,7 @@ With recent ios updates the **device must not be muted for the audio to play**
 
 Deployed using Github pages. This was done through the online github portal and setting the root directory of the repository as the path for the site
 
-Deployed site can be found in this ![link](https://mattds825.github.io/qwrt-seq-20/)
+Deployed site can be found in this [link](https://mattds825.github.io/qwrt-seq-20/)
 
 -> **Steps to deploy a website using GitHub Pages**
 
@@ -356,8 +374,10 @@ Tone js as the 3rd party library to handle the audio engine functionality
 - HTML/CSS/Javascript 
 - vanilla JS (no framework)
 - all css from scratch 
-- Tone.js (third part library for audio processing)
-- Sketch: Used to create mockups 
+- [Tone.js](https://tonejs.github.io) : third part library for audio processing
+- [Toastify.js](https://github.com/apvarun/toastify-js/tree/master) : used to create elegant error messages 
+- [Sketch](https://www.sketch.com): Used to create mockups and user manuals  
+- [FontAwesome](https://fontawesome.com) : Used for the icons
 - ChatGpt - Used to research and create expand paragraphs about the history of drum machines. Also used to fix grammar, spelling and improve writing presentation
 - Github - Used and CI tool 
 - Github pages - Used for deployment
@@ -380,8 +400,6 @@ Tone js as the 3rd party library to handle the audio engine functionality
 
 
 ## TODO 
-
-- put html pad in js iteration and `` 
 
 - add elegant error handling
 

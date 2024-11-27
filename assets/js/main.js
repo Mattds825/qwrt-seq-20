@@ -580,7 +580,16 @@ const fillSteps = (steps) => {
 // toggle edit mode text
 const toggleEditMode = () => {
   // can only edit if there is a current selected pad
-  if (currentSelectedPad === undefined) return;
+  if (currentSelectedPad === undefined) {
+    Toastify({
+      text: "There is no pad selected!",
+      gravity: "bottom",
+      style: {
+        background: "var(--secondary-color)",
+      },
+    }).showToast();
+    return;
+  }
 
   isEditing = !isEditing;
   currentModeText.textContent = isEditing ? "Edit" : "Play";
@@ -603,16 +612,19 @@ const toggleEditMode = () => {
 
 // clear all steps
 const clearAllSteps = () => {
-  for (let i = 0; i < 16; i++) {
-    padsData[i].stepsA = Array(16).fill(false);
-    padsData[i].stepsB = Array(16).fill(false);
-    const stepIndicators = document.querySelectorAll(
-      `#pad-${i + 1} .step-active-indicator`
-    );
-    stepIndicators.forEach((indicator) => {
-      indicator.classList.remove("active");
-    });
+  if(confirm("Are you sure you want to clear all steps?")) {
+    for (let i = 0; i < 16; i++) {
+      padsData[i].stepsA = Array(16).fill(false);
+      padsData[i].stepsB = Array(16).fill(false);
+      const stepIndicators = document.querySelectorAll(
+        `#pad-${i + 1} .step-active-indicator`
+      );
+      stepIndicators.forEach((indicator) => {
+        indicator.classList.remove("active");
+      });
+    }
   }
+  
 };
 
 // toggle mute all pads
@@ -629,7 +641,16 @@ const toggleMuteAllPads = () => {
 
 // toggle pad solo
 const togglePadSolo = () => {
-  if (currentSelectedPad === undefined) return;
+  if (currentSelectedPad === undefined) {
+    Toastify({
+      text: "There is no pad selected!",
+      gravity: "bottom",
+      style: {
+        background: "var(--secondary-color)",
+      },
+    }).showToast();
+    return;
+  }
 
   soloData.solo = !soloData.solo;
   soloData.soloPad = soloData.solo ? currentSelectedPad : undefined;
@@ -644,7 +665,16 @@ const togglePadSolo = () => {
 // toggle pad mute
 const togglePadMute = () => {
   // can only edit if there is a current selected pad
-  if (currentSelectedPad === undefined) return;
+  if (currentSelectedPad === undefined) {
+    Toastify({
+      text: "There is no pad selected!",
+      gravity: "bottom",
+      style: {
+        background: "var(--secondary-color)",
+      },
+    }).showToast();
+    return;
+  }
 
   padsData[currentSelectedPad - 1].muted =
     !padsData[currentSelectedPad - 1].muted;
@@ -902,7 +932,16 @@ function updateValue(slider) {
 padEffectInnerSelects.forEach((select) => {
   select.addEventListener("click", (event) => {
     // can only edit if there is a current selected pad
-    if (currentSelectedPad === undefined) return;
+    if (currentSelectedPad === undefined) {
+      Toastify({
+        text: "There is no pad selected!",
+        gravity: "bottom",
+        style: {
+          background: "var(--secondary-color)",
+        },
+      }).showToast();
+      return;
+    }
 
     // check if select.id starts with pad-effect-inner-select-vol or  pad-effect-inner-select-seq
     if (select.id.startsWith("pad-effect-inner-select-vol")) {
