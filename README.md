@@ -1,8 +1,10 @@
 # QWRT-SEQ-20
 
+![Image of the website on different devices](/documentation/mockups/devices-mockups.png)
+
 The Goal of this project is to bring an old-school philosophy of making drum machines as simple to get started and play as possible to web technology. Making something that is just one link away from creating something awesome.
 
-16 pads, intuitive keybinding, of the box sounds and endless creative possibilities is the ultimate goal.
+16 pads, intuitive keybinding, out of the box sounds and effects with creative sequencing and performance possibilities is the ultimate goal.
 
 ## History
 
@@ -379,7 +381,7 @@ Tone js as the 3rd party library to handle the audio engine functionality
 - [Sketch](https://www.sketch.com): Used to create mockups and user manuals  
 - [FontAwesome](https://fontawesome.com) : Used for the icons
 - ChatGpt - Used to research and create expand paragraphs about the history of drum machines. Also used to fix grammar, spelling and improve writing presentation
-- Github - Used and CI tool 
+- Github/Git - Used and CI tool 
 - Github pages - Used for deployment
 
 
@@ -391,6 +393,8 @@ Tone js as the 3rd party library to handle the audio engine functionality
 
 - [redketchup.io](https://redketchup.io/favicon-generator) used to generate favicon
 
+- [techsini](https://techsini.com/multi-mockup/) used to generate the devices mockup image
+
  - this [solution](https://github.com/Tonejs/Tone.js/issues/767) was used to fix the audio not playing when source changed: 
 
  - [mdm doc multi-touch](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/Multi-touch_interaction) and this
@@ -401,12 +405,6 @@ Tone js as the 3rd party library to handle the audio engine functionality
 
 ## TODO 
 
-- add elegant error handling
-
-- add visually imparied features
-    - voice with mode
-    - errors with voice
-
 - JS, CSS, HTML validation 
 
-- unit testing
+- unit testing finish
