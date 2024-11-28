@@ -28,7 +28,7 @@ Tested on a Macbook on Chrome and Safari and multiple window sizes on an externa
 
 | Test name | Description | Testing method | Comments | Pass/Fail |
 | --- | --- | --- | --- | --- |
-| 1. Start button | Start button should initialize the audio context and show the drum machine aswell as hiding itself | Clicking the Start Button |  | Pass |
+| 1. Start button | Start button should initialize the audio context and show the drum machine aswell as hiding itself | Clicking the Start Button | ![image of pad sound groups](/documentation/features/pad-sounds-breakdown.png)  | Pass |
 | 2. Pads - Play | When the mode is set to “Play” when the user clicks on a pad it should play the correct sound file, it also sets the pad as the currently selected pad | Click each pad with the mouse cursor. make sure all sounds are heard and that they appropriately give user feedback interaction | There is a hover and a click interaction. Both are present correctly | Pass |
 | 3. Pads - Edit | When the mode is set to Edit, and the user clicks a pad, thew corresponding step should be toggled for the set sequence. The is played in the sequence when the user clicks play | a.  click each pad in edit mode and make sure that the highlight is showing and when playing those steps are heard. b. switching pad sequence from A to B and back should reflect the correct data (this is related to test 11) | This test needs tests 5,  7 and 11 to be working to check the full effects. When a pad is not selected a error message should be shown, refer to accessibility test 12 | a. Pass b. Pass |
 | 4. Pads - Select | When the mode is set to select, and the user clicks a pad, the pad should be set as the selected pad so the user can make edits to it or its steps but the sound should not play | a. toggle select mode on and off by clicking the select pad. b. when select mode is on click any pad. Sound should not play | Depends on test 6. This works in live play so you can have the sequence playing and select a pad, make changes to its steps. And all this live and uninterrupted | a. Pass. b. Pass |
@@ -77,44 +77,50 @@ Identical to the Desktop Tests when the tablet is in landscape mode, when in por
 
 ## Mobile Tests
 
-The biggest differences in the mobile tests lie in the placement of the Pad Effects Section, which is now placed in the settings modal. Also a removal of the keybinding test as there are not many users who will connect their phone to a keyboard and the keybinding prompts are note visible on portrait mode, however the functionality still exists in the code and will still work.
+Tested on a Iphone device 
+
+The biggest differences in the mobile tests lie in the placement of the Pad Effects Section, which is now placed in the settings modal. Also a removal of the keybinding test as there are not many users who will connect their phone to a keyboard and the keybinding prompts are note visible on portrait mode, however the functionality still exists in the code and will still works.
 
 ### Functionality Tests
 
 | Test name | Description | Testing method | Comments | Pass/Fail |
 | --- | --- | --- | --- | --- |
-| 1. Start button | Start button should initialize the audio context and show the drum machine aswell as hiding itself | Clicking the Start Button |  |  |
-| 2. Pads - Play | When the mode is set to “Play” when the user clicks on a pad it should play the correct sound file, it also sets the pad as the currently selected pad |  |  |  |
-| 3. Pads - Edit | When the mode is set to Edit, and the user clicks a pad, thew corresponding step should be toggled for the set sequence. The is played in the sequence when the user clicks play |  |  |  |
-| 4. Pads - Select | When the mode is set to select, and the user clicks a pad, the pad should be set as the selected pad so the user can make edits to it or its steps but the sound should not play |  |  |  |
-| 5. Edit Button | This should set the mode to “Edit” and the step indicators should be shown on each pad, clicking it again brings the user back to “Play” mode |  |  |  |
-| 6. Select Button | This should set the mode to “select”, clicking it again should bring the user back to “Play” mode |  |  |  |
-| 7. Play/Pause Button | The should start the sequence playback on click with correct bpm and play step that is in the selected pad sequences. if the sequence is playing is should pause |  |  |  |
-| 8. Clear Button | clear the entire sequence if there is one |  |  |  |
-| 9. Mute Button | This should mute on pads on click. You should not be able to hear them while the sequence is playing |  |  |  |
-| 10. Bpm Slider | This slider allows users to change the bpm that the sequence will be played in |  |  |  |
-| 11. Volume/Mix Slider | This slider changes the intensity and volume of the applied effects |  |  |  |
-| 12. Filter Slider | This slider changes the frequency of a lowpass filter on the sound output |  |  |  |
-| 13. Distortion Slider | This slider applies a percentage of distortion to the sound output |  |  |  |
-| 14. Correct Steps For Each Pad | When the user enters edit mode, the correct steps should be shown as active based on the pad state |  |  |  |
-| 15. Settings Modal - Gear Icon | Should open the Modal overlay with the correct layout depending on the device |  |  |  |
-| 16. Setting Modal  - Pad Volume Select | This sets the individual volume for the currently selected pad |  |  |  |
-| 17. Setting Modal - Pad Sequence Select | This allows the user to set and set either A or B sequence for each pad. allowing more complex compositions and live sequence switching for each pad |  |  |  |
-| 18. Setting Modal - Pad Mute select | This mutes the currently selected pad during sequence playback  |  |  |  |
-| 19. Setting Modal - Pad Solo Select | This solos the currently selected pad during sequence playback |  |  |  |
-| 20. Selected Pad info | when a pad is selected the pad specific button and selects should reflect the state of that pad |  |  |  |
-| 21. Multi Pad Touch | The user should be able to click multiple pads at once and all the corresponding sound keys should play |  |  |  |
+| 1. Start button | Start button should initialize the audio context and show the drum machine aswell as hiding itself | Clicking the Start Button |  | Pass |
+| 2. Pads - Play | When the mode is set to “Play” when the user clicks on a pad it should play the correct sound file, it also sets the pad as the currently selected pad | tap each pad and make sure all sounds are heard and that they appropriately give user feedback interaction | ![image of pad sound groups](/documentation/features/pad-sounds-breakdown.png)  | Pass |
+| 3. Pads - Edit | When the mode is set to Edit, and the user clicks a pad, the corresponding step should be toggled for the set sequence. The step is played as part of sequence when the user clicks play | a.  tap each pad in edit mode and make sure that the highlight is showing and when playing those steps are heard. b. switching pad sequence from A to B and back should reflect the correct data (this is related to test 17) | This test needs tests 5,  7 and 17 to be working to check the full effects .When a pad is not selected a error message should be shown, refer to accessibility test 7 | a.Pass b.Pass |
+| 4. Pads - Select | When the mode is set to select, and the user clicks a pad, the pad should be set as the selected pad so the user can make edits to it or its steps but the sound should not play | a. toggle select mode on and off by clicking the select button
+b. when select mode is on tap any pad. Sound should not play and the tapped pad should be set as current pad | Depends on test 6. This works in live play so you can have the sequence playing and select a pad, make changes to its steps. And all this live and uninterrupted | a.Pass b.Pass |
+| 5. Edit Button | This should set the mode to “Edit” and the step indicators should be shown on each pad, clicking it again brings the user back to “Play” mode | a. toggle edit mode on and off when tapping the edit button. b. pads should show correct step indicators |  | a.Pass b.Pass |
+| 6. Select Button | This should set the mode to “select”, clicking it again should bring the user back to “Play” mode | tap the select button |  | Pass |
+| 7. Play/Pause Button | The should start the sequence playback on click with correct bpm and play step that is in the selected pad sequences. if the sequence is playing is should pause | tap the play button. |  | Pass |
+| 8. Clear Button | clear the entire sequence if there is one | a. tap the clear button to see the confirm dialog. b. tap the confirm button should clear all the steps. this should be reflected in the step indicators and when playing the sequence |  | a. Pass b. Pass |
+| 9. Mute Button | This should mute on pads on click. You should not be able to hear them while the sequence is playing | create a sequence and press the play button then the mute button | Note,  the pads should still be audible in play mode when the sequence in not playing | Pass |
+| 10. Bpm Slider | This slider allows users to change the bpm that the sequence will be played in. The max should be 240 and min 60  | a. make sure at least on pad has a sequence of steps filled out and click the play button. using the slider should change the bpm and be shown both in sound and in the bpm value in the slider 
+b. set slider to left most and right most value, should not be able so set slider to lower than 50 or higher that 240  |  | a. Pass
+b. Pass |
+| 11. Volume/Mix Slider | -This slider changes the intensity and volume of the applied effects. -min is 0 and max is 100 | a.make sure at least on pad has a sequence of steps filled observe output sound intensity change when sliding the volume slider
+b. try to set the volume more than 100 or less than 0  | To appreciate the full output change the other effects must also be played around with to see how the volume intensity effects them  | a. Pass. b. Pass |
+| 12. Filter Slider | -This slider changes the frequency of a lowpass filter on the sound output. -min is 100 and max is 10000 | a.make sure at least on pad has a sequence of steps filled observe output sound filter frequency change when sliding the filter slider. b. try to set the volume more than 10000 or less than 100  |  | a. Pass. b. Pass  |
+| 13. Distortion Slider | -This slider applies a percentage of bitcrushing distortion to the sound output. -min is 0 and max is 1 | a.make sure at least on pad has a sequence of steps filled observe output sound distortion amount change when sliding the filter slider. b. try to set the volume more than 1 or less than 0 |  | a.Pass. b.Pass |
+| 14. Each slider is usable on small | Make sure that each slider is still usable on small screen sizes and the user can set the value to the min and max and values in between | attempt setting a min and max and the middle value for every slider | On smaller devices this can become increasingly difficult in the current layout but it is not beyond the norm and logically will feel better on a larger mobile display | Pass |
+| 15. Settings Modal - Gear Icon | Should open the Modal overlay with the correct layout depending on the device | tap the gear icon  |  | Pass |
+| 16. Setting Modal  - Pad Volume Select | This sets the individual volume for the currently selected pad | select a pad and click the 4 volume options. | When a pad is not selected a error message should be shown, refer to accessibility test 7 | Pass |
+| 17. Setting Modal - Pad Sequence Select | This allows the user to set and set either A or B sequence for each pad. allowing more complex compositions and live sequence switching for each pad | select a pad and enter edit mode, toggle some steps and then click the seq B button to see the new sequence, toggle steps in that sequence and toggle between both to see the difference  | -Needs to be in edit mode to actually the difference and make changes. -This work seamlessly while playing the sequences allowing for nuanced performances. -When a pad is not selected a error message should be shown, refer to accessibility test 7 | Pass |
+| 18. Setting Modal - Pad Mute button | This mutes the currently selected pad during sequence playback  | select a pad. make sure it has step filled out and that atleast one other pad has steps. click the play button the play the sequence and then click the mute button, only that pad sound should be muted and the pattern should keep playing | -This work seamlessly while playing the sequences allowing for nuanced performances. -When a pad is not selected a error message should be shown, refer to accessibility test 7 | Pass |
+| 19. Setting Modal - Pad Solo button | This solos the currently selected pad during sequence playback | select a pad. make sure it has step filled out and that atleast one other pad has steps. click the play button the play the sequence and then click the mute button, only that pad sound heard now and the pattern should keep playing | -This work seamlessly while playing the sequences allowing for nuanced performances. -When a pad is not selected a error message should be shown, refer to accessibility test 7 | Pass |
+| 20. Selected Pad info | when a pad is selected the pad specific button and selects should reflect the state of that pad | set a current pad by tapping it in play or select mode, open the setting menu by tapping the setting icon and observe the pad effect section buttons and selects to reflect either the default or the user set values for that pad when changing a pad in select mode or playing a pad in play mode |  | Pass |
+| 21. Multi Pad Touch | The user should be able to click multiple pads at once and all the corresponding sound keys should play | tap two sound pads at the same time |  | Pass |
 
 ### Accessibility and Layout Tests
 
 | Test name | Description | Testing method | Comments | Pass/Fail |
 | --- | --- | --- | --- | --- |
-| 1. Mode Displayed | The correct mode should be displayed to the user |  |  |  |
-| 2. Visual Pad Touch Feedback | When the user clicks key that corresponds to a pad it should highlight of give visual feedback on press down  |  |  |  |
-| 3. Visual Button Touch Feedback | When the user clicks key that corresponds to a button it should highlight of give visual feedback on press down  |  |  |  |
-| 4. Setting Modal Appear and Disappear | The modal should fade in and out when clicking the gear icon and the “x” icon in the modal respectively |  |  |  |
-| 5. Settings Modal - Visual Pad Selects Feedback  | The user should receive visual feedback when changing the Pad Effects, including:
-- pad volume
-- pad sequence (A/B)
-- pad solo
-- pad mute |  |  |  |
+| 1. Mode Displayed | The correct mode should be displayed to the user |  Toggle between Edit, Play and Select mode and observe the Mode text  | related to functionality tests 5,6 | Pass |
+| 2. Visual Pad Touch Feedback | When the user clicks key that corresponds to a pad it should highlight of give visual feedback on press down  | tap any sound pad  |  | Pass |
+| 3. Visual Button Touch Feedback | When the user clicks key that corresponds to a button it should highlight of give visual feedback on press down  | tap each of the buttons |  | Pass |
+| 4. Setting Modal Appear and Disappear | The modal should fade in and out when clicking the gear icon and the “x” icon in the modal respectively | tap the gear icon |  | Pass |
+| 5. Settings Modal - Visual Pad Selects Feedback  | The user should receive visual feedback when changing the Pad Effects, including: pad volume, pad sequence (A/B), pad solo, pad mute | tap the gear icon the view the pad effects section and tap each of the elements available for the user to control | related to functionality tests 16-19 | Pass |
+| 6. Settings Modal - correct content show based on device size | The settings modal should show the manual button, the pad effects section, the reset sound button and copyright information but not show the pad settings if the user opens it on a desktop | Open the settings modal and observe the buttons and elements |  | Pass |
+| 7. Error Dialog | show an error toast message when a button that requires a pad to be selected is click but no pad is selected .This happens for the edit button and and of the pad effects button are selects | tap the edit button when there is no current pad selected, and observe the error toast. the same with the pad effects buttons and selects |  | Pass |
+| 8. Confirm Input to clear all steps | Show a confirm message to the user before deleting all the steps when clicking the clear button. the user should be able to click “ok” or “cancel” | create a pattern of sequences and click the clear button. Observe correct action when clicking “ok” and “cancel”  | Related to test 8 in the Functionality tests | Pass |
+| 9. Correct grid layout observed | When in landscape mode the drum machine grid layout is correctly set | observe the drum machine on any screen that has a portrait orientation  | ![image of portrait mode layout](/documentation/layout/portrait-layout.png) | Pass |
