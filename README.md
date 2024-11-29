@@ -383,6 +383,7 @@ Tone js as the 3rd party library to handle the audio engine functionality
 - ChatGpt - Used to research and create expand paragraphs about the history of drum machines. Also used to fix grammar, spelling and improve writing presentation
 - Github/Git - Used and CI tool 
 - Github pages - Used for deployment
+- [The W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/#validate_by_input) used to validate css in tests
 
 
 ### Code and Resources Used

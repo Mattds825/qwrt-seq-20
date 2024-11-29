@@ -4,6 +4,10 @@
 
 ## CSS Validator 
 
+[The W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/#validate_by_input) was used to validate the html code in the [style.css](/assets/css/style.css) file
+
+![css validator result](/documentation/tests/css-validator-test.png)
+
 ## JS Validator
 
 ## Jest Testing
