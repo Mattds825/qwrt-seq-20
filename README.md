@@ -2,6 +2,8 @@
 
 ![Image of the website on different devices](/documentation/mockups/devices-mockups.png)
 
+Deployed site can be found in this [link](https://mattds825.github.io/qwrt-seq-20/)
+
 The Goal of this project is to bring an old-school philosophy of making drum machines as simple to get started and play as possible to web technology. Making something that is just one link away from creating something awesome.
 
 16 pads, intuitive keybinding, out of the box sounds and effects with creative sequencing and performance possibilities is the ultimate goal.
@@ -288,10 +290,21 @@ The following are the initial rough mockups for the Mobile and Desktop Designs:
 
 ### Accessibility
 
-- button hover
-- feedback for button clicks and touches
+- pad and button hover feedback: fade
+default:
+
+![image of default pad](/documentation/ui/pad-default.png)
+
+on hover:
+
+![image of pad with hover effect](/documentation/ui/pad-hover.png)
+- feedback for button key clicks and touches: fade and shrink
+on click :
+
+![image of pad with click effect](/documentation/ui/pad-press.png)
 - mode and current pad always shown
-- keybinding for ease of use
+![current mode and pad image](/documentation/features/curreent-mode-pad.png)
+- keybindings for ease of use and these keybinding are shown to the user
 - manual available for both mobile and desktop users 
     - [desktop manual](/assets/manuals/manual-desktop.pdf)
     - [mobile manual](/assets/manuals/manual-mobile.pdf)
