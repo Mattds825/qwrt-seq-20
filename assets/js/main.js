@@ -38,32 +38,24 @@ let bass4key = "F2";
 // create effects
 let currVolume = 0;
 let currDistortion = 0;
-let currReverb = 0;
 let currFrequency = 5000;
 
 // volume control
 const volume = new Tone.Volume({
-  volume: currVolume
+  volume: currVolume,
 }).toDestination();
 
 // distortion effect
 const distortion = new Tone.Distortion({
   distortion: 0, // Start with 50% distortion
-  oversample: "2x"
-});
-
-// reverb effect
-const reverb = new Tone.Reverb({
-  decay: 5,
-  preDelay: 0.01,
-  wet: 0.5
+  oversample: "2x",
 });
 
 //low-pass filter
 const filter = new Tone.Filter({
   frequency: currFrequency,
   rolloff: -24,
-  type: "lowpass"
+  type: "lowpass",
 });
 
 const currentPadText = document.getElementById("current-pad-text");
@@ -100,7 +92,7 @@ let currentSelectedPad = undefined;
 let allPadsMuted = false;
 let soloData = {
   solo: false,
-  soloPad: undefined
+  soloPad: undefined,
 };
 
 /**
@@ -122,106 +114,130 @@ const padsData = [
     id: 1,
     name: "Synth 1",
     sound: synth1,
-    key: "C4",
+    key: synth1key,
     volume: 0,
     muted: false,
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => synth1.triggerAttackRelease("C4", "8n"),
-    playPadSoundInStep: (time) => synth1.triggerAttackRelease("C4", "8n")
+    playPadSound: () => {
+      Tone.start();
+      synth1.triggerAttackRelease(synth1key, "8n");
+    },
+    playPadSoundInStep: (time) => synth1.triggerAttackRelease(synth1key, "8n", time),
   },
   {
     id: 2,
     name: "Synth 2",
     sound: synth2,
-    key: "D4",
+    key: synth2key,
     volume: 0,
     muted: false,
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => synth2.triggerAttackRelease("D4", "8n"),
-    playPadSoundInStep: (time) => synth2.triggerAttackRelease("D4", "8n")
+    playPadSound: () => {
+      Tone.start();
+      synth2.triggerAttackRelease(synth2key, "8n");
+    },
+    playPadSoundInStep: (time) => synth2.triggerAttackRelease(synth2key, "8n", time),
   },
   {
     id: 3,
     name: "Synth 3",
     sound: synth3,
-    key: "E4",
+    key: synth3key,
     volume: 0,
     muted: false,
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => synth3.triggerAttackRelease("E4", "8n"),
-    playPadSoundInStep: (time) => synth3.triggerAttackRelease("E4", "8n")
+    playPadSound: () => {
+      Tone.start();
+      synth3.triggerAttackRelease(synth3key, "8n");
+    },
+    playPadSoundInStep: (time) => synth3.triggerAttackRelease(synth3key, "8n", time),
   },
 
   {
     id: 4,
     name: "Synth 4",
     sound: synth4,
-    key: "F4",
+    key: synth4key,
     volume: 0,
     muted: false,
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => synth4.triggerAttackRelease("F4", "8n"),
-    playPadSoundInStep: (time) => synth4.triggerAttackRelease("F4", "8n")
+    playPadSound: () => {
+      Tone.start();
+      synth4.triggerAttackRelease(synth4key, "8n");
+    },
+    playPadSoundInStep: (time) => synth4.triggerAttackRelease(synth4key, "8n", time),
   },
   {
     id: 5,
     name: "Bass 1",
     sound: bass1,
-    key: "C2",
+    key: bass1key,
     volume: 0,
     muted: false,
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => bass1.triggerAttackRelease("C2", "8n"),
-    playPadSoundInStep: (time) => bass1.triggerAttackRelease("C2", "8n")
+    playPadSound: () => {
+      Tone.start();
+      bass1.triggerAttackRelease(bass1key, "8n");
+    },
+    playPadSoundInStep: (time) => bass1.triggerAttackRelease(bass1key, "8n", time),
   },
   {
     id: 6,
     name: "Bass 2",
     sound: bass2,
-    key: "D2",
+    key: bass2key,
     volume: 0,
     muted: false,
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => bass2.triggerAttackRelease("D2", "8n"),
-    playPadSoundInStep: (time) => bass2.triggerAttackRelease("D2", "8n")
+    playPadSound: () => {
+      Tone.start();
+      bass2.triggerAttackRelease(bass2key, "8n");
+    },
+    playPadSoundInStep: (time) => bass2.triggerAttackRelease(bass2key, "8n", time),
   },
   {
     id: 7,
     name: "Bass 3",
     sound: bass3,
-    key: "E2",
+    key: bass3key,
     volume: 0,
     muted: false,
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => bass3.triggerAttackRelease("E2", "8n"),
-    playPadSoundInStep: (time) => bass3.triggerAttackRelease("E2", "8n")
+    playPadSound: () => {
+      Tone.start();
+      bass3.triggerAttackRelease(bass3key, "8n");
+    },
+    playPadSoundInStep: (time) => bass3.triggerAttackRelease(bass3key, "8n", time),
   },
   {
     id: 8,
     name: "Bass 4",
     sound: bass4,
-    key: "F2",
+    key: bass4key,
     volume: 0,
     muted: false,
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => bass4.triggerAttackRelease("F2", "8n"),
-    playPadSoundInStep: (time) => bass4.triggerAttackRelease("F2", "8n")
+    playPadSound: () => {
+      Tone.start();
+      bass4.triggerAttackRelease(bass4key, "8n");
+    },
+    playPadSoundInStep: (time) => bass4.triggerAttackRelease(bass4key, "8n", time),
   },
   {
     id: 9,
@@ -233,8 +249,11 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => fxLaugh.start(),
-    playPadSoundInStep: (time) => fxLaugh.start(time)
+    playPadSound: () => {
+      Tone.start();
+      fxLaugh.start();
+    },
+    playPadSoundInStep: (time) => fxLaugh.start(time),
   },
   {
     id: 10,
@@ -246,8 +265,11 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => fxListen.start(),
-    playPadSoundInStep: (time) => fxListen.start(time)
+    playPadSound: () => {
+      Tone.start();
+      fxListen.start();
+    },
+    playPadSoundInStep: (time) => fxListen.start(time),
   },
   {
     id: 11,
@@ -259,8 +281,11 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => fxTape.start(),
-    playPadSoundInStep: (time) => fxTape.start(time)
+    playPadSound: () => {
+      Tone.start();
+      fxTape.start();
+    },
+    playPadSoundInStep: (time) => fxTape.start(time),
   },
   {
     id: 12,
@@ -272,8 +297,11 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => fxWoodblock.start(),
-    playPadSoundInStep: (time) => fxWoodblock.start(time)
+    playPadSound: () => {
+      Tone.start();
+      fxWoodblock.start();
+    },
+    playPadSoundInStep: (time) => fxWoodblock.start(time),
   },
   {
     id: 13,
@@ -285,8 +313,11 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => kick.start(),
-    playPadSoundInStep: (time) => kick.start(time)
+    playPadSound: () => {
+      Tone.start();
+      kick.start();
+    },
+    playPadSoundInStep: (time) => kick.start(time),
   },
   {
     id: 14,
@@ -298,8 +329,11 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => snare.start(),
-    playPadSoundInStep: (time) => snare.start(time)
+    playPadSound: () => {
+      Tone.start();
+      snare.start();
+    },
+    playPadSoundInStep: (time) => snare.start(time),
   },
   {
     id: 15,
@@ -311,8 +345,11 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => hat.start(),
-    playPadSoundInStep: (time) => hat.start(time)
+    playPadSound: () => {
+      Tone.start();
+      hat.start();
+    },
+    playPadSoundInStep: (time) => hat.start(time),
   },
   {
     id: 16,
@@ -324,17 +361,20 @@ const padsData = [
     stepsA: Array(16).fill(false),
     stepsB: Array(16).fill(false),
     currSeq: "A",
-    playPadSound: () => crash.start(),
-    playPadSoundInStep: (time) => crash.start(time)
-  }
+    playPadSound: () => {
+      Tone.start();
+      crash.start();
+    },
+    playPadSoundInStep: (time) => crash.start(time),
+  },
 ];
 
 // keyboard key to pad key map
 const padKeyMap = {
-  "1": 1,
-  "2": 2,
-  "3": 3,
-  "4": 4,
+  1: 1,
+  2: 2,
+  3: 3,
+  4: 4,
   q: 5,
   w: 6,
   e: 7,
@@ -357,23 +397,23 @@ const padKeyMap = {
   n: "pad-mute",
   N: "pad-mute",
   m: "mute-all",
-  M: "mute-all"
+  M: "mute-all",
 };
 
 // Set initial tempo
 Tone.Transport.bpm.value = 82;
 
 //chain effects to every sounds source
-Object.entries(padsData).forEach(([key, value]) => {
-  value.sound.chain(filter, distortion, volume);
+Object.entries(padsData).forEach((value) => {
+  value[1].sound.chain(filter, distortion, volume);
 });
 
 /*-------------------------- Functions */
 
 // reset all pad text colors to white
-const resetAllPadTextColors = () => {  
+const resetAllPadTextColors = () => {
   let i;
-  for (i = 0; i < 16; i+=1) {
+  for (i = 0; i < 16; i += 1) {
     const currPadText = document.getElementById(`pad-${i + 1}`);
     currPadText.style.color = "white";
   }
@@ -393,7 +433,7 @@ const seq = new Tone.Sequence(
     let i;
     for (i = 0; i < 16; i++) {
       // use destructed object to get the padsData
-      const { id, stepsA, stepsB, sound, currSeq, muted, playPadSoundInStep } =
+      const { id, stepsA, stepsB, currSeq, muted, playPadSoundInStep } =
         padsData[i];
 
       // create check conditions for playing sound in sequence
@@ -447,10 +487,18 @@ const setCurrentPadText = (pad) => {
 
 //get maxAmount from volume
 const getMaxAmountFromVolume = (volume) => {
-  if (volume === 0) {return 3;}
-  if (volume === -16) {return 2;}
-  if (volume === -32) {return 1;}
-  if (volume === -64) {return 0;}
+  if (volume === 0) {
+    return 3;
+  }
+  if (volume === -16) {
+    return 2;
+  }
+  if (volume === -32) {
+    return 1;
+  }
+  if (volume === -64) {
+    return 0;
+  }
   return 0;
 };
 
@@ -933,9 +981,11 @@ function updateValue(slider) {
   }
 }
 
+window.updateValue = updateValue;
+
 // add event listener to pad effect inner selects
 padEffectInnerSelects.forEach((select) => {
-  select.addEventListener("click", (event) => {
+  select.addEventListener("click", () => {
     // can only edit if there is a current selected pad
     if (currentSelectedPad === undefined) {
       Toastify({

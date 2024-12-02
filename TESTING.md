@@ -10,6 +10,43 @@
 
 ## JS Validator
 
+the [ESLint online playground](https://eslint-online-playground.netlify.app/) was used to validate the JS code to the ESlint standard
+
+**The code passes with no warnings or error.**
+
+The .eslintrc.json file used with eslint config contains the following:
+
+```json
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+    "jest": true 
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "globals": {
+    "Tone": "readonly",
+    "Toastify": "readonly"    
+  },
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-unused-vars": "warn",
+    "no-console": "off",
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"]
+  }
+}
+```
+
+To replicate and ensure that the tests pass you must past the main.js code in the [ESLint online playground](https://eslint-online-playground.netlify.app/)
+and you must make sure the configuration file type is set to .eslintrc.json and you must paste the code above into the config file
+
 ## Jest Testing
 
 - A lot of difficulties with Jest testing because I am using the Web Audio API through tone.js
