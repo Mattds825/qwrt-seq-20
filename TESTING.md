@@ -2,6 +2,15 @@
 
 ## HTML Validator
 
+The ![W3 HTML Validator](https://validator.w3.org/nu/) was used to validate the html
+
+The only errors present are relating to the duplicate id's of the elemnts in the pad effects setion
+as this section, however these can be ignorred as they are always onlt in one place at a time becuase of the 
+css code and the media queries. this is because on landscape devides the pad effects section is shown in the main drum machine,
+while ion portraait devices it is hidden inside a setting modal
+
+the full these can be seen [here](/documentation/tests/html-test.pdf)
+
 ## CSS Validator 
 
 [The W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/#validate_by_input) was used to validate the html code in the [style.css](/assets/css/style.css) file

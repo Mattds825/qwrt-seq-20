@@ -397,6 +397,7 @@ Tone js as the 3rd party library to handle the audio engine functionality
 - Github/Git - Used and CI tool 
 - Github pages - Used for deployment
 - [The W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/#validate_by_input) used to validate css in tests
+- ![W3 HTML Validator](https://validator.w3.org/nu/) used to validate html code
 - [ESLint online playground](https://eslint-online-playground.netlify.app/): used to validate the Javascript Code
 
 
